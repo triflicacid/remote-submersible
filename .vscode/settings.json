@@ -3,6 +3,7 @@
     "stdlib.h": "c",
     "communication.h": "c",
     "action-mgr.h": "c",
-    "7-segment.h": "c"
+    "7-segment.h": "c",
+    "constants.h": "c"
   }
 }

@@ -1,8 +1,8 @@
 #include "main.h"
 
 #include "actions.h"
-#include "shared/action-mgr.h"
 #include "constants.h"
+#include "shared/action-mgr.h"
 
 display_t g_display;
 lora_t g_lora;
