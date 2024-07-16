@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-typedef struct _timed_event_t timed_event_t;
+typedef struct timed_event_t timed_event_t;
 
 // clear all timed events (free's events)
 void timed_events_clear(void);

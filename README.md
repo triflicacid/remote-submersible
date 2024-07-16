@@ -25,4 +25,5 @@ There will also be files for both controllers to specify the exact configuration
 
 ### Shared
 
+- `action-mgr` - library for creating actions, storing as pending, and executing them.
 - `timed-events` - library for managing events on a timeout.
