@@ -15,6 +15,9 @@ Source code is located under `code/`.
 The `shared` folder contains software which is identical to both controllers.
 The `x-board` directories contain software specific to each controller, as dictated by `x`.
 
+Various circuit schematics are available under `schematics/`.
+These are all KiCAD schematics.
+
 ## Structure
 
 The aim is to maximise separation between custom and generated code.
