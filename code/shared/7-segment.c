@@ -1,5 +1,7 @@
 #include "7-segment.h"
 
+#include <stdlib.h>
+
 struct display_t {
   GPIO_TypeDef *segment_port; // port for a-g segments
   uint16_t segment_pins[SEGMENT_COUNT]; // a-g segment pins
@@ -88,7 +90,7 @@ void display_init_single(display_t *display, GPIO_TypeDef *segment_port, uint16_
   display_init(display, segment_port, segment_pins, decimal_pin, NULL, 1, NULL, is_anode);				
 }
 
-void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segment_pins[SEGMENT_COUNT], uint16_t decimal_pin, GPIO_TypeDef *digit_port, uint8_t digit_count, uint8_t *digit_pins, bool is_anode) {
+void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segment_pins[SEGMENT_COUNT], uint16_t decimal_pin, GPIO_TypeDef *digit_port, uint8_t digit_count, uint16_t *digit_pins, bool is_anode) {
   if (digit_count == 0) {
     return;
   }
@@ -103,7 +105,11 @@ void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segme
 
   // configure digital ports
   display->digit_port = digit_port;
-  display->digit_pins = digit_pins;
+  display->digit_pins = malloc(sizeof(uint16_t) * digit_count);
+
+  for (uint16_t i = 0; i < digit_count; i++) {
+    display->digit_pins[i] = digit_pins[i];
+  }
   
   // configure on/off pin states
   // 'on' and 'off' states depend on if display is common anode or cathode
