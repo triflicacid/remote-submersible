@@ -28,9 +28,19 @@ There will also be files for both controllers to specify the exact configuration
 
 ### Shared
 
+These files are copied on both controllers.
+
 - `7-segment` - *library* for arbitrary-digit 7-segment displays.
 - `action-mgr` - *library* for creating actions, storing as pending, and executing them.
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
 - `lora` - *library* for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
 - `stored-code` - functions to save and fetch a stored code.
 - `timed-events` - *library* for managing events on a timeout.
+
+### Common
+
+These files are present on both controllers but contain different code (but the maintains the same semantic meaning).
+
+- `actions` - action handlers.
+- `constants` - contain implementation constants, such as pin and port configurations and names of peripherals. Creates further separation between custom and generated code.
+- `main` - 'entry point' of custom code; supplies `setup` and `loop` functions, and declares global variables.
