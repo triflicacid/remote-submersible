@@ -25,8 +25,9 @@ There will also be files for both controllers to specify the exact configuration
 
 ### Shared
 
-- `7-segment` - library for arbitrary-digit 7-segment displays.
-- `action-mgr` - library for creating actions, storing as pending, and executing them.
-- `lora` - minimal library for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
+- `7-segment` - *library* for arbitrary-digit 7-segment displays.
+- `action-mgr` - *library* for creating actions, storing as pending, and executing them.
+- `communications` - types for various actions' payloads, and functions to receive payload packet.
+- `lora` - *library* for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
 - `stored-code` - functions to save and fetch a stored code.
-- `timed-events` - library for managing events on a timeout.
+- `timed-events` - *library* for managing events on a timeout.
