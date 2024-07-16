@@ -1,22 +1,29 @@
 #ifndef _PINS_H
 #define _PINS_H
 
+// LoRa device SPI handler name
+#define LORA_SPI_HANDLER hspi1
+
+// LoRa NSS
+#define LORA_NSS_PORT GPIOA
+#define LORA_NSS_PIN GPIO_PIN_1
+
 // send-code button
 #define SEND_CODE_PORT GPIOA
-#define SEND_CODE_PIN GPIO_PIN_1
+#define SEND_CODE_PIN GPIO_PIN_2
 
 // request-code button
 #define REQUEST_CODE_PORT GPIOA
-#define REQUEST_CODE_PIN GIO_PIN_2
+#define REQUEST_CODE_PIN GIO_PIN_3
 
 // release escape pod button
 #define RELEASE_POD_PORT GPOIA
-#define RELEASE_POD_PIN GPIO_PIN_3
+#define RELEASE_POD_PIN GPIO_PIN_4
 
 // ballast tri-state switch
 #define BALLAST_PORT GPPIOA
-#define BALLAST_UP_PIN GPIO_PIN_4
-#define BALLAST_DOWN_PIN GPIO_PIN_5
+#define BALLAST_UP_PIN GPIO_PIN_5
+#define BALLAST_DOWN_PIN GPIO_PIN_6
 
 // 7-segment display segment pins
 #define DISPLAY_SEGMENT_PORT GPIOB
