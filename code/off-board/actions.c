@@ -18,7 +18,7 @@ void action_propeller(uint16_t x, uint16_t y) {
 }
 
 void action_ballast(void) {
-	// TODO
+	// TODO read tri-state switch
 	
 	ballast_data data;
 	transmit(&g_lora, OP_BALLAST, &data, sizeof(data));

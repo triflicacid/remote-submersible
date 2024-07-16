@@ -1,5 +1,6 @@
 #include "main.h"
 
+#include "actions.h"
 #include "shared/action-mgr.h"
 #include "constants.h"
 
@@ -25,4 +26,19 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
+}
+
+// overide GPIO external interrupt callback
+void HAL_GPIO_EXTI_Callback(uint16_t pin) {
+  switch (pin) {
+    case SEND_CODE_PIN:
+      create_action(action_send_code);
+      break;
+    case REQUEST_CODE_PORT:
+      create_action(action_request_code);
+      break;
+    case RELEASE_POD_PIN:
+      create_action(action_release_pod);
+      break;
+  }
 }
