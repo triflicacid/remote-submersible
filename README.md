@@ -25,6 +25,7 @@ There will also be files for both controllers to specify the exact configuration
 
 ### Shared
 
+- `7-segment` - library for arbitrary-digit 7-segment displays.
 - `action-mgr` - library for creating actions, storing as pending, and executing them.
 - `stored-code` - functions to save and fetch a stored code.
 - `timed-events` - library for managing events on a timeout.
