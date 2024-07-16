@@ -2,6 +2,7 @@
 #define _COMMUNICATION_H_
 
 #include "stored-code.h"
+#include "lora.h"
 
 #include <stdint.h>
 
@@ -58,5 +59,11 @@ void register_release_pod_callback(release_pod_callback_t cb);
 
 // recieve communication; pass data and invoke necessary callbacks
 void receive_communication(payload *payload);
+
+// transmit a lone opcode over LoRa
+void transmit_opcode(lora_t *lora, opcode_t opcode);
+
+// transmit an opcode along with a data payload over LoRa
+void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size);
 
 #endif

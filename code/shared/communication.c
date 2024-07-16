@@ -1,5 +1,8 @@
 #include "communication.h"
 
+#include <stdlib.h>
+#include <string.h>
+
 // macro - call `fn` with `arg` if not null
 #define FN_GUARD(fn, arg) if (fn) fn(arg);
 
@@ -49,4 +52,30 @@ void receive_communication(payload *payload) {
 			FN_GUARD(release_pod_cb,)
 			break;
 	}
+}
+
+void transmit_opcode(lora_t *lora, opcode_t opcode) {
+	uint8_t buffer = opcode;
+	lora_send(lora, &opcode, 1);
+}
+
+void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size) {
+	// create buffer to fit opcode + data
+	uint8_t buffer_size = sizeof(opcode) + data_size;
+	uint8_t *buffer = malloc(buffer_size);
+
+	// copy opcode into buffer
+	buffer[0] = opcode;
+	// use following approaches if opcode_t changes from 8-bit value
+	// *(opcode_t *) buffer = opcode;
+	// memcpy(buffer, &opcode, sizeof(opcode))
+
+	// copy data into buffer
+	memcpy(buffer + sizeof(opcode), data, data_size);
+
+	// transmit data
+	lora_send(lora, buffer, buffer_size);
+
+	// release buffer
+	free(buffer);
 }
