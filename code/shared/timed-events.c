@@ -103,7 +103,7 @@ bool timed_event_deregister(timed_event_t *event) {
 }
 
 void timed_events_clear(void) {
-  node *current = NULL, *next = events;
+  node *current, *next = events;
   
   while (current = next) {
     // point to next node in list
