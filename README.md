@@ -22,3 +22,7 @@ The entry point to a controller's code is in `main.c`, which provides `setup` an
 In the generated `main.c`, there will be a single call to `setup` with `loop` called inside an infinite loop.
 
 There will also be files for both controllers to specify the exact configuration achieved inside STM32CubeMX.
+
+### Shared
+
+- `timed-events` - library for managing events on a timeout.
