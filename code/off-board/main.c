@@ -1,8 +1,10 @@
 #include "main.h"
 
-#include "actions.h"
 #include "constants.h"
+
+#include "actions.h"
 #include "shared/action-mgr.h"
+#include "shared/stored-code.h"
 
 display_t g_display;
 lora_t g_lora;
@@ -22,6 +24,11 @@ void setup(void) {
 
   // initialise LoRa device
   lora_setup(&g_lora, &LORA_SPI_HANDLER, LORA_NSS_PORT, LORA_NSS_PIN);
+
+#ifdef CODE_INTERNAL_VALUE
+  // hardcode internal code
+  save_code(CODE_INTERNAL, CODE_INTERNAL_VALUE);
+#endif
 }
 
 void loop(void) {

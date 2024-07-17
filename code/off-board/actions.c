@@ -34,16 +34,13 @@ static int8_t read_tri_state(GPIO_TypeDef *down_port, uint16_t down_pin, GPIO_Ty
 
 void action_ballast(void) {
 	// determine tri-state switch mode and transmit payload
-	ballast_data data = {
-		.mode = read_tri_state(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN)
-	};
-	
+	ballast_data data = { read_tri_state(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
 	transmit(&g_lora, OP_BALLAST, &data, sizeof(data));
 }
 
 void action_send_code(void) {
 	// create payload to contain our stored code
-	code_data data = { fetch_code() };
+	code_data data = { fetch_code(CODE_INTERNAL) };
 	transmit(&g_lora, OP_SEND_CODE, &data, sizeof(data));
 }
 
@@ -56,6 +53,7 @@ void action_release_pod(void) {
 }
 
 void recv_send_code(code_data *data) {
-	save_code(data->code);
-	// TODO display code
+	// save downloaded code and display to operator
+	save_code(CODE_DOWNLOADED, data->code);
+	display_write(&g_display, data->code, 0x0);
 }
