@@ -34,6 +34,7 @@ These files are copied on both controllers.
 - `action-mgr` - *library* for creating actions, storing as pending, and executing them.
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
 - `lora` - *library* for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
+- `stepper-motor` - *library* for driving a 4-pin stepper motor.
 - `stored-code` - functions to save and fetch a stored code.
 - `timed-events` - *library* for managing events on a timeout.
 
