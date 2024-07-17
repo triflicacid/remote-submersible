@@ -5,10 +5,15 @@
 
 typedef uint32_t code_t;
 
-// retrieve saved code
-code_t fetch_code(void);
+#ifndef STORED_CODE_COUNT
+// number of stored codes (uint8_t)
+#define STORED_CODE_COUNT 1
+#endif
 
-// save code to storage
-void save_code(code_t code);
+// retrieve saved code at given index
+code_t fetch_code(uint8_t index);
+
+// save code to storage at given index
+void save_code(uint8_t index, code_t code);
 
 #endif

@@ -1,15 +1,11 @@
 #include "stored-code.h"
 
-#ifdef STORED_CODE_INITIAL
-static volatile code_t _code = STORED_CODE_INITIAL;
-#else
-static volatile code_t _code;
-#endif
+static volatile code_t codes[STORED_CODE_COUNT] = {0};
 
-code_t fetch_code(void) {
-  return _code;
+code_t fetch_code(uint8_t index) {
+  return codes[index];
 }
 
-void save_code(code_t code) {
-  _code = code;
+void save_code(uint8_t index, code_t code) {
+  codes[index] = code;
 }
