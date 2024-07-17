@@ -4,12 +4,12 @@
 #include "shared/stored-code.h"
 
 // convert uint16_t result from ADC joystick to float [0,1].
-static float adc_joystick_conv(uint16_t value) {
+static float adc_joystick_conv(uint32_t value) {
 	// TODO proper conversion
 	return value / 0xFFFF;
 }
 
-void action_propeller(uint16_t x, uint16_t y) {
+void action_propeller(uint32_t x, uint32_t y) {
 	// convert raw ADC values into range
 	propeller_data data;
 	data.x = adc_joystick_conv(x);

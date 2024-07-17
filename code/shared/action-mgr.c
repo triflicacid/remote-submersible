@@ -34,7 +34,7 @@ int count_pending_actions(void) {
   return count;
 }
 
-action_node *next_action(void) {
+handler *next_action(void) {
   if (pending_actions) {
     // save current action node
     action_node *action = pending_actions;

@@ -55,8 +55,7 @@ void receive_communication(payload *payload) {
 }
 
 void transmit_opcode(lora_t *lora, opcode_t opcode) {
-	uint8_t buffer = opcode;
-	lora_send(lora, &opcode, 1);
+	lora_send(lora, &opcode, sizeof(opcode));
 }
 
 void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size) {
@@ -66,9 +65,6 @@ void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size) {
 
 	// copy opcode into buffer
 	buffer[0] = opcode;
-	// use following approaches if opcode_t changes from 8-bit value
-	// *(opcode_t *) buffer = opcode;
-	// memcpy(buffer, &opcode, sizeof(opcode))
 
 	// copy data into buffer
 	memcpy(buffer + sizeof(opcode), data, data_size);

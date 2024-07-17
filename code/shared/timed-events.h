@@ -18,10 +18,10 @@ void timed_events_iterate(void (*callback)(timed_event_t *));
 
 // create new timed event
 // event is created disabled; to enable, call function
-timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint32_t target_ms);
+timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint64_t timeout);
 
 // timed_event_create with user data and callback to be invoked on event destroy
-timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint32_t target_ms, void *user_data, void (*on_delete)(timed_event_t *));
+timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint64_t timeout, void *user_data, void (*on_delete)(timed_event_t *));
 
 // register event so it will 'tick'
 // NOTE, event cannot be registered twice
@@ -51,10 +51,10 @@ void timed_event_prime(timed_event_t *event);
 
 // increment all events by `time` ms
 // NOTE does not trigger handlers; call _main
-void timed_events_tick(uint32_t time_ms);
+void timed_events_tick(uint32_t time);
 
 // same as timed_events_tick, but only ticks events which pass the `guard`
-void timed_events_guard_tick(uint32_t time_ms, bool (*guard)(timed_event_t *));
+void timed_events_guard_tick(uint32_t time, bool (*guard)(timed_event_t *));
 
 // check all events, run handlers of all events which have timed out
 void timed_events_main(void);
@@ -67,5 +67,8 @@ void timed_event_get_counter(timed_event_t *event);
 
 // get user data of an event
 void *timed_event_get_data(timed_event_t *event);
+
+// set user data of an event (on-delete handler is not called on old data)
+void timed_event_set_data(timed_event_t *event, void *data);
 
 #endif

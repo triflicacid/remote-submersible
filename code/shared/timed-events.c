@@ -4,8 +4,8 @@
 
 struct timed_event_t {
   bool enabled; // enabled flag
-  uint32_t elapsed; // measure elapsed time (ms)
-  uint32_t target; // measure target timeout time (ms)
+  uint64_t elapsed; // measure elapsed time units
+  uint64_t target; // measure target timeout time units
   uint32_t counter; // count times invoked
   void (*handler)(timed_event_t *); // handler, called on completion
   bool is_registered; // check if event is registered
@@ -137,14 +137,14 @@ void timed_events_iterate(void (*callback)(timed_event_t *)) {
   }
 }
 
-timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint32_t target_ms) {
-  return timed_event_create_with_data(handler, target_ms, NULL, NULL);
+timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint64_t timeout) {
+  return timed_event_create_with_data(handler, timeout, NULL, NULL);
 }
 
-timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint32_t target_ms, void *user_data, void (*on_delete)(timed_event_t *)) {
+timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint64_t timeout, void *user_data, void (*on_delete)(timed_event_t *)) {
   // initialise read-only fields
   timed_event_t *event = malloc(sizeof(timed_event_t));
-  event->target = target_ms;
+  event->target = timeout;
   event->handler = handler;
   event->is_registered = false;
   event->on_delete = on_delete;
@@ -195,13 +195,13 @@ void timed_event_prime(timed_event_t *event) {
   event->elapsed = event->target;
 }
 
-void timed_events_tick(uint32_t time_ms) {
+void timed_events_tick(uint32_t time) {
   node *current = events;
   
   while (current) {
     // increase elapsed time only if enabled
     if (current->event->enabled) {
-      current->event->elapsed += time_ms;
+      current->event->elapsed += time;
     }
     
     // point to next item
@@ -209,13 +209,13 @@ void timed_events_tick(uint32_t time_ms) {
   }
 }
 
-void timed_events_guard_tick(uint32_t time_ms, bool (*guard)(timed_event_t *)) {
+void timed_events_guard_tick(uint32_t time, bool (*guard)(timed_event_t *)) {
   node *current = events;
   
   while (current) {
     // increase elapsed time only if enabled and passes guard
     if (current->event->enabled && guard(current->event)) {
-      current->event->elapsed += time_ms;
+      current->event->elapsed += time;
     }
     
     // point to next item
@@ -232,7 +232,7 @@ void timed_events_main(void) {
     
     // invoke handler if enabled and complete
     if (event->enabled && event->elapsed >= event->target) {
-      invoke_handler(event);
+      timed_event_stop(event, false);
     }
     
     // point to next item
@@ -249,7 +249,7 @@ void timed_events_guard_main(bool (*guard)(timed_event_t *)) {
     
     // invoke handler if enabled and complete and passes guard
     if (event->enabled && event->elapsed >= event->target && guard(event)) {
-      invoke_handler(event);
+      timed_event_stop(event, false);
     }
     
     // point to next item
@@ -263,4 +263,8 @@ void timed_event_get_counter(timed_event_t *event) {
 
 void *timed_event_get_data(timed_event_t *event) {
   return event->user_data;
+}
+
+void timed_event_set_data(timed_event_t *event, void *data) {
+  event->user_data = data;
 }
