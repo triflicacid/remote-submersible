@@ -4,13 +4,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifndef TIMED_EVENTS_LIST_COUNT
 // number of timed event lists
 #define TIMED_EVENTS_LIST_COUNT 1
+#endif
 
+#ifndef TIMED_EVENTS_LIST_CAPACITY
 // maximum number of times events in each list
 // each event is 47 bytes unaligned
 // note, stack memory allocation is `list_count * (list_capacity * sizeof(timed_event_t) + sizeof(uint8_t))`
 #define TIMED_EVENTS_LIST_CAPACITY 16
+#endif
 
 typedef struct timed_event_t timed_event_t;
 
@@ -53,6 +57,9 @@ void timed_events_tick(uint8_t list, uint32_t time);
 
 // check all events, run handlers of all events which have timed out
 void timed_events_main(uint8_t list);
+
+// run `timed_events_main` on all event lists
+void timed_events_main_all(void);
 
 // get times given event has been invoked
 void timed_event_get_counter(timed_event_t *event);

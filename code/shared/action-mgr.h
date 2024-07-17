@@ -1,10 +1,12 @@
 #ifndef _ACTION_MGR_H_
 #define _ACTION_MGR_H_
 
+#ifndef MAX_PENDING_ACTIONS
 // maximum number of pending action handlers
 // if create_action exceeds this limit, action is ignored
 // each handler has size 8 bytes
 #define MAX_PENDING_ACTIONS 16
+#endif
 
 #include <stdint.h>
 #include <stdbool.h>

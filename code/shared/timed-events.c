@@ -150,6 +150,12 @@ void timed_events_main(uint8_t idx) {
   }
 }
 
+void timed_events_main_all(void) {
+  for (uint16_t i = 0; i < TIMED_EVENTS_LIST_COUNT; i++) {
+    timed_events_main(i);
+  }
+} 
+
 void timed_event_get_counter(timed_event_t *event) {
   return event->counter;
 }
