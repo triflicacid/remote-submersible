@@ -21,7 +21,7 @@ void timed_events_clear(uint8_t list);
 uint8_t timed_events_count(uint8_t list);
 
 // call the callback on all events in list
-// safe to destroy events in callback
+// note, not safe to destroy events whilst iterating
 void timed_events_iterate(uint8_t list, void (*callback)(timed_event_t *));
 
 // create new timed event in the given list, or return NULL if at capacity
@@ -31,7 +31,7 @@ timed_event_t *timed_event_create(uint8_t list, void (*handler)(timed_event_t *)
 // timed_event_create with user data and callback to be invoked on event destruction which takes said data as a parameter
 timed_event_t *timed_event_create_with_data(uint8_t list, void (*handler)(timed_event_t *), uint64_t timeout, void *data, void (*on_delete)(void *));
 
-// destroy given event (free's event)
+// destroy given event (calls on-delete handler)
 void timed_event_destroy(timed_event_t *event);
 
 // reset given event (factory reset)
@@ -41,7 +41,7 @@ void timed_event_reset(timed_event_t *event);
 void timed_event_start(timed_event_t *event);
 
 // end given event
-// silent=true: does not call handler nor increment count (can be considered abort/halt)
+// `silent=true`: does not call handler nor increment count (can be considered abort/halt)
 void timed_event_stop(timed_event_t *event, bool silent);
 
 // prime event to be triggered next tick (enable & set elapsed=target)

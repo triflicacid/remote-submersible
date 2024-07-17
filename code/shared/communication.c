@@ -58,7 +58,7 @@ void transmit_opcode(lora_t *lora, opcode_t opcode) {
 }
 
 // buffer for LoRa payload
-static uint8_t lora_buffer[LORA_MAX_PAYLOAD_SIZE] = {0};
+static uint8_t lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 
 void transmit(lora_t *lora, opcode_t opcode, void *data, uint8_t data_size) {
 	// check if too large
