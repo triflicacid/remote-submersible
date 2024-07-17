@@ -106,7 +106,7 @@ void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, GPIO_TypeDef *nss_port, uint
 	write_byte(lora, REG_PA_DAC, 0x87);
 	
 	// set max payload length
-	write_byte(lora, REG_MAX_PAYLOAD_LEN, 64);
+	write_byte(lora, REG_MAX_PAYLOAD_LEN, LORA_MAX_PAYLOAD_SIZE);
 	
 	// configure modem
 	write_byte(lora, REG_CONF_1, 0x72);

@@ -64,6 +64,6 @@ void receive_communication(payload *payload);
 void transmit_opcode(lora_t *lora, opcode_t opcode);
 
 // transmit an opcode along with a data payload over LoRa
-void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size);
+void transmit(lora_t *lora, opcode_t opcode, void *data, uint8_t data_size);
 
 #endif

@@ -4,6 +4,7 @@
     "communication.h": "c",
     "action-mgr.h": "c",
     "7-segment.h": "c",
-    "constants.h": "c"
+    "constants.h": "c",
+    "lora.h": "c"
   }
 }

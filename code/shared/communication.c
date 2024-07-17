@@ -1,6 +1,5 @@
 #include "communication.h"
 
-#include <stdlib.h>
 #include <string.h>
 
 // macro - call `fn` with `arg` if not null
@@ -58,20 +57,21 @@ void transmit_opcode(lora_t *lora, opcode_t opcode) {
 	lora_send(lora, &opcode, sizeof(opcode));
 }
 
-void transmit(lora_t *lora, opcode_t opcode, void *data, uint16_t data_size) {
-	// create buffer to fit opcode + data
-	uint8_t buffer_size = sizeof(opcode) + data_size;
-	uint8_t *buffer = malloc(buffer_size);
+// buffer for LoRa payload
+static uint8_t lora_buffer[LORA_MAX_PAYLOAD_SIZE] = {0};
 
-	// copy opcode into buffer
-	buffer[0] = opcode;
+void transmit(lora_t *lora, opcode_t opcode, void *data, uint8_t data_size) {
+	// check if too large
+	if (sizeof(opcode) + data_size > LORA_MAX_PAYLOAD_SIZE) {
+		return;
+	}
+
+	// load opcode into buffer
+	lora_buffer[0] = opcode;
 
 	// copy data into buffer
-	memcpy(buffer + sizeof(opcode), data, data_size);
+	memcpy(lora_buffer + sizeof(opcode), data, data_size);
 
 	// transmit data
-	lora_send(lora, buffer, buffer_size);
-
-	// release buffer
-	free(buffer);
+	lora_send(lora, lora_buffer, sizeof(opcode) + data_size);
 }
