@@ -2,6 +2,9 @@
 
 #include "constants.h"
 
+#include "shared/action-mgr.h"
+#include "shared/timed-events.h"
+
 lora_t g_lora;
 
 void setup(void) {
@@ -10,5 +13,6 @@ void setup(void) {
 }
 
 void loop(void) {
-
+  execute_pending_actions();
+  timed_events_main_all();
 }

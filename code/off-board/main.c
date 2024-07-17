@@ -4,6 +4,7 @@
 
 #include "actions.h"
 #include "shared/action-mgr.h"
+#include "shared/timed-events.h"
 #include "shared/stored-code.h"
 
 display_t g_display;
@@ -33,6 +34,7 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
+  timed_events_main_all();
 }
 
 // overide GPIO external interrupt callback
