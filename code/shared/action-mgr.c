@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include "action-mgr.h"
 
 // array of pending action handlers
