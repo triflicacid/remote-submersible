@@ -2,69 +2,44 @@
 
 #include "action-mgr.h"
 
-typedef struct action_node action_node;
+// array of pending action handlers
+static volatile handler pending_actions[MAX_PENDING_ACTIONS] = {NULL};
 
-struct action_node {
-  handler handler;  // action handler
-  action_node *next; // point to next action_node in list
-};
+// number of pending actions
+static volatile uint32_t count = 0;
 
-// linked list of all pending actions.
-static volatile action_node *pending_actions = NULL;
+bool create_action(handler action_handler) {
+  // check if at capacity
+  if (count >= MAX_PENDING_ACTIONS) {
+    return false;
+  }
 
-void create_action(handler action_handler) {
-  // create new action node, refering the given handler
-  action_node *node = malloc(sizeof(*node));
-  node->handler = action_handler;
-  node->next = pending_actions;
-  
-  // insert at start of linked list
-  pending_actions = node;
+  // insert into array and increase size
+  pending_actions[count++] = action_handler;
+
+  return true;
 }
 
-int count_pending_actions(void) {
-  int count = 0;
-  action_node *current = pending_actions;
-  
-  while (current) {
-    count++;
-    current = current->next;
-  }
-  
+uint32_t count_pending_actions(void) {
   return count;
 }
 
-handler *next_action(void) {
-  if (pending_actions) {
-    // save current action node
-    action_node *action = pending_actions;
-    
-    // shift pointer to next action node
-    pending_actions = action->next;
-    
-    // extract action handler before freeing current node
-    handler action_handler = action->handler;
-    free(action);
-    
-    return action_handler;
+handler next_action(void) {
+  // check if list is empty
+  if (count == 0) {
+    return NULL;
   }
-  
-  return NULL;
+
+  // get last item in list
+  return pending_actions[--count];
 }
 
 void execute_pending_actions(void) {
-  action_node *current = NULL, *next = pending_actions;
-  
-  while (current = next) {
-    // run action handler
-    current->handler();
-    
-    // set pointer to next action node
-    next = current->next;
-    
-    // free current node from memory
-    free(current);
+  // iterate over array and call handlers
+  for (uint16_t i = 0; i < count; i++) {
+    pending_actions[i]();
   }
   
-  pending_actions = NULL;
+  // 'empty' array (old entries will be overwritten)
+  count = 0;
 }
