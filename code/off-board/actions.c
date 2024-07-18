@@ -3,7 +3,7 @@
 #include "main.h"
 #include "shared/stored-code.h"
 
-// convert uint16_t result from ADC joystick to float [0,1].
+// convert result from ADC joystick to float [0,1].
 static float adc_joystick_conv(uint32_t value) {
 	// TODO proper conversion
 	return value / 0xFFFF;
