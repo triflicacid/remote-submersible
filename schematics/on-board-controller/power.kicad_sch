@@ -522,6 +522,169 @@
 				)
 			)
 		)
+		(symbol "Device:D"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "D_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Device:D_Schottky"
 			(pin_numbers hide)
 			(pin_names
@@ -1969,12 +2132,6 @@
 		(uuid "29293afb-479e-46ed-b36a-70aae2afdf18")
 	)
 	(junction
-		(at 132.08 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5e675d34-5722-4af7-84d0-1f6ab7e3345c")
-	)
-	(junction
 		(at 101.6 111.76)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2062,13 +2219,23 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 31.75) (xy 250.19 31.75)
+			(xy 232.41 24.13) (xy 232.41 25.4)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "05e413b6-1fbc-4317-835a-add1213d1798")
+	)
+	(wire
+		(pts
+			(xy 250.19 25.4) (xy 250.19 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07eb0fb4-59fb-4612-bac3-afa74210783e")
 	)
 	(wire
 		(pts
@@ -2332,7 +2499,7 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 54.61) (xy 182.88 66.04)
+			(xy 182.88 54.61) (xy 182.88 80.01)
 		)
 		(stroke
 			(width 0)
@@ -2382,6 +2549,16 @@
 	)
 	(wire
 		(pts
+			(xy 232.41 25.4) (xy 238.76 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "81912efb-cb08-44f9-9f5a-bb3c06f8e5b3")
+	)
+	(wire
+		(pts
 			(xy 121.92 111.76) (xy 143.51 111.76)
 		)
 		(stroke
@@ -2389,16 +2566,6 @@
 			(type default)
 		)
 		(uuid "81fd206f-af24-4d05-b93a-962d5b3cab8d")
-	)
-	(wire
-		(pts
-			(xy 132.08 66.04) (xy 182.88 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8763a26e-fed6-4f17-b716-8eaf0f1b3e4a")
 	)
 	(wire
 		(pts
@@ -2512,6 +2679,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 25.4) (xy 250.19 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7c6e778-fbaf-4aaf-a258-c50775dfd2e7")
+	)
+	(wire
+		(pts
 			(xy 130.81 58.42) (xy 116.84 58.42)
 		)
 		(stroke
@@ -2569,6 +2746,16 @@
 			(type default)
 		)
 		(uuid "be009e4b-7101-4b76-82ca-c7aaa82e359e")
+	)
+	(wire
+		(pts
+			(xy 182.88 80.01) (xy 143.51 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0071516-7ada-418d-8b2e-140cb9db2e4e")
 	)
 	(wire
 		(pts
@@ -2927,7 +3114,7 @@
 	)
 	(symbol
 		(lib_id "power:+BATT")
-		(at 243.84 31.75 0)
+		(at 232.41 24.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2936,7 +3123,7 @@
 		(fields_autoplaced yes)
 		(uuid "16b00b8c-d4ad-45d8-9762-2527095c8e54")
 		(property "Reference" "#PWR029"
-			(at 243.84 35.56 0)
+			(at 232.41 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2945,7 +3132,7 @@
 			)
 		)
 		(property "Value" "+BATT"
-			(at 243.84 26.67 0)
+			(at 232.41 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2953,7 +3140,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 243.84 31.75 0)
+			(at 232.41 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2962,7 +3149,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 243.84 31.75 0)
+			(at 232.41 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2971,7 +3158,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 243.84 31.75 0)
+			(at 232.41 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3122,6 +3309,92 @@
 			(project ""
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5/2700eb3f-a209-43ae-889c-058ebf494c7c"
 					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D")
+		(at 242.57 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "597c6aad-1073-47cd-8ce3-04da9f4f7c97")
+		(property "Reference" "D14"
+			(at 242.57 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D"
+			(at 242.57 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
+			(at 242.57 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 242.57 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Diode"
+			(at 242.57 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 242.57 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 242.57 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "74e18d9e-2f03-4659-a928-7ff14ec03763")
+		)
+		(pin "1"
+			(uuid "2fd10d22-2e79-44a8-a68f-9fdce8228dc7")
+		)
+		(instances
+			(project "sub"
+				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5/2700eb3f-a209-43ae-889c-058ebf494c7c"
+					(reference "D14")
 					(unit 1)
 				)
 			)
@@ -4996,7 +5269,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D12.5mm_P5.00mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
 			(at 87.63 45.4152 0)
 			(effects
 				(font
