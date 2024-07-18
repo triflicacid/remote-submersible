@@ -7,7 +7,7 @@
 
 // trigger: joystick change
 // receive raw ADC values
-void action_propeller(uint16_t x, uint16_t y);
+void action_propeller(uint32_t x, uint32_t y);
 
 // trigger: tri-state switch change
 void action_ballast(void);

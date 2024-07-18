@@ -1,28 +1,24 @@
 #include "timed-events.h"
 
-#include <stdlib.h>
-
 struct timed_event_t {
   bool enabled; // enabled flag
-  uint32_t elapsed; // measure elapsed time (ms)
-  uint32_t target; // measure target timeout time (ms)
+  uint64_t elapsed; // measure elapsed time units
+  uint64_t target; // measure target timeout time units
   uint32_t counter; // count times invoked
   void (*handler)(timed_event_t *); // handler, called on completion
-  bool is_registered; // check if event is registered
-  void (*on_delete)(timed_event_t *); // called on deletion
-  void *user_data;
+
+  uint8_t index; // index of parent array in `events`
+  uint8_t index2; // index in `events[index]`
+
+  void (*on_delete)(void *); // called on deletion, given this->data
+  void *data;
 };
 
-typedef struct node node;
+// array of arrays of timed events
+static volatile timed_event_t events[TIMED_EVENTS_LIST_COUNT][TIMED_EVENTS_LIST_CAPACITY];
 
-struct node {
-  timed_event_t *event;
-  node *next;
-};
-
-// keep record of all timed events
-static volatile node *events = NULL;
-static volatile int event_count = 0;
+// array of array sizes, where `sizes[i] = sizeof(events[i])`
+static volatile uint8_t sizes[TIMED_EVENTS_LIST_COUNT] = {0};
 
 // invoke an event handler and other necessary actions
 static void invoke_handler(timed_event_t *event) {
@@ -33,122 +29,43 @@ static void invoke_handler(timed_event_t *event) {
   }
 }
 
-void timed_event_register(timed_event_t *event) {
-  // check if already registered
-  if (event->is_registered) {
-    return;
-  }
-
-  // create new node
-  node *node = malloc(sizeof(node));
-  node->event = event;
-  
-  // make new head
-  node->next = events;
-  events = node;
-  
-  event_count++;
-  event->is_registered = true;
+void timed_events_clear(uint8_t list) {
+  // move pointer to 0 (old entries will be overwritten)
+  sizes[list] = 0;
 }
 
-bool timed_event_is_registered(timed_event_t *event) {
-  return event->is_registered;
+uint8_t timed_events_count(uint8_t list) {
+  return sizes[list];
 }
 
-bool timed_event_deregister(timed_event_t *event) {
-  // only continue if event is registered
-  if (!event->is_registered) {
-    return;
-  }
-  
-  // check if event is in head
-  if (events->event == event) {
-    node *node = events;
+void timed_events_iterate(uint8_t list_idx, void (*callback)(timed_event_t *)) {
+  uint8_t size = sizes[list_idx];
+  timed_event_t *list = events[list_idx];
 
-    // update head to second item
-    events = node->next;
-
-    // free old node
-    free(node);
-    
-    event_count--;
-    event->is_registered = false;
-    
-    return true;
-  }
-  
-  // iterate through list, keep track of previous item
-  node *previous = events, *current = events;
-  
-  while (current = current->next) {
-    // is this the event we are looking for?
-    if (current->event == event) {
-      // update previous' pointer to skip this item
-      previous->next = current->next;
-
-      // free old node
-      free(current);
-      
-      event_count--;
-      event->is_registered = false;
-      
-      return true;
-    }
-    
-    // update previous pointer
-    previous = current;
-  }
-  
-  return false;
-}
-
-void timed_events_clear(void) {
-  node *current, *next = events;
-  
-  while (current = next) {
-    // point to next node in list
-    next = current->next;
-    
-    // destroy event
-    timed_event_destroy(current->event);
-    
-    // destroy node
-    free(current);
-  }
-  
-  // reset global variables
-  events = NULL;
-  event_count = 0;
-}
-
-int timed_events_count(void) {
-  return event_count;
-}
-
-void timed_events_iterate(void (*callback)(timed_event_t *)) {
-  node *current = events;
-  
-  while (current) {
-    // invoke callback on event
-    callback(current->event);
-    
-    // advance to next node
-    current = current->next;
+  for (uint16_t i = 0; i < size; i++) {
+    callback(list + i);
   }
 }
 
-timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint32_t target_ms) {
-  return timed_event_create_with_data(handler, target_ms, NULL, NULL);
+timed_event_t *timed_event_create(uint8_t list, void (*handler)(timed_event_t *), uint64_t timeout) {
+  return timed_event_create_with_data(list, handler, timeout, NULL, NULL);
 }
 
-timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint32_t target_ms, void *user_data, void (*on_delete)(timed_event_t *)) {
-  // initialise read-only fields
-  timed_event_t *event = malloc(sizeof(timed_event_t));
-  event->target = target_ms;
+timed_event_t *timed_event_create_with_data(uint8_t list, void (*handler)(timed_event_t *), uint64_t timeout, void *data, void (*on_delete)(void *)) {
+  // check capacity
+  if (sizes[list] >= TIMED_EVENTS_LIST_CAPACITY) {
+    return NULL;
+  }
+
+  // get pointer to event structure
+  timed_event_t *event = &events[list][sizes[list]++];
+
+  // initialise fields
+  event->target = timeout;
   event->handler = handler;
-  event->is_registered = false;
+  event->index = list;
   event->on_delete = on_delete;
-  event->user_data = user_data;
+  event->data = data;
   
   // reset dynamic fields
   timed_event_reset(event);
@@ -159,14 +76,24 @@ timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), ui
 void timed_event_destroy(timed_event_t *event) {
   // if provided, call custom on-delete handler
   if (event->on_delete) {
-    event->on_delete(event);
+    event->on_delete(event->data);
   }
-  
-  // de-register event
-  timed_event_deregister(event);
-  
-  // free event
-  free(event);
+
+  // get event list that we are located in, its size, and our index into it
+  uint8_t list_idx = event->index, size = sizes[list_idx], idx = event->index2;
+  timed_event_t *list = events[list_idx];
+
+  // shift all events after this index back one place
+  for (uint16_t i = idx + 1; i < size; i++) {
+    // copy event to previous position
+    list[i - 1] = list[i];
+
+    // update event's index into `list`
+    list[i - 1].index2--;
+  }
+
+  // decrease `list` size
+  sizes[list_idx]--;
 }
 
 void timed_event_reset(timed_event_t *event) {
@@ -195,72 +122,48 @@ void timed_event_prime(timed_event_t *event) {
   event->elapsed = event->target;
 }
 
-void timed_events_tick(uint32_t time_ms) {
-  node *current = events;
+void timed_events_tick(uint8_t idx, uint32_t time) {
+  uint8_t size = sizes[idx];
+  timed_event_t *list = events[idx], *event;
   
-  while (current) {
+  for (uint16_t i = 0; i < size; i++) {
+    event = list + i;
+
     // increase elapsed time only if enabled
-    if (current->event->enabled) {
-      current->event->elapsed += time_ms;
+    if (event->enabled) {
+      event->elapsed += time;
     }
-    
-    // point to next item
-    current = current->next;
   }
 }
 
-void timed_events_guard_tick(uint32_t time_ms, bool (*guard)(timed_event_t *)) {
-  node *current = events;
+void timed_events_main(uint8_t idx) {
+  uint8_t size = sizes[idx];
+  timed_event_t *list = events[idx], *event;
   
-  while (current) {
-    // increase elapsed time only if enabled and passes guard
-    if (current->event->enabled && guard(current->event)) {
-      current->event->elapsed += time_ms;
-    }
-    
-    // point to next item
-    current = current->next;
-  }
-}
+  for (uint16_t i = 0; i < size; i++) {
+    event = list + i;
 
-void timed_events_main(void) {
-  node *current = events;
-  timed_event_t *event;
-  
-  while (current) {
-    event = current->event;
-    
     // invoke handler if enabled and complete
     if (event->enabled && event->elapsed >= event->target) {
-      invoke_handler(event);
+      timed_event_stop(event, false);
     }
-    
-    // point to next item
-    current = current->next;
   }
 }
 
-void timed_events_guard_main(bool (*guard)(timed_event_t *)) {
-  node *current = events;
-  timed_event_t *event;
-  
-  while (current) {
-    event = current->event;
-    
-    // invoke handler if enabled and complete and passes guard
-    if (event->enabled && event->elapsed >= event->target && guard(event)) {
-      invoke_handler(event);
-    }
-    
-    // point to next item
-    current = current->next;
+void timed_events_main_all(void) {
+  for (uint16_t i = 0; i < TIMED_EVENTS_LIST_COUNT; i++) {
+    timed_events_main(i);
   }
-}
+} 
 
 void timed_event_get_counter(timed_event_t *event) {
   return event->counter;
 }
 
 void *timed_event_get_data(timed_event_t *event) {
-  return event->user_data;
+  return event->data;
+}
+
+void timed_event_set_data(timed_event_t *event, void *data) {
+  event->data = data;
 }

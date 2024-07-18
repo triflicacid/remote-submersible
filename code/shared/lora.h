@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 
+#ifndef LORA_MAX_PAYLOAD_SIZE
+// LoRa maximum payload size (uint8_t)
+#define LORA_MAX_PAYLOAD_SIZE 64
+#endif
+
 typedef struct lora_t lora_t;
 
 // setup the given LoRa device

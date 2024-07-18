@@ -4,36 +4,38 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifndef TIMED_EVENTS_LIST_COUNT
+// number of timed event lists
+#define TIMED_EVENTS_LIST_COUNT 1
+#endif
+
+#ifndef TIMED_EVENTS_LIST_CAPACITY
+// maximum number of times events in each list
+// each event is 47 bytes unaligned
+// note, stack memory allocation is `list_count * (list_capacity * sizeof(timed_event_t) + sizeof(uint8_t))`
+#define TIMED_EVENTS_LIST_CAPACITY 16
+#endif
+
 typedef struct timed_event_t timed_event_t;
 
-// clear all timed events (free's events)
-void timed_events_clear(void);
+// clear all timed events in given list (destroys events)
+void timed_events_clear(uint8_t list);
 
-// count registered events
-uint32_t timed_events_count(void);
+// count registered events in given list
+uint8_t timed_events_count(uint8_t list);
 
 // call the callback on all events in list
-// safe to destroy events in callback
-void timed_events_iterate(void (*callback)(timed_event_t *));
+// note, not safe to destroy events whilst iterating
+void timed_events_iterate(uint8_t list, void (*callback)(timed_event_t *));
 
-// create new timed event
+// create new timed event in the given list, or return NULL if at capacity
 // event is created disabled; to enable, call function
-timed_event_t *timed_event_create(void (*handler)(timed_event_t *), uint32_t target_ms);
+timed_event_t *timed_event_create(uint8_t list, void (*handler)(timed_event_t *), uint64_t timeout);
 
-// timed_event_create with user data and callback to be invoked on event destroy
-timed_event_t *timed_event_create_with_data(void (*handler)(timed_event_t *), uint32_t target_ms, void *user_data, void (*on_delete)(timed_event_t *));
+// timed_event_create with user data and callback to be invoked on event destruction which takes said data as a parameter
+timed_event_t *timed_event_create_with_data(uint8_t list, void (*handler)(timed_event_t *), uint64_t timeout, void *data, void (*on_delete)(void *));
 
-// register event so it will 'tick'
-// NOTE, event cannot be registered twice
-void timed_event_register(timed_event_t *event);
-
-// check is event is registered to 'tick'
-bool timed_event_is_registered(timed_event_t *event);
-
-// de-register an event (opposite of _register), return if success
-bool timed_event_deregister(timed_event_t *event);
-
-// destroy given event (free's event)
+// destroy given event (calls on-delete handler)
 void timed_event_destroy(timed_event_t *event);
 
 // reset given event (factory reset)
@@ -43,29 +45,29 @@ void timed_event_reset(timed_event_t *event);
 void timed_event_start(timed_event_t *event);
 
 // end given event
-// silent=true: does not call handler nor increment count (can be considered abort/halt)
+// `silent=true`: does not call handler nor increment count (can be considered abort/halt)
 void timed_event_stop(timed_event_t *event, bool silent);
 
 // prime event to be triggered next tick (enable & set elapsed=target)
 void timed_event_prime(timed_event_t *event);
 
-// increment all events by `time` ms
+// increment all events by `time` units
 // NOTE does not trigger handlers; call _main
-void timed_events_tick(uint32_t time_ms);
-
-// same as timed_events_tick, but only ticks events which pass the `guard`
-void timed_events_guard_tick(uint32_t time_ms, bool (*guard)(timed_event_t *));
+void timed_events_tick(uint8_t list, uint32_t time);
 
 // check all events, run handlers of all events which have timed out
-void timed_events_main(void);
+void timed_events_main(uint8_t list);
 
-// same as timed_events_main, but only runs events which pass the `guard`
-void timed_events_guard_main(bool (*guard)(timed_event_t *));
+// run `timed_events_main` on all event lists
+void timed_events_main_all(void);
 
 // get times given event has been invoked
 void timed_event_get_counter(timed_event_t *event);
 
 // get user data of an event
 void *timed_event_get_data(timed_event_t *event);
+
+// set user data of an event (on-delete handler is not called on old data)
+void timed_event_set_data(timed_event_t *event, void *data);
 
 #endif
