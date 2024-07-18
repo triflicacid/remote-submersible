@@ -2800,7 +2800,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "MC34166TG"
 			(at 101.6 53.34 0)
 			(effects
 				(font
