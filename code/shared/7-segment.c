@@ -103,18 +103,32 @@ void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segme
     display->segment_pins[i] = segment_pins[i];
   }
 
-  // configure digital ports
-  display->digit_port = digit_port;
-  display->digit_pins = malloc(sizeof(uint16_t) * digit_count);
+  // configure digit port and pins, if necessary
+  display->digit_count = digit_count;
 
-  for (uint16_t i = 0; i < digit_count; i++) {
-    display->digit_pins[i] = digit_pins[i];
+  // if only one digit, no digit pins as only one digit to select
+  if (digit_count > 1) {
+    display->digit_pins = malloc(sizeof(uint16_t) * digit_count);
+
+    for (uint16_t i = 0; i < digit_count; i++) {
+      display->digit_pins[i] = digit_pins[i];
+    }
+  } else {
+    display->digit_port = NULL;
+    display->digit_pins = NULL;
   }
   
   // configure on/off pin states
   // 'on' and 'off' states depend on if display is common anode or cathode
   display->state_on  = is_anode ? GPIO_PIN_RESET : GPIO_PIN_SET;
   display->state_off = is_anode ? GPIO_PIN_SET   : GPIO_PIN_RESET;
+}
+
+void display_destroy(display_t *display) {
+  // free digit pin buffer?
+  if (display->digit_count > 1) {
+    free(display->digit_pins);
+  }
 }
 
 void display_write_digit(display_t *display, uint8_t segment, uint8_t value, bool decimal_point) {

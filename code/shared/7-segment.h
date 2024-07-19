@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+// number of segments
+// constant SHOULD NOT and SHOULD NEVER BE changed
 #define SEGMENT_COUNT 7
 
 typedef struct display_t display_t;
@@ -18,7 +20,10 @@ void display_init_single(display_t *display, GPIO_TypeDef *segment_port, uint16_
 // and if the display is common anode.
 // NOTE digit and decimal point pins are from least (ones) to most value.
 void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segment_pins[SEGMENT_COUNT], uint16_t decimal_pin, GPIO_TypeDef *digit_port, uint8_t digit_count, uint16_t *digit_pins, bool is_anode);
-					
+
+// destroy display (does not free pointer)
+void display_destroy(display_t *display);
+
 // display given number to display, provide decimal point bit pattern (0x1 = dp1, 0x2 = dp2, 0x4 = dp3, ...)
 void display_write(display_t *display, uint64_t value, uint32_t decimal_points);
 
