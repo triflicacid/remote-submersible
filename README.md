@@ -26,7 +26,7 @@ In the generated `main.c`, there will be a single call to `setup` with `loop` ca
 
 There will also be files for both controllers to specify the exact configuration achieved inside STM32CubeMX.
 
-### Shared
+### Shared Common
 
 These files are copied on both controllers.
 
@@ -38,11 +38,24 @@ These files are copied on both controllers.
 - `stepper-motor` - *library* for driving a 4-pin stepper motor.
 - `stored-code` - functions to save and fetch a stored code.
 - `timed-events` - *library* for managing events on a timeout.
+- `tri-state` - functio to read state of a tri-state switch.
 
-### Common
+### Common Distinct
 
 These files are present on both controllers but contain different code (but the maintains the same semantic meaning).
 
 - `actions` - action handlers.
 - `constants` - contain implementation constants, such as pin and port configurations and names of peripherals. Creates further separation between custom and generated code.
 - `main` - 'entry point' of custom code; supplies `setup` and `loop` functions, and declares global variables.
+
+### Off-Board Distinct
+
+These files are distinct to and present only on the off-board controller.
+
+- `depth` - functions for estimating the depth of the platform.
+
+### On-Boar Distinct
+
+These files are distinct to and present only on the on-board controller.
+
+*None*
