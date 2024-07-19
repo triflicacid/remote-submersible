@@ -61,6 +61,7 @@
 extern volatile uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 #endif
 
+// !DO NOT ACCESS MANUALLY
 typedef struct {
 	SPI_InitTypeDef *spi;
 	GPIO_TypeDef *nss_port;

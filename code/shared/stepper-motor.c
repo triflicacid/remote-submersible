@@ -43,7 +43,7 @@ static uint8_t *sequences[] = {
 };
 
 
-void stepper_motor_init(stepper_motor_t *motor, GPIO_TypeDef port, uint16_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
+void stepper_motor_init(stepper_motor_t *motor, GPIO_TypeDef *port, uint16_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
   motor->port = port;
   
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {

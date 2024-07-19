@@ -8,6 +8,7 @@
 // constant SHOULD NOT and SHOULD NEVER BE changed
 #define SEGMENT_COUNT 7
 
+// !DO NOT ACCESS MANUALLY
 typedef struct {
   GPIO_TypeDef *segment_port; // port for a-g segments
   uint16_t segment_pins[SEGMENT_COUNT]; // a-g segment pins

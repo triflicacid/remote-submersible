@@ -34,6 +34,7 @@ These files are copied on both controllers, although all of them are not necessa
 - `7-segment` - *library* for arbitrary-digit 7-segment displays.
 - `action-mgr` - *library* for creating actions, storing as pending, and executing them.
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
+- `dc-motor` - *library* for driving a DC motor.
 - `lora` - *library* for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
 - `stepper-event` - *library* for driving a motor between three fixed positions.
 - `stepper-motor` - *library* for driving a 4-pin stepper motor.
