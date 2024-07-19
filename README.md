@@ -17,10 +17,7 @@ Both chips are configured using the STM32CubeMX IDE.
   The `x-board` directories contain software specific to each controller, as dictated by `x`.
 - `schematics` - contains schematics of various items, where `schematics/x` contains the KiCAD schematic sources for item `x`.
 - `simulations` - contains circuit simulation files.
-
-
-Various circuit schematics are available under `schematics/`.
-These are all KiCAD schematics.
+- `stm32cubemx` - contains STM32CubeMX projects, where `stm32cubemx/x` contains the project file `x.ioc` for project `x`.
 
 ## Code Structure
 
@@ -32,7 +29,7 @@ There will also be files for both controllers to specify the exact configuration
 
 ### Shared Common
 
-These files are copied on both controllers.
+These files are copied on both controllers, although all of them are not necessarily required for a given controller.
 
 - `7-segment` - *library* for arbitrary-digit 7-segment displays.
 - `action-mgr` - *library* for creating actions, storing as pending, and executing them.
@@ -58,7 +55,7 @@ These files are distinct to and present only on the off-board controller.
 
 - `depth` - functions for estimating the depth of the platform.
 
-### On-Boar Distinct
+### On-Board Distinct
 
 These files are distinct to and present only on the on-board controller.
 
