@@ -5,7 +5,7 @@
 	(uuid "a6b6748a-4022-4f56-b9e5-0845622bf301")
 	(paper "A4")
 	(title_block
-		(title "sumbersible")
+		(title "On-board Controller")
 		(date "2024-07-16")
 		(rev "1")
 	)
