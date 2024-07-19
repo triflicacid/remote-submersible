@@ -10,9 +10,6 @@ lora_t g_lora;
 volatile timed_event_t *g_joystick_event;
 volatile uint32_t g_joystick_data[2];
 
-// store old g_joystick_data
-volatile uint32_t g_old_joystick_data[2] = {0};
-
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
@@ -42,15 +39,8 @@ void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
 
 // timed event callback for joystick DMA
 void joystick_event_callback(timed_event_t *event) {
-  // call action if either entries are different
-  if (g_joystick_data[0] != g_old_joystick_data[0] || g_joystick_data[1] != g_old_joystick_data[1]) {
-    // update old values
-    g_old_joystick_data[0] = g_joystick_data[0];
-    g_old_joystick_data[1] = g_joystick_data[1];
-
-    // trigger appropriate action
-    action_propeller(g_joystick_data[0], g_joystick_data[1]);
-  }
+  // by the nature of this event, ADC values *have* changed so no need for checks
+  action_propeller(g_joystick_data[0], g_joystick_data[1]);
 }
 
 // INTERRUPT: SPI device RX complete
