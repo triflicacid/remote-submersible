@@ -52,16 +52,12 @@
 #define DISPLAY_DIGIT_3 GPIO_PIN_14
 #define DISPLAY_DIGIT_4 GPIO_PIN_15
 
-#define TIMED_EVENTS_LIST_COUNT 2
-#define TIMED_EVENTS_LIST_CAPACITY 4
-// 100ms timer handle
-#define TIMER_100ms_HANDLE htim1
-// list index of 100ms events (tick in ms)
-#define TIMER_100ms_LIST 0
-// 1us timer handle
-#define TIMER_1us_HANDLE htim2
-// list index of 1us events (tick in us)
-#define TIMER_1us_LIST 1
+#define TIMED_EVENTS_LIST_COUNT 1
+#define TIMED_EVENTS_LIST_CAPACITY 1
+// timer handle
+#define TIMER_HANDLE htim1
+// tick amount in timer (100ms)
+#define TIMER_TICK_PER 100
 
 // handle for DMA for joystick
 #define DMA_JOYSTICK_HANDLE hadc1

@@ -30,11 +30,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
-  if (h == &TIMER_100ms_HANDLE) {
-    timed_events_tick(TIMER_100ms_LIST, 100);
-  } else if (h == &TIMER_1us_HANDLE) {
-    timed_events_tick(TIMER_1us_LIST, 1);
-  }
+  timed_events_tick(0, TIMER_TICK_PER);
 }
 
 // INTERRUPT: override ADC completion callback
@@ -68,6 +64,9 @@ void setup(void) {
   // initialise LoRa device
   lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
 
+  // set payload receive handlers
+  register_send_code_callback(recv_send_code);
+
   // initialise 7-segment display
   display_init(
     &g_display,
@@ -81,7 +80,8 @@ void setup(void) {
   );
 
   // setup joystick timeout and DMA
-  g_joystick_event = timed_event_create(TIMER_100ms_LIST, joystick_event_callback, 1);
+  // use timer to prevent create_action spam and overwhelming LoRa
+  g_joystick_event = timed_event_create(0, joystick_event_callback, 1);
   HAL_ADC_Start_DMA(&DMA_JOYSTICK_HANDLE, g_joystick_data, sizeof(g_joystick_data));
 
 #ifdef CODE_INTERNAL_VALUE
@@ -89,8 +89,8 @@ void setup(void) {
   save_code(CODE_INTERNAL, CODE_INTERNAL_VALUE);
 #endif
 
-  // set payload receive handlers
-  register_send_code_callback(recv_send_code);
+  // start timer
+  HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
