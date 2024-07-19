@@ -72,6 +72,9 @@ void lora_configure_modem(lora_t *lora, uint8_t config);
 // set TX power
 void lora_set_tx_power(lora_t *lora, int8_t power, bool use_rfo);
 
+// max-out TX power (uses PA_BOOST)
+void lora_maximise_tx_power(lora_t *lora);
+
 // set frequency in Hz
 void lora_set_frequency(lora_t *lora, uint32_t hz);
 

@@ -143,8 +143,8 @@ void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, GPIO_TypeDef *nss_port, uint
 	// set frequency to 433MHz
 	lora_set_frequency(lora, LORA_DEFAULT_FREQ);
 
-	// max out power (provide nonsensically large value to be clamped to UB)
-	lora_set_tx_power(lora, 0x7F, false);
+	// set output power to a lowish 15 dBm
+	lora_set_tx_power(lora, 15, false);
 	
 	// set max payload length
 	write_byte(lora, REG_MAX_PAYLOAD_LEN, LORA_MAX_PAYLOAD_SIZE);
@@ -188,6 +188,11 @@ void lora_set_tx_power(lora_t *lora, int8_t power, bool use_rfo) {
 	}
 
 	write_byte(lora, REG_PA_CONF, 0x80 | (power - 5));
+}
+
+void lora_maximise_tx_power(lora_t *lora) {
+	write_byte(lora, REG_PA_CONF, 0xFF);
+	write_byte(lora, REG_PA_DAC, 0x07);
 }
 
 void lora_set_frequency(lora_t *lora, uint32_t hz) {

@@ -78,8 +78,9 @@ void depth_event_callback(timed_event_t *event) {
 #endif
 
 void setup(void) {
-  // initialise LoRa device
+  // initialise LoRa device with max TX power
   lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
+  lora_maximise_tx_power(&g_lora);
 
   // set payload receive handlers
   register_send_code_callback(recv_send_code);
