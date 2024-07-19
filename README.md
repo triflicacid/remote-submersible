@@ -11,14 +11,18 @@ Both chips are configured using the STM32CubeMX IDE.
 
 ## Folder Layout
 
-Source code is located under `code/`.
-The `shared` folder contains software which is identical to both controllers.
-The `x-board` directories contain software specific to each controller, as dictated by `x`.
+- `code` - contains various source code files.
+
+  The `shared` folder contains software which is identical to both controllers.
+  The `x-board` directories contain software specific to each controller, as dictated by `x`.
+- `schematics` - contains schematics of various items, where `schematics/x` contains the KiCAD schematic sources for item `x`.
+- `simulations` - contains circuit simulation files.
+
 
 Various circuit schematics are available under `schematics/`.
 These are all KiCAD schematics.
 
-## Structure
+## Code Structure
 
 The aim is to maximise separation between custom and generated code.
 The entry point to a controller's code is in `main.c`, which provides `setup` and `loop` functions.
