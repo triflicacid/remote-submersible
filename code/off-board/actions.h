@@ -21,6 +21,9 @@ void action_request_code(void);
 // trigger: push release-pod button
 void action_release_pod(void);
 
+// trigger: RxDone signal from LoRa SPI
+void action_rx_done(void);
+
 // trigger: receive OP_SEND_CODE
 void recv_send_code(code_data *data);
 

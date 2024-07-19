@@ -1,6 +1,9 @@
 #ifndef _COMMUNICATION_H_
 #define _COMMUNICATION_H_
 
+// ensure global LoRa buffer is defined
+#define LORA_PROVIDE_GLOBAL_BUFFER
+
 #include "stored-code.h"
 #include "lora.h"
 
@@ -57,8 +60,8 @@ void register_request_code_callback(request_code_callback_t cb);
 // register release pod callback
 void register_release_pod_callback(release_pod_callback_t cb);
 
-// recieve communication; pass data and invoke necessary callbacks
-void receive_communication(payload *payload);
+// recieve payload; pass data and invoke necessary callbacks
+void on_recv_payload(payload *payload);
 
 // transmit a lone opcode over LoRa
 void transmit_opcode(lora_t *lora, opcode_t opcode);

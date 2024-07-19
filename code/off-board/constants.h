@@ -1,5 +1,5 @@
-#ifndef _PINS_H
-#define _PINS_H
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
 
 // we want to store two codes
 #define STORED_CODE_COUNT 2
@@ -11,7 +11,7 @@
 #define CODE_INTERNAL_VALUE 1234
 
 // LoRa device SPI handler name
-#define LORA_SPI_HANDLER hspi1
+#define LORA_SPI_HANDLE hspi1
 
 // LoRa NSS
 #define LORA_NSS_PORT GPIOA

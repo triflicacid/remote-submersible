@@ -1,7 +1,6 @@
 #include "main.h"
 
 #include "constants.h"
-
 #include "actions.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
@@ -17,13 +16,13 @@ volatile uint32_t g_old_joystick_data[2] = {0};
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
-    case SEND_CODE_PIN:
+    case SEND_CODE_PIN: // press 'send code' button
       create_action(action_send_code);
       break;
-    case REQUEST_CODE_PORT:
+    case REQUEST_CODE_PORT: // press 'request code' button
       create_action(action_request_code);
       break;
-    case RELEASE_POD_PIN:
+    case RELEASE_POD_PIN: // press 'release escape pod' button
       create_action(action_release_pod);
       break;
   }
@@ -58,7 +57,17 @@ void joystick_event_callback(timed_event_t *event) {
   }
 }
 
+// INTERRUPT: SPI device RX complete
+void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
+  if (h == &LORA_SPI_HANDLE) { // LoRa device received data
+    create_action(action_rx_done);
+  }
+}
+
 void setup(void) {
+  // initialise LoRa device
+  lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
+
   // initialise 7-segment display
   display_init(
     &g_display,
@@ -71,9 +80,6 @@ void setup(void) {
     true
   );
 
-  // initialise LoRa device
-  lora_setup(&g_lora, &LORA_SPI_HANDLER, LORA_NSS_PORT, LORA_NSS_PIN);
-
   // setup joystick timeout and DMA
   g_joystick_event = timed_event_create(TIMER_100ms_LIST, joystick_event_callback, 1);
   HAL_ADC_Start_DMA(&DMA_JOYSTICK_HANDLE, g_joystick_data, sizeof(g_joystick_data));
@@ -82,6 +88,12 @@ void setup(void) {
   // hardcode internal code
   save_code(CODE_INTERNAL, CODE_INTERNAL_VALUE);
 #endif
+
+  // set payload receive handlers
+  register_send_code_callback(recv_send_code);
+
+  // finally, set LoRa to receive mode
+  lora_mode_rx(&g_lora, false);
 }
 
 void loop(void) {
