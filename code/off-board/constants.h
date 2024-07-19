@@ -18,41 +18,43 @@
 // hard-coded code
 #define CODE_INTERNAL_VALUE 1234
 
-// LoRa device SPI handler name
+// LoRa device SPI handler name of type SPI_HandleTypeDef
 #define LORA_SPI_HANDLE hspi1
 
 // LoRa NSS
 #define LORA_NSS_PORT GPIOA
-#define LORA_NSS_PIN GPIO_PIN_1
+#define LORA_NSS_PIN GPIO_PIN_4
 
 // send-code button
-#define SEND_CODE_PORT GPIOA
-#define SEND_CODE_PIN GPIO_PIN_2
+#define SEND_CODE_PORT GPIOC
+#define SEND_CODE_PIN GPIO_PIN_12
 
 // request-code button
-#define REQUEST_CODE_PORT GPIOA
-#define REQUEST_CODE_PIN GIO_PIN_3
+#define REQUEST_CODE_PORT GPIOC
+#define REQUEST_CODE_PIN GPIO_PIN_11
 
 // release escape pod button
-#define RELEASE_POD_PORT GPOIA
-#define RELEASE_POD_PIN GPIO_PIN_4
+#define RELEASE_POD_PORT GPIOC
+#define RELEASE_POD_PIN GPIO_PIN_10
 
 // ballast tri-state switch
-#define BALLAST_PORT GPPIOA
-#define BALLAST_UP_PIN GPIO_PIN_5
-#define BALLAST_DOWN_PIN GPIO_PIN_6
+#define BALLAST_PORT GPIOC
+#define BALLAST_UP_PIN GOIO_PIN_6
+#define BALLAST_DOWN_PIN GPIO_PIN_7
 
 // 7-segment display segment pins
 #define DISPLAY_SEGMENT_PORT GPIOB
-#define DISPLAY_SEGMENT_A GPIO_PIN_1
-#define DISPLAY_SEGMENT_B GPIO_PIN_2
-#define DISPLAY_SEGMENT_C GPIO_PIN_3
+#define DISPLAY_SEGMENT_A GPIO_PIN_0
+#define DISPLAY_SEGMENT_B GPIO_PIN_1
+#define DISPLAY_SEGMENT_C GPIO_PIN_2
 #define DISPLAY_SEGMENT_D GPIO_PIN_4
 #define DISPLAY_SEGMENT_E GPIO_PIN_5
 #define DISPLAY_SEGMENT_F GPIO_PIN_6
 #define DISPLAY_SEGMENT_G GPIO_PIN_7
 #define DISPLAY_SEGMENT_DP GPIO_PIN_8
 
+// number of digits on 7-segment display
+#define DISPLAY_DIGITS 4
 // 7-segment display digit pins
 #define DISPLAY_DIGIT_PORT GPIOB
 #define DISPLAY_DIGIT_1 GPIO_PIN_12
@@ -68,12 +70,14 @@
 #define TIMED_EVENTS_LIST_CAPACITY 1
 #endif
 
-// timer handle
-#define TIMER_HANDLE htim1
+// timer handle of type TIM_HandleTypeDef
+#define TIMER_HANDLE htim7
 // tick amount in timer (100ms)
 #define TIMER_TICK_PER 100
 
-// handle for DMA for joystick
-#define DMA_JOYSTICK_HANDLE hadc1
+// ADC handle
+#define ADC_HANDLE 
+// number of ADC conversions per (item count)
+#define ADC_NCONV 2
 
 #endif
