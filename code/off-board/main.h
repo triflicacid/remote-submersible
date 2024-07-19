@@ -17,6 +17,9 @@ extern volatile timed_event_t *g_joystick_event;
 // ADC results from joystick
 extern volatile uint32_t g_joystick_data[2];
 
+// timed event for depth prediction
+extern volatile timed_event_t *g_depth_event;
+
 void setup(void);
 
 void loop(void);

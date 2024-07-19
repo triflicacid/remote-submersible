@@ -1,7 +1,9 @@
 #include "actions.h"
 #include "constants.h"
+#include "depth.h"
 #include "main.h"
 #include "shared/stored-code.h"
+#include "shared/tri-state-switch.h"
 
 // convert result from ADC joystick to float [0,1].
 static float adc_joystick_conv(uint32_t value) {
@@ -18,23 +20,22 @@ void action_propeller(uint32_t x, uint32_t y) {
 	transmit(&g_lora, OP_PROPELLER, &data, sizeof(data));
 }
 
-// return state {-1,0,1} depending on pins
-// `down` pin refers to -1, `up` pin to 1
-static int8_t read_tri_state(GPIO_TypeDef *down_port, uint16_t down_pin, GPIO_TypeDef *up_port, uint16_t up_pin) {
-	if (HAL_GPIO_ReadPin(down_port, down_pin) == GPIO_PIN_SET) {
-		return -1;
-	}
-
-	if (HAL_GPIO_ReadPin(up_port, up_pin) == GPIO_PIN_SET) {
-		return 1;
-	}
-
-	return 0;
-}
-
 void action_ballast(void) {
-	// determine tri-state switch mode and transmit payload
-	ballast_data data = { read_tri_state(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
+	// determine tri-state switch mode
+	ballast_data data = { tri_state_switch_read(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
+
+#ifdef PREDICT_DEPTH
+	// update vertical direction for depth estimation
+	set_vert_dir(data.mode);
+
+	// halt or restart timed event depending on switch mode
+	if (data.mode == TRISTATE_MID) {
+		timed_event_stop(g_depth_event, true);
+	} else {
+		timed_event_start(g_depth_event);
+	}
+#endif
+
 	transmit(&g_lora, OP_BALLAST, &data, sizeof(data));
 }
 

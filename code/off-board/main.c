@@ -2,6 +2,7 @@
 
 #include "constants.h"
 #include "actions.h"
+#include "depth.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
 
@@ -9,6 +10,7 @@ display_t g_display;
 lora_t g_lora;
 volatile timed_event_t *g_joystick_event;
 volatile uint32_t g_joystick_data[2];
+volatile timed_event_t *g_depth_event;
 
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
@@ -21,6 +23,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
       break;
     case RELEASE_POD_PIN: // press 'release escape pod' button
       create_action(action_release_pod);
+      break;
+    case BALLAST_UP_PIN:
+    case BALLAST_DOWN_PIN: // toggle tri-state switch
+      create_action(action_ballast);
       break;
   }
 }
@@ -41,6 +47,9 @@ void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
 void joystick_event_callback(timed_event_t *event) {
   // by the nature of this event, ADC values *have* changed so no need for checks
   action_propeller(g_joystick_data[0], g_joystick_data[1]);
+
+  // emulate interval
+  timed_event_start(event);
 }
 
 // INTERRUPT: SPI device RX complete
@@ -49,6 +58,21 @@ void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
     create_action(action_rx_done);
   }
 }
+
+#ifdef PREDICT_DEPTH
+// timed event callback for depth prediction
+// only called if state != HOVER
+void depth_event_callback(timed_event_t *event) {
+  // increase time spent in direction
+  inc_time_in_dir(TIMER_TICK_PER / 1000.0);
+
+  // display depth in form `X.XXX`
+  display_write(&g_display, estimate_depth() * 1000.0, 0x8);
+
+  // re-start event to emulate an interval
+  timed_event_start(event);
+}
+#endif
 
 void setup(void) {
   // initialise LoRa device
@@ -73,6 +97,11 @@ void setup(void) {
   // use timer to prevent create_action spam and overwhelming LoRa
   g_joystick_event = timed_event_create(0, joystick_event_callback, 1);
   HAL_ADC_Start_DMA(&DMA_JOYSTICK_HANDLE, g_joystick_data, sizeof(g_joystick_data));
+
+#ifdef PREDICT_DEPTH
+  // setup depth prediction timeout
+  g_depth_event = timed_event_create(0, depth_event_callback, 1);
+#endif
 
 #ifdef CODE_INTERNAL_VALUE
   // hardcode internal code

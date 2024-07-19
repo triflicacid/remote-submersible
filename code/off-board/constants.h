@@ -1,6 +1,14 @@
 #ifndef _CONSTANTS_H_
 #define _CONSTANTS_H_
 
+// update depth estimate (comment out if not)
+#define PREDICT_DEPTH
+
+#ifdef PREDICT_DEPTH
+// platform constant acceleration in m/s (1 in/s)
+#define PLATFORM_ACCELERATION 0.0245
+#endif
+
 // we want to store two codes
 #define STORED_CODE_COUNT 2
 // index of internal code
@@ -53,7 +61,13 @@
 #define DISPLAY_DIGIT_4 GPIO_PIN_15
 
 #define TIMED_EVENTS_LIST_COUNT 1
+
+#ifdef PREDICT_DEPTH
+#define TIMED_EVENTS_LIST_CAPACITY 2
+#else
 #define TIMED_EVENTS_LIST_CAPACITY 1
+#endif
+
 // timer handle
 #define TIMER_HANDLE htim1
 // tick amount in timer (100ms)
