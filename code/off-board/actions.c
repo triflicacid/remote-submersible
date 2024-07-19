@@ -6,12 +6,13 @@
 #include "shared/tri-state-switch.h"
 
 // convert result from ADC joystick to float [0,1].
-static float adc_joystick_conv(uint32_t value) {
+inline double adc_joystick_conv(dma_t value) {
 	// TODO proper conversion
-	return value / 0xFFFF;
+	// ADC is configured to 12-bit
+	return (double)value / 0xFFF;
 }
 
-void action_propeller(uint32_t x, uint32_t y) {
+void action_propeller(dma_t x, dma_t y) {
 	// convert raw ADC values into range
 	propeller_data data;
 	data.x = adc_joystick_conv(x);

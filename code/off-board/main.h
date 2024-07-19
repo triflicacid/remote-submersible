@@ -5,6 +5,9 @@
 #include "shared/lora.h"
 #include "shared/timed-events.h"
 
+// data type of DMA used by ADC1
+typedef uint16_t dma_t;
+
 // four digit 7-segment display
 extern display_t g_display;
 

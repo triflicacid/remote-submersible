@@ -9,7 +9,8 @@
 display_t g_display;
 lora_t g_lora;
 volatile timed_event_t *g_joystick_event;
-volatile uint32_t g_joystick_data[2];
+volatile dma_t g_joystick_data[ADC_NCONV];
+volatile dma_t g_joystick_data_prev[ADC_NCONV]; // store prevous results for comparison
 volatile timed_event_t *g_depth_event;
 
 // INTERRUPT: override GPIO external interrupt callback
@@ -38,18 +39,20 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 
 // INTERRUPT: override ADC completion callback
 void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
-  if (h == &DMA_JOYSTICK_HANDLE) { // ADC done, so trigger joystick event
+  if (h == &DMA_JOYSTICK_HANDLE) { // ADC done, trigger joystick event
     timed_event_prime(g_joystick_event);
   }
 }
 
 // timed event callback for joystick DMA
 void joystick_event_callback(timed_event_t *event) {
-  // by the nature of this event, ADC values *have* changed so no need for checks
-  action_propeller(g_joystick_data[0], g_joystick_data[1]);
-
-  // emulate interval
-  timed_event_start(event);
+  // only invoke action if data has changed
+  if (g_joystick_data[0] != g_joystick_data_prev[0] || g_joystick_data[1] != g_joystick_data_prev[1]) {
+    action_propeller(
+      g_joystick_data_prev[0] = g_joystick_data[0],
+      g_joystick_data_prev[1] = g_joystick_data[1]
+    );
+  }
 }
 
 // INTERRUPT: SPI device RX complete
@@ -63,7 +66,7 @@ void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
 // timed event callback for depth prediction
 // only called if state != HOVER
 void depth_event_callback(timed_event_t *event) {
-  // increase time spent in direction
+  // increase time spent in direction (in seconds)
   inc_time_in_dir(TIMER_TICK_PER / 1000.0);
 
   // display depth in form `X.XXX`
@@ -82,21 +85,23 @@ void setup(void) {
   register_send_code_callback(recv_send_code);
 
   // initialise 7-segment display
+  // note difference between digit number on hardware and representation of 7-segment library
   display_init(
     &g_display,
     DISPLAY_SEGMENT_PORT,
     (uint16_t[SEGMENT_COUNT]) { DISPLAY_SEGMENT_A, DISPLAY_SEGMENT_B, DISPLAY_SEGMENT_C, DISPLAY_SEGMENT_D, DISPLAY_SEGMENT_E, DISPLAY_SEGMENT_F, DISPLAY_SEGMENT_G },
     DISPLAY_SEGMENT_DP,
     DISPLAY_DIGIT_PORT,
-    4,
-    (uint16_t[4]) { DISPLAY_DIGIT_1, DISPLAY_DIGIT_2, DISPLAY_DIGIT_3, DISPLAY_DIGIT_4 },
+    DISPLAY_DIGITS,
+    (uint16_t[DISPLAY_DIGITS]) { DISPLAY_DIGIT_4, DISPLAY_DIGIT_3, DISPLAY_DIGIT_2, DISPLAY_DIGIT_1 },
     true
   );
 
-  // setup joystick timeout and DMA
+  // setup joystick timeout and DMA (DMA is continuous, so only call once at start)
   // use timer to prevent create_action spam and overwhelming LoRa
   g_joystick_event = timed_event_create(0, joystick_event_callback, 1);
-  HAL_ADC_Start_DMA(&DMA_JOYSTICK_HANDLE, g_joystick_data, sizeof(g_joystick_data));
+  timed_event_start(g_joystick_event);
+  HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
 
 #ifdef PREDICT_DEPTH
   // setup depth prediction timeout

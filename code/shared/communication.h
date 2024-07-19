@@ -25,8 +25,8 @@ typedef struct {
 
 // payload data for OP_PROPELLER
 typedef struct {
-	float x;  // secondary propeller, in [-1, 1]
-	float y;  // primary propeller, in [-1, 1]
+	double x;  // secondary propeller, in [-1, 1]
+	double y;  // primary propeller, in [-1, 1]
 } propeller_data;
 
 // payload data for OP_BALLAST
