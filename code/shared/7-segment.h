@@ -8,7 +8,18 @@
 // constant SHOULD NOT and SHOULD NEVER BE changed
 #define SEGMENT_COUNT 7
 
-typedef struct display_t display_t;
+typedef struct {
+  GPIO_TypeDef *segment_port; // port for a-g segments
+  uint16_t segment_pins[SEGMENT_COUNT]; // a-g segment pins
+  uint16_t decimal_pin; // decimal point pin
+  
+  GPIO_PinState state_on;
+  GPIO_PinState state_off;
+  
+  GPIO_TypeDef *digit_port; // port for digits
+  uint8_t digit_count; // number of supporting digits
+  uint16_t *digit_pins; // array of `digit_count` digit pins
+} display_t;
 
 // initialise 7-segment display structure with one digit.
 // provide port for segment pins, segment pins a-g, decimal pin and if the display is common anode.

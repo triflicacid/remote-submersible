@@ -38,12 +38,6 @@
 volatile uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 #endif
 
-struct lora_t {
-	SPI_InitTypeDef *spi;
-	GPIO_TypeDef *nss_port;
-	uint16_t nss_pin;
-};
-
 // config table, see defined constants LORA_CONFIG_ for indexes
 uint8_t configs[][3] = {
 	// MC1, MC2, MC3

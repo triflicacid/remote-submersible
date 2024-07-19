@@ -2,19 +2,6 @@
 
 #include <stdlib.h>
 
-struct display_t {
-  GPIO_TypeDef *segment_port; // port for a-g segments
-  uint16_t segment_pins[SEGMENT_COUNT]; // a-g segment pins
-  uint16_t decimal_pin; // decimal point pin
-  
-  GPIO_PinState state_on;
-  GPIO_PinState state_off;
-  
-  GPIO_TypeDef *digit_port; // port for digits
-  uint8_t digit_count; // number of supporting digits
-  uint16_t *digit_pins; // array of `digit_count` digit pins
-};
-
 // segment data dor digits 0-9 on 7-segment display
 static uint8_t segment_data[] = {
   0x3F, // 0

@@ -1,12 +1,5 @@
 #include "stepper-motor.h"
 
-struct stepper_motor_t {
-  GPIO_TypeDef port; // port of pins
-  uint16_t pins[STEPPER_MOTOR_PINS]; // motor pins a, b, ...
-  uint8_t step; // store current step
-  uint8_t mode; // stepper motor mode
-};
-
 // number of sequences, for each mode
 static uint8_t sequence_count[] = {
   4, // wave drive

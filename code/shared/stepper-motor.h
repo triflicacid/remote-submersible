@@ -11,9 +11,14 @@
 #define STEPPER_MOTOR_FULL_DRIVE 1
 #define STEPPER_MOTOR_HALF_DRIVE 2
 
-typedef struct stepper_motor_t stepper_motor_t;
+typedef struct {
+  GPIO_TypeDef port; // port of pins
+  uint16_t pins[STEPPER_MOTOR_PINS]; // motor pins a, b, ...
+  uint8_t step; // store current step
+  uint8_t mode; // stepper motor mode
+} stepper_motor_t;
 
-// create stepper motor struct
+// initialise a stepper motor struct
 void stepper_motor_init(stepper_motor_t *motor, GPIO_TypeDef port, uint16_t pins[STEPPER_MOTOR_PINS], uint8_t drive_mode);
 
 // drive stepper motor forward one step
