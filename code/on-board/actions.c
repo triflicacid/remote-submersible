@@ -3,6 +3,12 @@
 #include "main.h"
 #include "shared/stored-code.h"
 
+void recv_propeller(propeller_data *data) {
+	// update valocity of both propeller motors
+	dc_motor_velocity(&g_primary_motor, data->y);
+	dc_motor_velocity(&g_secondary_motor, data->x);
+}
+
 void recv_send_code(code_data *data) {
 	// cache code, we ned to send it later
 	save_code(0, data->code);

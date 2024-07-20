@@ -5,6 +5,8 @@
 #include "shared/action-mgr.h"
 
 lora_t g_lora;
+dc_motor_t g_primary_motor;
+dc_motor_t g_secondary_motor;
 
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
@@ -29,9 +31,18 @@ void setup(void) {
   lora_maximise_tx_power(&g_lora);
 
   // TODO COMPLETE: register payload receive handlers
+  register_propeller_callback(recv_propeller);
   register_send_code_callback(recv_send_code);
   register_request_code_callback(recv_request_code);
   register_release_pod_callback(recv_release_pod);
+
+  // initialise DC motors
+  dc_motor_init(&g_primary_motor, &TIMER_PWM_HANDLE, DC_MOTOR_EN1_2_PWM_CHANNEL, DC_MOTOR_PORT, DC_MOTOR_IN1, DC_MOTOR_IN2);
+  dc_motor_init(&g_secondary_motor, &TIMER_PWM_HANDLE, DC_MOTOR_EN3_4_PWM_CHANNEL, DC_MOTOR_PORT, DC_MOTOR_IN3, DC_MOTOR_IN4);
+
+  // start PWM channel timers
+  HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, DC_MOTOR_EN1_2_PWM_CHANNEL);
+  HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, DC_MOTOR_EN3_4_PWM_CHANNEL);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);

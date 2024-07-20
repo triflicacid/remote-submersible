@@ -5,7 +5,7 @@
 
 // !DO NOT ACCESS MANUALLY
 typedef struct {
-  TIM_HandleTypeDef *tim;
+  TIM_HandleTypeDef *htim;
   uint32_t channel;
   GPIO_TypeDef *port; // port of input pins
   uint16_t in1; // IN1 pin
@@ -14,7 +14,7 @@ typedef struct {
 
 // initialise a DC motor struct
 // provide timer handle and channel which generates PWM
-void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef *time, uint32_t channel, GPIO_TypeDef *port, uint16_t in1, uint16_t in2);
+void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef *htim, uint32_t channel, GPIO_TypeDef *port, uint16_t in1, uint16_t in2);
 
 // turn motor off
 void dc_motor_stop(dc_motor_t *motor);

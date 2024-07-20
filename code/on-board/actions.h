@@ -3,6 +3,9 @@
 
 #include "shared/communication.h"
 
+// trigger: receive OP_PROPELLER
+void recv_propeller(propeller_data *data);
+
 // trigger: receive OP_SEND_CODE
 void recv_send_code(code_data *data);
 

@@ -19,8 +19,8 @@ inline bool read_in2(dc_motor_t *motor) {
 }
 
 
-void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef* tim, uint32_t channel, GPIO_TypeDef *port, uint16_t in1, uint16_t in2) {
-  motor->tim = tim;
+void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef* htim, uint32_t channel, GPIO_TypeDef *port, uint16_t in1, uint16_t in2) {
+  motor->htim = htim;
   motor->channel = channel;
   motor->port = port;
   motor->in1 = in1;
@@ -58,9 +58,9 @@ void dc_motor_speed(dc_motor_t *motor, double frac) {
   }
 
   // calculate and set CCR
-  uint32_t arr = __HAL_TIM_GET_AUTORELOAD(motor->tim);
+  uint32_t arr = __HAL_TIM_GET_AUTORELOAD(motor->htim);
   uint32_t ccr = frac * (arr + 1);
-  __HAL_TIM_SET_COMPARE(motor->tim, motor->channel, ccr);
+  __HAL_TIM_SET_COMPARE(motor->htim, motor->channel, ccr);
 }
 
 void dc_motor_velocity(dc_motor_t *motor, double frac) {
