@@ -3,6 +3,12 @@
 
 #include "shared/communication.h"
 
+// trigger: receive OP_SEND_CODE
+void recv_send_code(code_data *data);
+
+// trigger: receive OP_REQUEST_CODE
+void recv_request_code(void);
+
 // trigger: RxDone signal from LoRa SPI
 void action_rx_done(void);
 

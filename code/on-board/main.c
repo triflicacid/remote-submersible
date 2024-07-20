@@ -18,7 +18,9 @@ void setup(void) {
   lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
   lora_maximise_tx_power(&g_lora);
 
-  // TODO set payload receive handlers
+  // TODO COMPLETE: register payload receive handlers
+  register_send_code_callback(recv_send_code);
+  register_request_code_callback(recv_request_code);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);

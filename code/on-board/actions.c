@@ -1,6 +1,18 @@
 #include "actions.h"
 #include "constants.h"
 #include "main.h"
+#include "shared/stored-code.h"
+
+void recv_send_code(code_data *data) {
+	// cache code, we ned to send it later
+	save_code(0, data->code);
+}
+
+void recv_request_code(void) {
+	// respond with our cached code
+	code_data data = { fetch_code(0) };
+	transmit(&g_lora, OP_SEND_CODE, &data, sizeof(data));
+}
 
 void action_rx_done(void) {
 	// fetch data from LoRa device
