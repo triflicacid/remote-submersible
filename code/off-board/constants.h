@@ -25,6 +25,14 @@
 #define LORA_NSS_PORT GPIOA
 #define LORA_NSS_PIN GPIO_PIN_4
 
+// LoRa DIO0
+#define LORA_DIO0_PORT GPIOA
+#define LORA_DIO0_PIN FPIO_PIN_8
+
+// LoRa reset
+#define LORA_RESET_PORT GPIOA
+#define LORA_RESET_PIN FPIO_PIN_9
+
 // send-code button
 #define SEND_CODE_PORT GPIOC
 #define SEND_CODE_PIN GPIO_PIN_12
