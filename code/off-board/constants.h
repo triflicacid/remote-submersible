@@ -27,11 +27,11 @@
 
 // LoRa DIO0
 #define LORA_DIO0_PORT GPIOA
-#define LORA_DIO0_PIN FPIO_PIN_8
+#define LORA_DIO0_PIN GPIO_PIN_8
 
 // LoRa reset
 #define LORA_RESET_PORT GPIOA
-#define LORA_RESET_PIN FPIO_PIN_9
+#define LORA_RESET_PIN GPIO_PIN_9
 
 // send-code button
 #define SEND_CODE_PORT GPIOC
@@ -73,18 +73,20 @@
 #define TIMED_EVENTS_LIST_COUNT 1
 
 #ifdef PREDICT_DEPTH
+// max: joystick scan, estimate depth
 #define TIMED_EVENTS_LIST_CAPACITY 2
 #else
+// max: joystick scan
 #define TIMED_EVENTS_LIST_CAPACITY 1
 #endif
 
-// timer handle of type TIM_HandleTypeDef
+// timer handle of type TIM_HandleTypeDef, configured to 100ms
 #define TIMER_HANDLE htim7
 // tick amount in timer (100ms)
 #define TIMER_TICK_PER 100
 
-// ADC handle
-#define ADC_HANDLE 
+// ADC handle of type ADC_HandleTypeDef
+#define ADC_HANDLE hadc1
 // number of ADC conversions per (item count)
 #define ADC_NCONV 2
 
