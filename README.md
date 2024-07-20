@@ -31,16 +31,16 @@ There will also be files for both controllers to specify the exact configuration
 
 These files are copied on both controllers, although all of them are not necessarily required for a given controller.
 
-- `7-segment` - *library* for arbitrary-digit 7-segment displays.
-- `action-mgr` - *library* for creating actions, storing as pending, and executing them.
+- `7-segment` - library for arbitrary-digit 7-segment displays.
+- `action-mgr` - library for creating actions, storing as pending, and executing them.
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
-- `dc-motor` - *library* for driving a DC motor.
-- `lora` - *library* for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
-- `stepper-event` - *library* for driving a motor between three fixed positions.
-- `stepper-motor` - *library* for driving a 4-pin stepper motor.
+- `dc-motor` - library for driving a DC motor.
+- `lora` - library for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
+- `stepper-motor` - library for driving a 4-pin stepper motor.
+- `stepper-motor-event` - library for driving a stepper motor between three fixed positions.
 - `stored-code` - functions to save and fetch a stored code.
-- `timed-events` - *library* for managing events on a timeout.
-- `tri-state` - functio to read state of a tri-state switch.
+- [*UNUSED*] `timed-events` - library for managing events on a timeout.
+- `tri-state` - function to read state of a tri-state switch.
 
 ### Common Distinct
 

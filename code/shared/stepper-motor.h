@@ -28,7 +28,4 @@ void stepper_motor_step(stepper_motor_t *motor);
 // drive stepper motor backwards one step
 void stepper_motor_step_back(stepper_motor_t *motor);
 
-// calculate delay in micro seconds between steps such that we achieve `rpm` rpm/min
-uint64_t stepper_motor_calculate_delay(uint32_t steps_per_rev, uint32_t rpm);
-
 #endif

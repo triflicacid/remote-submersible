@@ -23,6 +23,12 @@
 #define STEPPER_IN3 GPIO_PIN_2
 #define STEPPER_IN4 GPIO_PIN_3
 
+// ballast stepper motor: descend position (absolute step count from hover position)
+#define BALLAST_DESCEND_POSITION (200 * 1024)
+
+// ballast stepper motor: ascend position (absolute step count from hover position)
+#define BALLAST_ASCEND_POSITION (200 * 1024)
+
 // dc motor input pins
 #define DC_MOTOR_PORT GPIOA
 #define DC_MOTOR_IN1 GPIO_PIN_0

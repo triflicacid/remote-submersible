@@ -31,7 +31,7 @@ typedef struct {
 
 // payload data for OP_BALLAST
 typedef struct {
-	int8_t mode;  // -1 descend; 0 hover; 1 ascend.
+	int8_t mode;  // -1 descend; 0 hover; 1 ascend
 } ballast_data;
 
 // payload data for OP_SEND_CODE

@@ -4,9 +4,19 @@
 #include "shared/stored-code.h"
 
 void recv_propeller(propeller_data *data) {
-	// update valocity of both propeller motors
+	// update the velocity of both propeller motors
 	dc_motor_set_velocity(&g_primary_motor, data->y);
 	dc_motor_set_velocity(&g_secondary_motor, data->x);
+}
+
+void recv_ballast(ballast_data *data) {
+	// update stepper motor event
+	stepper_event_update(&g_ballast, data->mode);
+
+	// if action is to be taken, start clock
+	if (!stepper_event_done(&g_ballast)) {
+		HAL_TIM_Base_Start_IT(&TIMER_STEPPER_HANDLE);
+	}
 }
 
 void recv_send_code(code_data *data) {

@@ -1,5 +1,5 @@
-#ifndef _STEPPER_MOTOR_H_
-#define _STEPPER_MOTOR_H_
+#ifndef _DC_MOTOR_H_
+#define _DC_MOTOR_H_
 
 #include <stdint.h>
 

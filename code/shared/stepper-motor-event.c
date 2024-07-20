@@ -1,26 +1,12 @@
-#include "stepper-event.h"
+#include "stepper-motor-event.h"
 
-struct stepper_event_t {
-	int8_t target_pos; // direction of stepper motor (POSITION_* macro)
-	bool step_fwd; // true=step, false=step_back
-	uint32_t steps; // steps carried out to satisfy target
-	uint32_t target; // steps required to meet desired position
-	
-	int32_t target_fwd; // absolute forward target
-	int32_t target_bwd; // absolute backwards target
-};
-
-stepper_event_t stepper_event_create(uint32_t forwards_target, uint32_t backwards_target) {
-	stepper_event_t event;
-	event.target_pos = POSITION_MIDDLE;
-	event.step_fwd = true;
-	event.steps = 0;
-	event.target = 0;
-	
-	event.target_fwd = forwards_target;
-	event.target_bwd = backwards_target;
-	
-	return event;
+void stepper_event_init(stepper_event_t *event, uint32_t forwards_target, uint32_t backwards_target) {
+	event->target_pos = POSITION_MIDDLE;
+	event->step_fwd = true;
+	event->steps = 0;
+	event->target = 0;
+	event->target_fwd = forwards_target;
+	event->target_bwd = backwards_target;
 }
 
 bool stepper_event_done(stepper_event_t *event) {

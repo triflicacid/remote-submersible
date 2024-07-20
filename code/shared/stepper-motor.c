@@ -73,6 +73,7 @@ static void step_to(stepper_motor_t *motor, uint8_t step) {
 }
 
 void stepper_motor_step(stepper_motor_t *motor) {
+  // increase step count, overflowing if necessary
   motor->step++;
   
   if (motor->step >= sequence_count[motor->mode]) {
@@ -84,14 +85,11 @@ void stepper_motor_step(stepper_motor_t *motor) {
 
 void stepper_motor_step_back(stepper_motor_t *motor) {
   step_to(motor, motor->step);
-  
+
+  // decrease step count, underfloweing if necessary
   if (motor->step == 0) {
     motor->step = sequence_count[motor->mode] - 1;
   } else {
     motor->step--;
   }
-}
-
-uint64_t stepper_motor_calculate_delay(uint32_t steps_per_rev, uint32_t rpm) {
-  return 60000000 / steps_per_rev / rpm;
 }
