@@ -12,11 +12,11 @@ inline double adc_joystick_conv(dma_t value) {
 	return (double)value / 0xFFF;
 }
 
-void action_propeller(dma_t x, dma_t y) {
+void action_propeller(void) {
 	// convert raw ADC values into range
 	propeller_data data;
-	data.x = adc_joystick_conv(x);
-	data.y = adc_joystick_conv(y);
+	data.x = adc_joystick_conv(g_joystick_data[0]);
+	data.y = adc_joystick_conv(g_joystick_data[1]);
 
 	transmit(&g_lora, OP_PROPELLER, &data, sizeof(data));
 }
@@ -29,11 +29,11 @@ void action_ballast(void) {
 	// update vertical direction for depth estimation
 	set_vert_dir(data.mode);
 
-	// halt or restart timed event depending on switch mode
+	// start or stop depth timer if hovering
 	if (data.mode == TRISTATE_MID) {
-		timed_event_stop(g_depth_event, true);
+		HAL_TIM_Base_Stop_IT(&TIMER_DEPTH_HANDLE);
 	} else {
-		timed_event_start(g_depth_event);
+		HAL_TIM_Base_Start_IT(&TIMER_DEPTH_HANDLE);
 	}
 #endif
 
@@ -74,3 +74,13 @@ void recv_send_code(code_data *data) {
 	save_code(CODE_DOWNLOADED, data->code);
 	display_write(&g_display, data->code, 0x0);
 }
+
+#ifdef PREDICT_DEPTH
+void action_predict_depth_tick(void) {
+	// increase time spent in direction
+	inc_time_in_dir(TIMER_DEPTH_INTERVAL);
+
+	// display depth in form `X.XXX`
+	display_write(&g_display, estimate_depth() * 1000, 0x8);
+}
+#endif

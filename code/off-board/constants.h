@@ -70,20 +70,14 @@
 #define DISPLAY_DIGIT_3 GPIO_PIN_14
 #define DISPLAY_DIGIT_4 GPIO_PIN_15
 
-#define TIMED_EVENTS_LIST_COUNT 1
-
-#ifdef PREDICT_DEPTH
-// max: joystick scan, estimate depth
-#define TIMED_EVENTS_LIST_CAPACITY 2
-#else
-// max: joystick scan
-#define TIMED_EVENTS_LIST_CAPACITY 1
-#endif
-
-// timer handle of type TIM_HandleTypeDef, configured to 100ms
+// TIM_HandleTypeDef, configured to 100ms
 #define TIMER_HANDLE htim7
-// tick amount in timer (100ms)
-#define TIMER_TICK_PER 100
+
+// TIM_HandleTypeDef, configured to 100ms (to be used for depth estimation ONLY)
+#define TIMER_DEPTH_HANDLE htim6
+
+// TIMER_DEPTH_HANDLE: get interval in seconds
+#define TIMER_DEPTH_INTERVAL 0.1
 
 // ADC handle of type ADC_HandleTypeDef
 #define ADC_HANDLE hadc1

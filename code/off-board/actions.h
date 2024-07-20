@@ -6,8 +6,7 @@
 #include <stdint.h>
 
 // trigger: joystick change
-// receive raw ADC values
-void action_propeller(uint32_t x, uint32_t y);
+void action_propeller(void);
 
 // trigger: tri-state switch change
 void action_ballast(void);
@@ -26,5 +25,8 @@ void action_rx_done(void);
 
 // trigger: receive OP_SEND_CODE
 void recv_send_code(code_data *data);
+
+// trigger: timer (TIMER_DEPTH_HANDLE)
+void action_predict_depth_tick(void);
 
 #endif

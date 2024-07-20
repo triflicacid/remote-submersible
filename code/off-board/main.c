@@ -2,16 +2,15 @@
 
 #include "constants.h"
 #include "actions.h"
-#include "depth.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
+#include "shared/tri-state-switch.h"
 
 display_t g_display;
 lora_t g_lora;
-volatile timed_event_t *g_joystick_event;
+volatile bool g_adc_complete = false; // indicate if the ADC has completed conversion
 volatile dma_t g_joystick_data[ADC_NCONV];
 volatile dma_t g_joystick_data_prev[ADC_NCONV]; // store prevous results for comparison
-volatile timed_event_t *g_depth_event;
 
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
@@ -34,25 +33,34 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
-  timed_events_tick(0, TIMER_TICK_PER);
+  if (h == &TIMER_HANDLE) {
+    // if ADC is done, check if data is different from previous
+    if (g_adc_complete && (g_joystick_data[0] != g_joystick_data_prev[0] || g_joystick_data[1] != g_joystick_data_prev[1])) {
+      g_adc_complete = false;
+
+      // update previous values
+      g_joystick_data_prev[0] = g_joystick_data[0];
+      g_joystick_data_prev[1] = g_joystick_data[1];
+
+      // queue action handler
+      create_action(action_propeller);
+
+      return;
+    }
+
+#ifdef PREDICT_DEPTH
+    if (h == &TIMER_DEPTH_HANDLE) {
+      create_ation(action_predict_depth_tick);
+      return;
+    }
+#endif
+
+  }
 }
 
 // INTERRUPT: override ADC completion callback
 void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
-  if (h == &DMA_JOYSTICK_HANDLE) { // ADC done, trigger joystick event
-    timed_event_prime(g_joystick_event);
-  }
-}
-
-// timed event callback for joystick DMA
-void joystick_event_callback(timed_event_t *event) {
-  // only invoke action if data has changed
-  if (g_joystick_data[0] != g_joystick_data_prev[0] || g_joystick_data[1] != g_joystick_data_prev[1]) {
-    action_propeller(
-      g_joystick_data_prev[0] = g_joystick_data[0],
-      g_joystick_data_prev[1] = g_joystick_data[1]
-    );
-  }
+  g_adc_complete = true;
 }
 
 // INTERRUPT: SPI device RX complete
@@ -61,21 +69,6 @@ void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
     create_action(action_rx_done);
   }
 }
-
-#ifdef PREDICT_DEPTH
-// timed event callback for depth prediction
-// only called if state != HOVER
-void depth_event_callback(timed_event_t *event) {
-  // increase time spent in direction (in seconds)
-  inc_time_in_dir(TIMER_TICK_PER / 1000.0);
-
-  // display depth in form `X.XXX`
-  display_write(&g_display, estimate_depth() * 1000.0, 0x8);
-
-  // re-start event to emulate an interval
-  timed_event_start(event);
-}
-#endif
 
 void setup(void) {
   // initialise LoRa device with max TX power
@@ -98,16 +91,8 @@ void setup(void) {
     true
   );
 
-  // setup joystick timeout and DMA (DMA is continuous, so only call once at start)
-  // use timer to prevent create_action spam and overwhelming LoRa
-  g_joystick_event = timed_event_create(0, joystick_event_callback, 1);
-  timed_event_start(g_joystick_event);
+  // start joystick ADC in DMA mode
   HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
-
-#ifdef PREDICT_DEPTH
-  // setup depth prediction timeout
-  g_depth_event = timed_event_create(0, depth_event_callback, 1);
-#endif
 
 #ifdef CODE_INTERNAL_VALUE
   // hardcode internal code
@@ -123,5 +108,4 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
-  timed_events_main_all();
 }
