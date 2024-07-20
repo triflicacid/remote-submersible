@@ -1,6 +1,6 @@
 #include "actions.h"
 #include "constants.h"
-#include "main.h"
+#include "globals.h"
 #include "shared/stored-code.h"
 
 void recv_propeller(propeller_data *data) {

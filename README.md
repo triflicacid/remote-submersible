@@ -48,7 +48,8 @@ These files are present on both controllers but contain different code (but the 
 
 - `actions` - action handlers.
 - `constants` - contain implementation constants, such as pin and port configurations and names of peripherals. Creates further separation between custom and generated code.
-- `main` - 'entry point' of custom code; supplies `setup` and `loop` functions, and declares global variables.
+- `globals.h` - contains global variables and types.
+- `main.c` - 'entry point' of custom code; supplies `setup` and `loop` functions, and declares global variables.
 
 ### Off-Board Distinct
 

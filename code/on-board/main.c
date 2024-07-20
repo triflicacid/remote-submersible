@@ -1,14 +1,13 @@
-#include "main.h"
-
 #include "constants.h"
 #include "actions.h"
+#include "globals.h"
 #include "shared/action-mgr.h"
 
 lora_t g_lora;
 dc_motor_t g_primary_motor;
 dc_motor_t g_secondary_motor;
-stepper_motor_t g_ballast_motor;
-stepper_event_t g_ballast;
+stepper_motor_t ballast_motor;
+volatile stepper_event_t g_ballast;
 
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
@@ -21,7 +20,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 
   if (h == &TIMER_STEPPER_HANDLE) {
     // step ballast motor, stopping the timer if done
-    if (stepper_event_step(&g_ballast_motor, &g_ballast)) {
+    if (stepper_event_step(&ballast_motor, &g_ballast)) {
       HAL_TIM_Base_Stop_IT(h);
     }
   }
@@ -53,7 +52,7 @@ void setup(void) {
   HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, DC_MOTOR_EN3_4_PWM_CHANNEL);
 
   // initialise stepper motor and the ballast event operating it
-  stepper_motor_init(&g_ballast_motor, STEPPER_PORT, (uint16_t[4]) { STEPPER_IN1, STEPPER_IN2, STEPPER_IN3, STEPPER_IN4 }, STEPPER_MOTOR_FULL_DRIVE);
+  stepper_motor_init(&ballast_motor, STEPPER_PORT, (uint16_t[4]) { STEPPER_IN1, STEPPER_IN2, STEPPER_IN3, STEPPER_IN4 }, STEPPER_MOTOR_FULL_DRIVE);
   stepper_event_init(&g_ballast_event, BALLAST_ASCEND_POSITION, BALLAST_DESCEND_POSITION);
 
   // finally, set LoRa to receive mode

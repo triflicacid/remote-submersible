@@ -1,16 +1,15 @@
-#include "main.h"
-
 #include "constants.h"
 #include "actions.h"
+#include "globals.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
 #include "shared/tri-state-switch.h"
 
 display_t g_display;
 lora_t g_lora;
-volatile bool g_adc_complete = false; // indicate if the ADC has completed conversion
+volatile bool is_adc_complete = false; // indicate if the ADC has completed conversion
 volatile dma_t g_joystick_data[ADC_NCONV];
-volatile dma_t g_joystick_data_prev[ADC_NCONV]; // store prevous results for comparison
+volatile dma_t prev_joystick_data[ADC_NCONV]; // store prevous results for comparison
 
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
@@ -35,12 +34,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
     // if ADC is done, check if data is different from previous
-    if (g_adc_complete && (g_joystick_data[0] != g_joystick_data_prev[0] || g_joystick_data[1] != g_joystick_data_prev[1])) {
-      g_adc_complete = false;
+    if (is_adc_complete && (g_joystick_data[0] != prev_joystick_data[0] || g_joystick_data[1] != prev_joystick_data[1])) {
+      is_adc_complete = false;
 
       // update previous values
-      g_joystick_data_prev[0] = g_joystick_data[0];
-      g_joystick_data_prev[1] = g_joystick_data[1];
+      prev_joystick_data[0] = g_joystick_data[0];
+      prev_joystick_data[1] = g_joystick_data[1];
 
       // queue action handler
       create_action(action_propeller);
@@ -60,7 +59,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 
 // INTERRUPT: override ADC completion callback
 void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
-  g_adc_complete = true;
+  is_adc_complete = true;
 }
 
 // INTERRUPT: SPI device RX complete

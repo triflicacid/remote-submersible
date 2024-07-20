@@ -1,5 +1,5 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef _GLOBALS_H_
+#define _GLOBALS_H_
 
 #include "shared/7-segment.h"
 #include "shared/lora.h"
@@ -15,9 +15,5 @@ extern lora_t g_lora;
 
 // ADC results from joystick
 extern volatile uint32_t g_joystick_data[2];
-
-void setup(void);
-
-void loop(void);
 
 #endif

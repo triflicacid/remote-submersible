@@ -1,5 +1,5 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef _GLOBALS_H_
+#define _GLOBALS_H_
 
 #include "shared/dc-motor.h"
 #include "shared/lora.h"
@@ -15,10 +15,6 @@ extern dc_motor_t g_primary_motor;
 extern dc_motor_t g_secondary_motor;
 
 // event for the ballast stepper motor
-extern stepper_event_t g_ballast;
-
-void setup(void);
-
-void loop(void);
+extern volatile stepper_event_t g_ballast;
 
 #endif

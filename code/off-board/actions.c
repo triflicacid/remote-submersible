@@ -1,7 +1,7 @@
 #include "actions.h"
 #include "constants.h"
 #include "depth.h"
-#include "main.h"
+#include "globals.h"
 #include "shared/stored-code.h"
 #include "shared/tri-state-switch.h"
 
