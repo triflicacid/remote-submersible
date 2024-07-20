@@ -14,6 +14,14 @@ void recv_request_code(void) {
 	transmit(&g_lora, OP_SEND_CODE, &data, sizeof(data));
 }
 
+void recv_release_pod(void) {
+	// de-activate electromagnet
+	HAL_GPIO_WritePin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, GPIO_PIN_SET);
+
+	// start electromagnet timer
+	HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);
+}
+
 void action_rx_done(void) {
 	// fetch data from LoRa device
 	lora_rx_point_next_packet(&g_lora);

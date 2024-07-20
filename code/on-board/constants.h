@@ -42,7 +42,7 @@
 #define ELECTROMAGNET_PORT GPIOB
 #define ELECTROMAGNET_PIN GPIO_PIN_10
 
-// TIM_HandleTypeDef, configured to 500ms
+// TIM_HandleTypeDef, configured to 2s
 #define TIMER_ELECTROMAGNET_HANDLE htim6
 
 // TIM_HandleTypeDef, configured to 5ms

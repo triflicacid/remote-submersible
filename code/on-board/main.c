@@ -6,6 +6,16 @@
 
 lora_t g_lora;
 
+// INTERRUPT: override timer callback
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
+  if (h == &TIMER_ELECTROMAGNET_HANDLE) {
+    // times up! reactivate magnet amd cancel timer
+    HAL_GPIO_WritePin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, GPIO_PIN_RESET);
+    HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
+    return;
+  }
+}
+
 // INTERRUPT: SPI device RX complete
 void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
   if (h == &LORA_SPI_HANDLE) { // LoRa device received data
@@ -21,6 +31,7 @@ void setup(void) {
   // TODO COMPLETE: register payload receive handlers
   register_send_code_callback(recv_send_code);
   register_request_code_callback(recv_request_code);
+  register_release_pod_callback(recv_release_pod);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
