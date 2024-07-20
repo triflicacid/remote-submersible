@@ -40,7 +40,7 @@ These files are copied on both controllers, although all of them are not necessa
 - `stepper-motor-event` - library for driving a stepper motor between three fixed positions.
 - `stored-code` - functions to save and fetch a stored code.
 - [*UNUSED*] `timed-events` - library for managing events on a timeout.
-- `tri-state` - function to read state of a tri-state switch.
+- `util` - contains utility functions and macros.
 
 ### Common Distinct
 

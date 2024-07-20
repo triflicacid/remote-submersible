@@ -3,7 +3,7 @@
 #include "depth.h"
 #include "globals.h"
 #include "shared/stored-code.h"
-#include "shared/tri-state-switch.h"
+#include "shared/util.h"
 
 // convert result from ADC joystick to float [0,1].
 inline double adc_joystick_conv(dma_t value) {
@@ -23,14 +23,14 @@ void action_propeller(void) {
 
 void action_ballast(void) {
   // determine tri-state switch mode
-  ballast_data data = { tri_state_switch_read(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
+  ballast_data data = { read_tristate_pins(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
 
 #ifdef PREDICT_DEPTH
   // update vertical direction for depth estimation
   set_vert_dir(data.mode);
 
   // start or stop depth timer if hovering
-  if (data.mode == TRISTATE_MID) {
+  if (data.mode == TRISTATE_UNDEF) {
     HAL_TIM_Base_Stop_IT(&TIMER_DEPTH_HANDLE);
   } else {
     HAL_TIM_Base_Start_IT(&TIMER_DEPTH_HANDLE);

@@ -36,14 +36,10 @@ static uint8_t sequence_half_drive[] = {
 };
 
 // map mode to sequuences, length determined by sequence_count[]
-static uint8_t *sequences[] = {
-  sequence_wave_drive,
-  sequence_full_drive,
-  sequence_half_drive
-};
+static uint8_t *sequences[] = { sequence_wave_drive, sequence_full_drive, sequence_half_drive };
 
 
-void stepper_motor_init(stepper_motor_t *motor, GPIO_TypeDef *port, uint16_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
+void stepper_motor_init(stepper_motor_t *motor, port_t *port, uint1pin_t6_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
   motor->port = port;
   
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {
@@ -67,7 +63,7 @@ static void step_to(stepper_motor_t *motor, uint8_t step) {
   
   // set motor pins
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {
-    HAL_GPIO_WritePin(motor->port, motor->pins[i], (sequence & mask) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    write_pin(motor->port, motor->pins[i], sequence & mask);
     mask <<= 1;
   }
 }

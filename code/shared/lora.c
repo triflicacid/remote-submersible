@@ -31,9 +31,6 @@
 // crystal oscillator frequency (32MHz for RFM95-8)
 #define LORA_FXOSC 32000000
 
-// hard-coded 2^19
-#define EXP_2_19 524288
-
 #ifdef LORA_PROVIDE_GLOBAL_BUFFER
 volatile uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 #endif
@@ -49,27 +46,27 @@ uint8_t configs[][3] = {
 };
 
 // start transaction - reset NSS
-static void start_transaction(lora_t *lora) {
-  HAL_GPIO_WritePin(lora->nss_port, lora->nss_pin, GPIO_PIN_RESET);
+inline void start_transaction(lora_t *lora) {
+  write_pin(lora->nss_port, lora->nss_pin, false);
 }
 
 // end transaction - set NSS
-static void end_transaction(lora_t *lora) {
-  HAL_GPIO_WritePin(lora->nss_port, lora->nss_pin, GPIO_PIN_SET);
+inline void end_transaction(lora_t *lora) {
+  write_pin(lora->nss_port, lora->nss_pin, true);
 }
 
 // SPI - transmit data
-static void spi_transmit(lora_t *lora, uint8_t *data, uint16_t size) {
+inline void spi_transmit(lora_t *lora, uint8_t *data, uint16_t size) {
   HAL_SPI_Transmit(lora->spi, data, size, LORA_TIMEOUT);
 }
 
 // SPI - recieve data
-static void spi_receive(lora_t *lora, uint8_t *data, uint16_t size) {
+inline void spi_receive(lora_t *lora, uint8_t *data, uint16_t size) {
   HAL_SPI_Receive(lora->spi, data, size, LORA_TIMEOUT);
 }
 
 // SPI - recieve data in interrupt mode
-static void spi_receive_it(lora_t *lora, uint8_t *data, uint16_t size) {
+inline void spi_receive_it(lora_t *lora, uint8_t *data, uint16_t size) {
   HAL_SPI_Receive_IT(lora->spi, data, size, LORA_TIMEOUT);
 }
 
@@ -107,12 +104,12 @@ static void write_bytes(lora_t *lora, uint8_t address, uint8_t *data, uint8_t si
 }
 
 // write byte to the given address
-static void write_byte(lora_t *lora, uint8_t address, uint8_t value) {
+inline void write_byte(lora_t *lora, uint8_t address, uint8_t value) {
   write_bytes(lora, address, &value, 1);
 }
 
 
-void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, GPIO_TypeDef *nss_port, uint16_t nss_pin) {
+void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, port_t *nss_port, pin_t nss_pin) {
   // assign known fields in struct
   lora->spi = spi;
   lora->nss_port = nss_port;
@@ -125,22 +122,12 @@ void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, GPIO_TypeDef *nss_port, uint
   // set up FIFO base addresses
   write_byte(lora, REG_RX_BASE, RX_BASE_ADDR);
   write_byte(lora, REG_TX_BASE, TX_BASE_ADDR);
-
   lora_mode_standby(lora);
 
-  // configure modem
   lora_configure_modem(lora, LORA_CONFIG_BW125_CR45_SF128);
-
-  // set preamble length to default 8
   lora_set_preamble_length(lora, 8);
-
-  // set frequency to 433MHz
   lora_set_frequency(lora, LORA_DEFAULT_FREQ);
-
-  // set output power to a lowish 15 dBm
   lora_set_tx_power(lora, 15, false);
-  
-  // set max payload length
   write_byte(lora, REG_MAX_PAYLOAD_LEN, LORA_MAX_PAYLOAD_SIZE);
 }
 
@@ -155,23 +142,12 @@ void lora_configure_modem(lora_t *lora, uint8_t config_idx) {
 void lora_set_tx_power(lora_t *lora, int8_t power, bool use_rfo) {
   // if using RFO, configure differently
   if (use_rfo) {
-    // clamp [-1, 14]
-    if (power > 14) {
-      power = 14;
-    } else if (power < -1) {
-      power = -1;
-    }
-
+    CLAMP(power, -1, 14)
     write_byte(lora, REG_PA_CONF, 0x70 | (power + 1));
     return;
   }
 
-  // clamp [5, 23]
-  if (power > 23) {
-    power = 23;
-  } else if (power < 5) {
-    power = 5;
-  }
+  CLAMP(power, 5, 23)
 
   // enable PA DAC if power > 20dBm
   if (power > 20) {
@@ -194,7 +170,7 @@ void lora_set_frequency(lora_t *lora, uint32_t hz) {
   lora_mode_standby(lora);
 
   // f_RF = (XOSC * Fr_f) / 2^19
-  uint64_t frf = (uint64_t)hz * (LORA_FXOSC / EXP_2_19);
+  uint64_t frf = (uint64_t)hz * (LORA_FXOSC / 524288);
   write_byte(lora, REG_FR_MSB, (frf >> 16) & 0xFF);
   write_byte(lora, REG_FR_MID, (frf >> 8) & 0xFF);
   write_byte(lora, REG_FR_LSB, frf & 0xFF);
@@ -239,10 +215,8 @@ void lora_receive_async(lora_t *lora, uint8_t *buffer, uint8_t size) {
 }
 
 void lora_send(lora_t *lora, uint8_t *buffer, uint8_t size) {
-  // move to standby mode
+  // move to standby mode & clear IRQ flags
   lora_mode_standby(lora);
-
-  // clear IRQ flags
   lora_irq_clear(lora);
 
   // set pointer to TX base
@@ -255,9 +229,8 @@ void lora_send(lora_t *lora, uint8_t *buffer, uint8_t size) {
   write_byte(lora, REG_PAYLOAD_LEN, size);
   
   // set to TX (transmit) mode
-  lora_mode_tx(lora);
-
   // LoRa will switch to STANDBY when done
+  lora_mode_tx(lora);
 }
 
 uint8_t lora_mode(lora_t *lora) {

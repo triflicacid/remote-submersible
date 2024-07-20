@@ -3,23 +3,22 @@
 #include <stdbool.h>
 
 inline void write_in1(dc_motor_t *motor, bool state) {
-  HAL_GPIO_WritePin(motor->port, motor->in1, state ? GPIO_PIN_SET : GPIO_PIN_RESET);
+  write_pin(motor->port, motor->in1, state);
 }
 
 inline void write_in2(dc_motor_t *motor, bool state) {
-  HAL_GPIO_WritePin(motor->port, motor->in2, state ? GPIO_PIN_SET : GPIO_PIN_RESET);
+  write_pin(motor->port, motor->in2, state);
 }
 
 inline bool read_in1(dc_motor_t *motor) {
-  return HAL_GPIO_ReadPin(motor->port, motor->in1) == GPIO_PIN_SET;
+  return read_pin(motor->port, motor->in1);
 }
 
 inline bool read_in2(dc_motor_t *motor) {
-  return HAL_GPIO_ReadPin(motor->port, motor->in2) == GPIO_PIN_SET;
+  return read_pin(motor->port, motor->in2);
 }
 
-
-void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef* htim, uint32_t channel, GPIO_TypeDef *port, uint16_t in1, uint16_t in2) {
+void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef* htim, uint32_t channel, port_t *port, pin_t in1, pin_t in2) {
   motor->htim = htim;
   motor->channel = channel;
   motor->port = port;

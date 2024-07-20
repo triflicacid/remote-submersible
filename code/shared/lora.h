@@ -61,15 +61,18 @@
 extern volatile uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 #endif
 
+#include "util.h"
+
+// represents a LoRa-capable device
 // !DO NOT ACCESS MANUALLY
 typedef struct {
   SPI_InitTypeDef *spi;
-  GPIO_TypeDef *nss_port;
-  uint16_t nss_pin;
+  port_t *nss_port;
+  pin_t nss_pin;
 } lora_t;
 
 // setup the given LoRa device using the LORA_CONFIG_* configuration
-void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, GPIO_TypeDef *nss_port, uint16_t nss_pin);
+void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, port_t *nss_port, pin_t nss_pin);
 
 // set modem config (LORA_CONFIG_* value)
 void lora_configure_modem(lora_t *lora, uint8_t config);

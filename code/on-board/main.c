@@ -13,7 +13,7 @@ volatile stepper_event_t g_ballast;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_ELECTROMAGNET_HANDLE) {
     // times up! reactivate magnet amd cancel timer
-    HAL_GPIO_WritePin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, GPIO_PIN_RESET);
+    write_pin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, false);
     HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
     return;
   }

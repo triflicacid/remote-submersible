@@ -3,7 +3,7 @@
 
 #ifndef MAX_PENDING_ACTIONS
 // maximum number of pending action handlers
-// if create_action exceeds this limit, action is ignored
+// if `create_action` exceeds this limit, action is ignored
 // each handler has size 8 bytes
 #define MAX_PENDING_ACTIONS 16
 #endif
@@ -14,7 +14,7 @@
 typedef void (*handler)(void);
 
 // create a new action with the given handler; add to pending action list
-// return if added to pending list successfully
+// return if added to pending list successfully (i.e., if at capacity)
 bool create_action(handler action_handler);
 
 // count number of pending actions

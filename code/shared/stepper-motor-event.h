@@ -8,9 +8,6 @@
 // stepper motor: forward position
 #define POSITION_FORWARD 1
 
-#include <stdint.h>
-#include <stdbool.h>
-
 #include "stepper-motor.h"
 
 // !DO NOT ACCESS MANUALLY

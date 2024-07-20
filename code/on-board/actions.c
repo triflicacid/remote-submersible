@@ -32,7 +32,7 @@ void recv_request_code(void) {
 
 void recv_release_pod(void) {
   // de-activate electromagnet
-  HAL_GPIO_WritePin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, GPIO_PIN_SET);
+  write_pin(ELECTROMAGNET_PORT, ELECTROMAGNET_PIN, true);
 
   // start electromagnet timer
   HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);

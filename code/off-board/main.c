@@ -3,7 +3,6 @@
 #include "globals.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
-#include "shared/tri-state-switch.h"
 
 display_t g_display;
 lora_t g_lora;

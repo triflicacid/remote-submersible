@@ -3,56 +3,47 @@
 #include <stdlib.h>
 
 // segment data for digits 0-9 on 7-segment display
-static uint8_t segment_data[] = {
-  0x3F, // 0
-  0x06, // 1
-  0x5B, // 2
-  0x4F, // 3
-  0x66, // 4
-  0x6D, // 5
-  0x7D, // 6
-  0x07, // 7
-  0x7F, // 8
-  0x6F  // 9
-};
+static uint8_t segment_data[] = { 0x3F,  0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
 
-// set all digit pins to the given state
-static void set_digit_pins(display_t *display, GPIO_PinState state) {
+// set all digit pins to the given state (dependent on `display->state_on`)
+static void set_digit_pins(display_t *display, bool state) {
   // exit if no display port (case when digits==1)
   if (display->digit_port == NULL) {
     return;
   }
+
+  state = state ? display->state_on : !display->state_on;
   
   for (uint8_t i = 0; i < display->digit_count; i++) {
-    HAL_GPIO_WritePin(display->digit_port, display->digit_pins[i], state);
+    write_pin(display->digit_port, display->digit_pins[i], state);
   }
 }
 
-// set digit pin to the given state
-static void set_digit_pin(display_t *display, uint8_t segment, GPIO_PinState state) {
+// set digit pin to the given state (dependent on `display->state_on`)
+static void set_digit_pin(display_t *display, uint8_t segment, bool state) {
   // exit if no display port (case when digits==1)
   if (display->digit_port == NULL) {
     return;
   }
-  
-  HAL_GPIO_WritePin(display->digit_port, display->digit_pins[segment], state);
+
+  state = state ? display->state_on : !display->state_on;
+  write_pin(display->digit_port, display->digit_pins[segment], state);
 }
 
 // turn all segments on/off for all digits
-static void set_segment_pins(display_t *display, GPIO_PinState state) {
+static void set_segment_pins(display_t *display, bool state) {
   // disable all digit pins
-  set_digit_pins(display, display->state_off);
+  set_digit_pins(display, false);
   
-  // disable all segments
+  // set all segments
   for (uint8_t i = 0; i < SEGMENT_COUNT; i++) {
-    HAL_GPIO_WritePin(display->segment_port, display->segment_pins[i], state);
+    write_pin(display->segment_port, display->segment_pins[i], state);
   }
   
-  // disable decimal point
-  HAL_GPIO_WritePin(display->segment_port, display->decimal_pin, state);
+  write_pin(display->segment_port, display->decimal_pin, state);
   
   // enable all digit pins
-  set_digit_pins(display, display->state_on);
+  set_digit_pins(display, true);
 }
 
 // display given value (0-9) on selected segment(s), and enable/disable decimal point
@@ -65,19 +56,19 @@ static void write_segment(display_t *display, uint8_t value, bool dp) {
   uint8_t data = segment_data[value];
   
   // set pins if required by segment data
-  for (uint8_t i = 0, k = 0x1; i < SEGMENT_COUNT; i++, k <<= 1) {
-    HAL_GPIO_WritePin(display->segment_port, display->segment_pins[i], (data & k) ? display->state_on : display->state_off);
+  for (uint16_t i = 0, k = 0x1; i < SEGMENT_COUNT; i++, k <<= 1) {
+    write_pin(display->segment_port, display->segment_pins[i], data & k);
   }
   
   // write decimal point pin
-  HAL_GPIO_WritePin(display, display->decimal_pin, dp ? display->state_on : display->state_off);
+  write_pin(display, display->decimal_pin, dp);
 }
 
-void display_init_single(display_t *display, GPIO_TypeDef *segment_port, uint16_t segment_pins[SEGMENT_COUNT], uint16_t decimal_pin, bool is_anode) {
+void display_init_single(display_t *display, port_t *segment_port, pin_t segment_pins[SEGMENT_COUNT], pin_t decimal_pin, bool is_anode) {
   display_init(display, segment_port, segment_pins, decimal_pin, NULL, 1, NULL, is_anode);				
 }
 
-void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segment_pins[SEGMENT_COUNT], uint16_t decimal_pin, GPIO_TypeDef *digit_port, uint8_t digit_count, uint16_t *digit_pins, bool is_anode) {
+void display_init(display_t *display, port_t *segment_port, pin_t segment_pins[SEGMENT_COUNT], pin_t decimal_pin, port_t *digit_port, uint8_t digit_count, pin_t *digit_pins, bool is_anode) {
   if (digit_count == 0) {
     return;
   }
@@ -95,7 +86,7 @@ void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segme
 
   // if only one digit, no digit pins as only one digit to select
   if (digit_count > 1) {
-    display->digit_pins = malloc(sizeof(uint16_t) * digit_count);
+    display->digit_pins = malloc(sizeof(pin_t) * digit_count);
 
     for (uint16_t i = 0; i < digit_count; i++) {
       display->digit_pins[i] = digit_pins[i];
@@ -107,8 +98,7 @@ void display_init(display_t *display, GPIO_TypeDef *segment_port, uint16_t segme
   
   // configure on/off pin states
   // 'on' and 'off' states depend on if display is common anode or cathode
-  display->state_on  = is_anode ? GPIO_PIN_RESET : GPIO_PIN_SET;
-  display->state_off = is_anode ? GPIO_PIN_SET   : GPIO_PIN_RESET;
+  display->state_on = !is_anode;
 }
 
 void display_destroy(display_t *display) {
@@ -120,23 +110,19 @@ void display_destroy(display_t *display) {
 
 void display_write_digit(display_t *display, uint8_t segment, uint8_t value, bool decimal_point) {
   // disable all digits
-  set_digit_pins(display, display->state_off);
+  set_digit_pins(display, false);
   
   // write segment LEDs and decimal point
   write_segment(display, value, decimal_point);
   
   // enable desired digit
-  set_digit_pin(display, segment, display->state_on);
+  set_digit_pin(display, segment, true);
 }
 
 void display_write(display_t *display, uint64_t value, uint32_t decimal_points) {
-  // bit mask for determining if decimal point is enabled
-  uint32_t k = 0x1;
-  
   // iterate, extracting digits and writing to corresponding segment
-  for (uint8_t i = 0; i < display->digit_count; i++) {
+  for (uint16_t i = 0, k = 0x1; i < display->digit_count; i++, k <<= 1) {
     display_write_digit(display, i, value % 10, decimal_points & k);
-    k <<= 1;
     value /= 10;
   }
 }

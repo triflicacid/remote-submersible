@@ -23,13 +23,8 @@ uint32_t count_pending_actions(void) {
 }
 
 handler next_action(void) {
-  // check if list is empty
-  if (count == 0) {
-    return NULL;
-  }
-
-  // get last item in list
-  return pending_actions[--count];
+  // get last item in list, or NULL if empty
+  return count == 0 ? NULL : pending_actions[--count];
 }
 
 void execute_pending_actions(void) {
