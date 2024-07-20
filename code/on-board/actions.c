@@ -5,8 +5,8 @@
 
 void recv_propeller(propeller_data *data) {
 	// update valocity of both propeller motors
-	dc_motor_velocity(&g_primary_motor, data->y);
-	dc_motor_velocity(&g_secondary_motor, data->x);
+	dc_motor_set_velocity(&g_primary_motor, data->y);
+	dc_motor_set_velocity(&g_secondary_motor, data->x);
 }
 
 void recv_send_code(code_data *data) {
