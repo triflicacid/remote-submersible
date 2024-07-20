@@ -63,9 +63,9 @@ extern volatile uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 
 // !DO NOT ACCESS MANUALLY
 typedef struct {
-	SPI_InitTypeDef *spi;
-	GPIO_TypeDef *nss_port;
-	uint16_t nss_pin;
+  SPI_InitTypeDef *spi;
+  GPIO_TypeDef *nss_port;
+  uint16_t nss_pin;
 } lora_t;
 
 // setup the given LoRa device using the LORA_CONFIG_* configuration

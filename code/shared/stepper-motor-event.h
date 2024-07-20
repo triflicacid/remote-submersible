@@ -15,13 +15,13 @@
 
 // !DO NOT ACCESS MANUALLY
 typedef struct {
-	int8_t target_pos; // direction of stepper motor (POSITION_* macro)
-	bool step_fwd; // true=step, false=step_back
-	uint32_t steps; // steps carried out to satisfy target
-	uint32_t target; // steps required to meet desired position
-	
-	int32_t target_fwd; // absolute forward target
-	int32_t target_bwd; // absolute backwards target
+  int8_t target_pos; // direction of stepper motor (POSITION_* macro)
+  bool step_fwd; // true=step, false=step_back
+  uint32_t steps; // steps carried out to satisfy target
+  uint32_t target; // steps required to meet desired position
+  
+  int32_t target_fwd; // absolute forward target
+  int32_t target_bwd; // absolute backwards target
 } stepper_event_t;
 
 // initialise stepper motor event struct

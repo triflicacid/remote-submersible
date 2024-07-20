@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-// segment data dor digits 0-9 on 7-segment display
+// segment data for digits 0-9 on 7-segment display
 static uint8_t segment_data[] = {
   0x3F, // 0
   0x06, // 1

@@ -19,24 +19,24 @@ typedef uint8_t opcode_t;
 
 // define top-level structure of payload content
 typedef struct {
-	opcode_t opcode;  // opcode to determine payload reason
-	void *data;  // capture trailing data, may be NULL for certain opcodes
+  opcode_t opcode;  // opcode to determine payload reason
+  void *data;  // capture trailing data, may be NULL for certain opcodes
 } payload;
 
 // payload data for OP_PROPELLER
 typedef struct {
-	double x;  // secondary propeller, in [-1, 1]
-	double y;  // primary propeller, in [-1, 1]
+  double x;  // secondary propeller, in [-1, 1]
+  double y;  // primary propeller, in [-1, 1]
 } propeller_data;
 
 // payload data for OP_BALLAST
 typedef struct {
-	int8_t mode;  // -1 descend; 0 hover; 1 ascend
+  int8_t mode;  // -1 descend; 0 hover; 1 ascend
 } ballast_data;
 
 // payload data for OP_SEND_CODE
 typedef struct {
-	code_t code;
+  code_t code;
 } code_data;
 
 typedef void (*propeller_callback_t)(propeller_data *);
