@@ -4,6 +4,10 @@
 	(generator_version "8.0")
 	(uuid "a2277526-19e1-427e-9b97-b2b23bae216b")
 	(paper "A4")
+	(title_block
+		(title "Off-board Controller")
+		(date "2024-07-20")
+	)
 	(lib_symbols
 		(symbol "Device:Battery"
 			(pin_numbers hide)

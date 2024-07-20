@@ -966,6 +966,12 @@
 		)
 	)
 	(junction
+		(at 137.16 106.68)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2ae563f4-d72e-4f14-b589-23b87fe5a722")
+	)
+	(junction
 		(at 142.24 106.68)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1039,7 +1045,7 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 110.49) (xy 139.7 106.68)
+			(xy 137.16 110.49) (xy 137.16 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1852,7 +1858,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 139.7 110.49 0)
+		(at 137.16 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1861,7 +1867,7 @@
 		(fields_autoplaced yes)
 		(uuid "e20012fd-a91c-49b0-b0ba-700f552467db")
 		(property "Reference" "#PWR013"
-			(at 139.7 116.84 0)
+			(at 137.16 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1870,7 +1876,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 139.7 115.57 0)
+			(at 137.16 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1878,7 +1884,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 139.7 110.49 0)
+			(at 137.16 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1887,7 +1893,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 139.7 110.49 0)
+			(at 137.16 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1896,7 +1902,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 139.7 110.49 0)
+			(at 137.16 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)

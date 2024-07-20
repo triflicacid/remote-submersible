@@ -4,6 +4,10 @@
 	(generator_version "8.0")
 	(uuid "0b81106f-7399-446e-a14d-9338c89fb5b2")
 	(paper "A4")
+	(title_block
+		(title "Off-board Controller")
+		(date "2024-07-20")
+	)
 	(lib_symbols
 		(symbol "RF_Module:RFM98W-433S2"
 			(pin_names
@@ -825,10 +829,10 @@
 		)
 	)
 	(junction
-		(at 137.16 107.95)
+		(at 135.89 107.95)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2cb72f61-e5c4-4aee-8c31-84bf86936428")
+		(uuid "6b93e415-b830-414a-977c-3cdeaacea445")
 	)
 	(junction
 		(at 140.97 107.95)
@@ -894,17 +898,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 107.95) (xy 138.43 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5794eb47-6cc2-449f-ad14-5a5b61ace46c")
-	)
-	(wire
-		(pts
-			(xy 135.89 107.95) (xy 137.16 107.95)
+			(xy 135.89 107.95) (xy 138.43 107.95)
 		)
 		(stroke
 			(width 0)
@@ -944,7 +938,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 110.49) (xy 137.16 107.95)
+			(xy 135.89 110.49) (xy 135.89 107.95)
 		)
 		(stroke
 			(width 0)
@@ -1024,7 +1018,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 90.17) (xy 125.73 90.17)
+			(xy 119.38 90.17) (xy 125.73 90.17)
 		)
 		(stroke
 			(width 0)
@@ -1120,9 +1114,9 @@
 			)
 		)
 	)
-	(global_label "RESET_RADIO"
+	(global_label "RADIO_RESET"
 		(shape input)
-		(at 118.11 90.17 180)
+		(at 119.38 90.17 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1132,7 +1126,7 @@
 		)
 		(uuid "61ddfe44-cd56-4de2-8821-98653d65669f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.8482 90.17 0)
+			(at 104.1182 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1344,7 +1338,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 137.16 110.49 0)
+		(at 135.89 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1353,7 +1347,7 @@
 		(fields_autoplaced yes)
 		(uuid "8789f875-ce9a-4182-9474-730dae4bbdd7")
 		(property "Reference" "#PWR07"
-			(at 137.16 116.84 0)
+			(at 135.89 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1362,7 +1356,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 137.16 115.57 0)
+			(at 135.89 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1370,7 +1364,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 137.16 110.49 0)
+			(at 135.89 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1379,7 +1373,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 137.16 110.49 0)
+			(at 135.89 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1388,7 +1382,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 137.16 110.49 0)
+			(at 135.89 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
