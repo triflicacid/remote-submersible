@@ -41,7 +41,7 @@
 			)
 		)
 		(instances
-			(project "sub"
+			(project "controller"
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5"
 					(page "5")
 				)
@@ -79,7 +79,7 @@
 			)
 		)
 		(instances
-			(project "sub"
+			(project "controller"
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5"
 					(page "2")
 				)
@@ -117,7 +117,7 @@
 			)
 		)
 		(instances
-			(project "sub"
+			(project "controller"
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5"
 					(page "4")
 				)
@@ -155,7 +155,7 @@
 			)
 		)
 		(instances
-			(project "sub"
+			(project "controller"
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5"
 					(page "3")
 				)
@@ -193,7 +193,7 @@
 			)
 		)
 		(instances
-			(project "sub"
+			(project "controller"
 				(path "/aba2230e-80ca-41f8-a78f-a68ad044f9a5"
 					(page "6")
 				)
