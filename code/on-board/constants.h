@@ -5,8 +5,8 @@
 #define LORA_SPI_HANDLE hspi1
 
 // LoRa NSS
-#define LORA_NSS_PORT GPIOA
-#define LORA_NSS_PIN GPIO_PIN_4
+#define LORA_NSS_PORT GPIOB
+#define LORA_NSS_PIN GPIO_PIN_12
 
 // LoRa DIO0
 #define LORA_DIO0_PORT GPIOB
@@ -46,7 +46,7 @@
 
 // electrogamnet pin
 #define ELECTROMAGNET_PORT GPIOB
-#define ELECTROMAGNET_PIN GPIO_PIN_10
+#define ELECTROMAGNET_PIN GPIO_PIN_3
 
 // TIM_HandleTypeDef, configured to 2s
 #define TIMER_ELECTROMAGNET_HANDLE htim6
