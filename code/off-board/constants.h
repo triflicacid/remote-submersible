@@ -79,6 +79,9 @@
 // TIMER_DEPTH_HANDLE: get interval in seconds
 #define TIMER_DEPTH_INTERVAL 0.1
 
+// TIM_HandleTypeDef, configured to 10ms, used for cycling the 7-segment display
+#define TIMER_7SEG_HANDLE htim5
+
 // ADC handle of type ADC_HandleTypeDef
 #define ADC_HANDLE hadc1
 // number of ADC conversions per (item count)

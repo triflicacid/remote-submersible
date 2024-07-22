@@ -72,6 +72,8 @@ void display_init(display_t *display, port_t *segment_port, pin_t segment_pins[S
   if (digit_count == 0) {
     return;
   }
+
+  display->enabled = false;
   
   // configure segment info
   display->segment_port = segment_port;
@@ -83,17 +85,21 @@ void display_init(display_t *display, port_t *segment_port, pin_t segment_pins[S
 
   // configure digit port and pins, if necessary
   display->digit_count = digit_count;
+  display->pos = 0;
 
   // if only one digit, no digit pins as only one digit to select
   if (digit_count > 1) {
     display->digit_pins = malloc(sizeof(pin_t) * digit_count);
+    display->digits = malloc(digit_count);
 
     for (uint16_t i = 0; i < digit_count; i++) {
       display->digit_pins[i] = digit_pins[i];
+      display->digits[i] = 0;
     }
   } else {
     display->digit_port = NULL;
     display->digit_pins = NULL;
+    display->digits = (void *)0; // use pointer to display single value
   }
   
   // configure on/off pin states
@@ -102,35 +108,79 @@ void display_init(display_t *display, port_t *segment_port, pin_t segment_pins[S
 }
 
 void display_destroy(display_t *display) {
-  // free digit pin buffer?
+  // free digit malloc's?
   if (display->digit_count > 1) {
     free(display->digit_pins);
+    free(display->digits);
+  }
+}
+
+void display_enable(display_t *display, bool enable) {
+  // do not repeat
+  if (display->enabled == enable) {
+    return;
+  }
+
+  display->enabled = enable;
+  display->pos = 0;
+
+  // if disabled, turn off all pins
+  if (!enable) {
+    set_segment_pins(display, false);
   }
 }
 
 void display_write_digit(display_t *display, uint8_t segment, uint8_t value, bool decimal_point) {
-  // disable all digits
-  set_digit_pins(display, false);
-  
-  // write segment LEDs and decimal point
-  write_segment(display, value, decimal_point);
-  
-  // enable desired digit
-  set_digit_pin(display, segment, true);
+  if (segment >= display->digit_count) {
+    return;
+  }
+
+  // update digit in position
+  display->digits[segment] = value;
+
+  // update decimal point mask
+  display->dp_mask &= decimal_point ? 0xFF : ~(1 << segment);
+
+  // set digit to be updated next
+  display->pos = segment;
 }
 
 void display_write(display_t *display, uint64_t value, uint32_t decimal_points) {
-  // iterate, extracting digits and writing to corresponding segment
-  for (uint16_t i = 0, k = 0x1; i < display->digit_count; i++, k <<= 1) {
-    display_write_digit(display, i, value % 10, decimal_points & k);
+  // iterate, extracting digits
+  for (uint16_t i = 0; i < display->digit_count; i++) {
+    display->digits[i] = value % 10;
     value /= 10;
   }
+
+  // update pos and decimal point mask
+  display->pos = 0;
+  display->dp_mask = decimal_points;
 }
 
-void display_clear(display_t *display) {
-  set_segment_pins(display, display->state_off);
-}
+void display_cycle(display_t *display) {
+  // guard if disabled
+  if (!display->enabled) {
+    return;
+  }
 
-void display_illuminate(display_t *display) {
-  set_segment_pins(display, display->state_on);
+  if (display->digit_count == 1) {
+    // write segment LEDs and decimal point
+    write_segment(display, (uint64_t) display->digits, display->dp_mask);
+  } else {
+    // disable all digits
+    set_digit_pins(display, false);
+
+    // write segment LEDs and decimal point
+    write_segment(display, display->digits[display->pos], display->dp_mask & (1 << display->pos));
+
+    // enable desired digit
+    set_digit_pin(display, display->pos, true);
+
+    // increase pos, overflowing if necessary
+    if (display->pos == display->digit_count) {
+      display->pos = 0;
+    } else {
+      display->pos++;
+    }
+  }
 }
