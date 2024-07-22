@@ -53,6 +53,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     }
 #endif
 
+    if (h == &TIMER_7SEG_HANDLE) {
+      display_cycle(&g_display);
+    }
   }
 }
 
@@ -97,8 +100,9 @@ void setup(void) {
   save_code(CODE_INTERNAL, CODE_INTERNAL_VALUE);
 #endif
 
-  // start timer
+  // start timers
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
+  HAL_TIM_Base_Start_IT(&TIMER_7SEG_HANDLE);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
