@@ -18,12 +18,12 @@
 // hard-coded code
 #define CODE_INTERNAL_VALUE 1234
 
-// LoRa device SPI handler name of type SPI_HandleTypeDef
-#define LORA_SPI_HANDLE hspi1
+// main SPI handle of type SPI_HandleTypeDef
+#define SPI_HANDLE hspi1
 
 // LoRa NSS
 #define LORA_NSS_PORT GPIOA
-#define LORA_NSS_PIN GPIO_PIN_4
+#define LORA_NSS_PIN GPIO_PIN_10
 
 // LoRa DIO0
 #define LORA_DIO0_PORT GPIOA
@@ -50,25 +50,12 @@
 #define BALLAST_UP_PIN GOIO_PIN_6
 #define BALLAST_DOWN_PIN GPIO_PIN_7
 
-// 7-segment display segment pins
-#define DISPLAY_SEGMENT_PORT GPIOB
-#define DISPLAY_SEGMENT_A GPIO_PIN_0
-#define DISPLAY_SEGMENT_B GPIO_PIN_1
-#define DISPLAY_SEGMENT_C GPIO_PIN_2
-#define DISPLAY_SEGMENT_D GPIO_PIN_5
-#define DISPLAY_SEGMENT_E GPIO_PIN_6
-#define DISPLAY_SEGMENT_F GPIO_PIN_7
-#define DISPLAY_SEGMENT_G GPIO_PIN_8
-#define DISPLAY_SEGMENT_DP GPIO_PIN_9
+// 7-segment display select
+#define DISPLAY_SELECT1_2_PORT GPIOB
+#define DISPLAY_SELECT1_2_PIN GPIO_PIN_0
 
-// number of digits on 7-segment display
-#define DISPLAY_DIGITS 4
-// 7-segment display digit pins
-#define DISPLAY_DIGIT_PORT GPIOB
-#define DISPLAY_DIGIT_1 GPIO_PIN_12
-#define DISPLAY_DIGIT_2 GPIO_PIN_13
-#define DISPLAY_DIGIT_3 GPIO_PIN_14
-#define DISPLAY_DIGIT_4 GPIO_PIN_15
+#define DISPLAY_SELECT3_4_PORT GPIOB
+#define DISPLAY_SELECT3_4_PIN GPIO_PIN_1
 
 // TIM_HandleTypeDef, configured to 100ms
 #define TIMER_HANDLE htim7
@@ -78,9 +65,6 @@
 
 // TIMER_DEPTH_HANDLE: get interval in seconds
 #define TIMER_DEPTH_INTERVAL 0.1
-
-// TIM_HandleTypeDef, configured to 10ms, used for cycling the 7-segment display
-#define TIMER_7SEG_HANDLE htim5
 
 // ADC handle of type ADC_HandleTypeDef
 #define ADC_HANDLE hadc1

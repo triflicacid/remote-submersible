@@ -73,24 +73,17 @@ void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
 
 void setup(void) {
   // initialise LoRa device with max TX power
-  lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
+  lora_setup(&g_lora, &SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
   lora_maximise_tx_power(&g_lora);
 
   // set payload receive handlers
   register_send_code_callback(recv_send_code);
 
   // initialise 7-segment display
-  // note difference between digit number on hardware and representation of 7-segment library
-  display_init(
-    &g_display,
-    DISPLAY_SEGMENT_PORT,
-    (uint16_t[SEGMENT_COUNT]) { DISPLAY_SEGMENT_A, DISPLAY_SEGMENT_B, DISPLAY_SEGMENT_C, DISPLAY_SEGMENT_D, DISPLAY_SEGMENT_E, DISPLAY_SEGMENT_F, DISPLAY_SEGMENT_G },
-    DISPLAY_SEGMENT_DP,
-    DISPLAY_DIGIT_PORT,
-    DISPLAY_DIGITS,
-    (uint16_t[DISPLAY_DIGITS]) { DISPLAY_DIGIT_4, DISPLAY_DIGIT_3, DISPLAY_DIGIT_2, DISPLAY_DIGIT_1 },
-    true
-  );
+  display_init(&g_display, &SPI_HANDLE, (ploc_t[2]) {
+    { DISPLAY_SELECT1_2_PORT, DISPLAY_SELECT1_2_PIN },
+    { DISPLAY_SELECT3_4_PORT, DISPLAY_SELECT3_4_PIN }
+  }, 4);
 
   // start joystick ADC in DMA mode
   HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
@@ -102,7 +95,6 @@ void setup(void) {
 
   // start timers
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
-  HAL_TIM_Base_Start_IT(&TIMER_7SEG_HANDLE);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);

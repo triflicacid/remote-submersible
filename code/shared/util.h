@@ -14,6 +14,12 @@ typedef int8_t tristate_t;
 typedef GPIO_TypeDef port_t;
 typedef uint16_t pin_t;
 
+// describe a pin's exact location
+typedef struct {
+  port_t *port;
+  pin_t pin;
+} ploc_t;
+
 // clamp the first argument between [min, max]
 #define CLAMP(value, min, max) \
   if ((value) < (min)) {       \
