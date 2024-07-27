@@ -1289,6 +1289,17 @@
 		)
 		(uuid "db3f73b9-945d-4e06-af25-bae013fbdd81")
 	)
+	(label "batt"
+		(at 220.98 87.63 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a7cb2f45-6df7-46d6-93b5-b2be275d4006")
+	)
 	(symbol
 		(lib_id "Device:C")
 		(at 147.32 87.63 0)
@@ -1850,7 +1861,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "xt60"
+		(property "Value" "9V"
 			(at 226.06 93.4084 0)
 			(effects
 				(font

@@ -2510,10 +2510,6 @@
 		(uuid "30d569ff-f20a-454d-a1a8-101b2286e3c8")
 	)
 	(no_connect
-		(at 143.51 101.6)
-		(uuid "43eb8ea4-771c-4354-8899-c7ea6d15dcd7")
-	)
-	(no_connect
 		(at 143.51 124.46)
 		(uuid "47f996cd-7959-492a-9636-7a6a09bd9805")
 	)
@@ -2730,6 +2726,16 @@
 			(type default)
 		)
 		(uuid "225d9241-6d11-48d1-87f2-fa74869add9f")
+	)
+	(wire
+		(pts
+			(xy 151.13 101.6) (xy 151.13 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "231f1aa9-bc9f-4657-bbce-da6d41838b7c")
 	)
 	(wire
 		(pts
@@ -3400,6 +3406,16 @@
 			(type default)
 		)
 		(uuid "e10c66e2-1f78-4e1a-b025-93fae5171977")
+	)
+	(wire
+		(pts
+			(xy 143.51 101.6) (xy 151.13 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e20c056c-688c-4f58-b520-e70c5fdea091")
 	)
 	(wire
 		(pts
@@ -4762,6 +4778,72 @@
 			(project "controller"
 				(path "/0775f04a-8a0e-41f5-b442-dacb2efdb863/91cafd9f-69c3-4236-80de-a9ef98ffb65d"
 					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 151.13 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ac16806c-7fab-42c7-99f9-edfcccaafde1")
+		(property "Reference" "#PWR04"
+			(at 151.13 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 151.13 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.13 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.13 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 151.13 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bca46105-c86f-48f0-aaf2-af793c22327e")
+		)
+		(instances
+			(project "controller"
+				(path "/0775f04a-8a0e-41f5-b442-dacb2efdb863/91cafd9f-69c3-4236-80de-a9ef98ffb65d"
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)

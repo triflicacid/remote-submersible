@@ -64,7 +64,7 @@
 		)
 		(symbol "CA56-11SURKWA_1_1"
 			(pin input line
-				(at -21.59 11.43 0)
+				(at -21.59 13.97 0)
 				(length 2.54)
 				(name "1e"
 					(effects
@@ -82,7 +82,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 11.43 180)
+				(at 20.32 13.97 180)
 				(length 2.54)
 				(name "3e"
 					(effects
@@ -100,7 +100,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 13.97 180)
+				(at 20.32 11.43 180)
 				(length 2.54)
 				(name "3d"
 					(effects
@@ -118,7 +118,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 16.51 180)
+				(at 20.32 8.89 180)
 				(length 2.54)
 				(name "3c"
 					(effects
@@ -136,7 +136,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 3.81 180)
+				(at 20.32 21.59 180)
 				(length 2.54)
 				(name "dp3"
 					(effects
@@ -154,7 +154,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -13.97 180)
+				(at 20.32 -11.43 180)
 				(length 2.54)
 				(name "4e"
 					(effects
@@ -172,7 +172,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -11.43 180)
+				(at 20.32 -13.97 180)
 				(length 2.54)
 				(name "4d"
 					(effects
@@ -190,7 +190,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -19.05 180)
+				(at 20.32 -6.35 180)
 				(length 2.54)
 				(name "4g"
 					(effects
@@ -208,7 +208,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -8.89 180)
+				(at 20.32 -16.51 180)
 				(length 2.54)
 				(name "4c"
 					(effects
@@ -226,7 +226,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -21.59 180)
+				(at 20.32 -3.81 180)
 				(length 2.54)
 				(name "dp4"
 					(effects
@@ -244,7 +244,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -6.35 180)
+				(at 20.32 -19.05 180)
 				(length 2.54)
 				(name "4b"
 					(effects
@@ -262,7 +262,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 13.97 0)
+				(at -21.59 11.43 0)
 				(length 2.54)
 				(name "1d"
 					(effects
@@ -280,7 +280,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -3.81 180)
+				(at 20.32 -21.59 180)
 				(length 2.54)
 				(name "4a"
 					(effects
@@ -298,7 +298,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 -16.51 180)
+				(at 20.32 -8.89 180)
 				(length 2.54)
 				(name "4f"
 					(effects
@@ -352,7 +352,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 19.05 180)
+				(at 20.32 6.35 180)
 				(length 2.54)
 				(name "3b"
 					(effects
@@ -370,7 +370,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 21.59 180)
+				(at 20.32 3.81 180)
 				(length 2.54)
 				(name "3a"
 					(effects
@@ -388,7 +388,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 6.35 180)
+				(at 20.32 19.05 180)
 				(length 2.54)
 				(name "3g"
 					(effects
@@ -406,7 +406,7 @@
 				)
 			)
 			(pin input line
-				(at 20.32 8.89 180)
+				(at 20.32 16.51 180)
 				(length 2.54)
 				(name "3f"
 					(effects
@@ -424,7 +424,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -6.35 0)
+				(at -21.59 -17.78 0)
 				(length 2.54)
 				(name "2b"
 					(effects
@@ -442,7 +442,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -3.81 0)
+				(at -21.59 -20.32 0)
 				(length 2.54)
 				(name "2a"
 					(effects
@@ -460,7 +460,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 16.51 0)
+				(at -21.59 8.89 0)
 				(length 2.54)
 				(name "1c"
 					(effects
@@ -478,7 +478,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -16.51 0)
+				(at -21.59 -7.62 0)
 				(length 2.54)
 				(name "2f"
 					(effects
@@ -532,7 +532,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 19.05 0)
+				(at -21.59 6.35 0)
 				(length 2.54)
 				(name "1b"
 					(effects
@@ -550,7 +550,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 21.59 0)
+				(at -21.59 3.81 0)
 				(length 2.54)
 				(name "1a"
 					(effects
@@ -568,7 +568,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 6.35 0)
+				(at -21.59 19.05 0)
 				(length 2.54)
 				(name "1g"
 					(effects
@@ -586,7 +586,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 8.89 0)
+				(at -21.59 16.51 0)
 				(length 2.54)
 				(name "1f"
 					(effects
@@ -604,7 +604,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 3.81 0)
+				(at -21.59 21.59 0)
 				(length 2.54)
 				(name "dp1"
 					(effects
@@ -622,7 +622,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -13.97 0)
+				(at -21.59 -10.16 0)
 				(length 2.54)
 				(name "2e"
 					(effects
@@ -640,7 +640,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -11.43 0)
+				(at -21.59 -12.7 0)
 				(length 2.54)
 				(name "2d"
 					(effects
@@ -658,7 +658,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -19.05 0)
+				(at -21.59 -5.08 0)
 				(length 2.54)
 				(name "2g"
 					(effects
@@ -676,7 +676,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -8.89 0)
+				(at -21.59 -15.24 0)
 				(length 2.54)
 				(name "2c"
 					(effects
@@ -694,7 +694,7 @@
 				)
 			)
 			(pin input line
-				(at -21.59 -21.59 0)
+				(at -21.59 -2.54 0)
 				(length 2.54)
 				(name "dp2"
 					(effects
@@ -857,6 +857,224 @@
 					)
 				)
 				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "joystick"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "joystick_0_1"
+			(rectangle
+				(start -7.62 6.35)
+				(end 7.62 -5.08)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 27.94 30.48)
+				(end 38.1 20.32)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+		(symbol "joystick_1_1"
+			(pin output line
+				(at -10.16 2.54 0)
+				(length 2.54)
+				(name "A0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 25.4 27.94 0)
+				(length 2.54)
+				(name "A0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at -10.16 -2.54 0)
+				(length 2.54)
+				(name "A1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 25.4 22.86 0)
+				(length 2.54)
+				(name "A1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 10.16 2.54 180)
+				(length 2.54)
+				(name "PWR"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 40.64 27.94 180)
+				(length 2.54)
+				(name "PWR"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 10.16 -2.54 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 40.64 22.86 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
 					(effects
 						(font
 							(size 1.27 1.27)
