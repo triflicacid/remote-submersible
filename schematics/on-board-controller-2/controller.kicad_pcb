@@ -13237,7 +13237,7 @@
 		(descr "Terminal Block Xinya XY308-2.54-2P, 2 pins, pitch 2.54mm, size 5.58x6.5mm^2, drill diameter 1.2mm, pad diameter 2mm, see http://www.xinyaelectronic.com/product/xy308-254, script-generated using https://gitlab.com/kicad/libraries/kicad-footprint-generator/-/tree/master/scripts/TerminalBlock_Xinya")
 		(tags "THT Terminal Block Xinya XY308-2.54-2P pitch 2.54mm size 5.58x6.5mm^2 drill 1.2mm pad 2mm")
 		(property "Reference" "M2"
-			(at 3.085 -3.595 -90)
+			(at -0.915 5.155 -90)
 			(layer "F.SilkS")
 			(uuid "fcf1006f-bf6d-4057-a924-d319cd9b8bd0")
 			(effects
@@ -27914,6 +27914,15 @@
 		(uuid "14e4d792-fc83-4b81-83ae-1e9eaf3cde7d")
 	)
 	(via
+		(at 147 115)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(free yes)
+		(net 2)
+		(uuid "157a6f4f-c9a3-49d4-9a9e-286ad21dc97e")
+	)
+	(via
 		(at 72 77.5)
 		(size 0.6)
 		(drill 0.3)
@@ -28305,7 +28314,7 @@
 		(uuid "44ba801e-ea0b-40b3-82d4-0a15fd4a899a")
 	)
 	(via
-		(at 136.25 117.75)
+		(at 135 116)
 		(size 0.6)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
@@ -28366,6 +28375,15 @@
 		(free yes)
 		(net 2)
 		(uuid "4bd13992-3eb7-47e4-9710-5ca24eed2023")
+	)
+	(via
+		(at 135 78)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(free yes)
+		(net 2)
+		(uuid "4c441d55-9876-4528-bfc6-54436eda67ac")
 	)
 	(via
 		(at 72.25 107.75)
@@ -28889,7 +28907,7 @@
 		(uuid "84fd9c2e-fff7-45c2-989c-322f2a6c52e1")
 	)
 	(via
-		(at 149.25 117.75)
+		(at 150 118)
 		(size 0.6)
 		(drill 0.3)
 		(layers "F.Cu" "B.Cu")
