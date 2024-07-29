@@ -28,14 +28,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 
 // INTERRUPT: SPI device RX complete
 void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
-  if (h == &LORA_SPI_HANDLE) { // LoRa device received data
-    create_action(action_rx_done);
+  if (h == &SPI_HANDLE) { // LoRa device received data
+    create_action(action_rx_opcode);
   }
 }
 
 void setup(void) {
   // initialise LoRa device with max TX power
-  lora_setup(&g_lora, &LORA_SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
+  lora_setup(&g_lora, &SPI_HANDLE, LORA_NSS_PORT, LORA_NSS_PIN);
   lora_maximise_tx_power(&g_lora);
 
   // register payload receive handlers
@@ -57,6 +57,7 @@ void setup(void) {
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
+  lora_receive_async(&g_lora, g_lora_buffer, sizeof(opcode_t));
 }
 
 void loop(void) {

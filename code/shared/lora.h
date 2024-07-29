@@ -92,6 +92,9 @@ void lora_set_preamble_length(lora_t *lora, uint16_t bytes);
 // get number of unread bytes in RX buffer
 uint8_t lora_rx_size(lora_t *lora);
 
+// reset address of FIFO RX buffer
+void lora_rx_reset_buffer(lora_t *lora);
+
 // move receive pointer to start of next packet
 // TIP: do this to ensure reading correct packet on RxDone
 void lora_rx_point_next_packet(lora_t *lora);
@@ -104,7 +107,7 @@ uint8_t lora_receive(lora_t *lora, uint8_t *buffer, uint8_t max_size);
 // read first `size` bytes of RX FIFO buffer from device in non-blocking (interrupt) mode
 // call RxCompltCallback when done
 // NOTE IRQ flags are not cleared
-void lora_receive_async(lora_t *lora, uint8_t *buffer, uint8_t size);
+void lora_receive_async(lora_t *lora, uint8_t *buffer, uint16_t size);
 
 // send message using LoRa device
 // states: set to STANDY, then set to TX. Automatically set to STANDBY on trnsmission completion

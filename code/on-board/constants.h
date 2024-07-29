@@ -2,7 +2,7 @@
 #define _PINS_H
 
 // LoRa device SPI handler name of type SPI_HandleTypeDef
-#define LORA_SPI_HANDLE hspi1
+#define SPI_HANDLE hspi1
 
 // LoRa NSS
 #define LORA_NSS_PORT GPIOB

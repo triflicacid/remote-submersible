@@ -52,10 +52,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
       return;
     }
 #endif
-
-    if (h == &TIMER_7SEG_HANDLE) {
-      display_cycle(&g_display);
-    }
   }
 }
 
@@ -66,8 +62,8 @@ void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
 
 // INTERRUPT: SPI device RX complete
 void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
-  if (h == &LORA_SPI_HANDLE) { // LoRa device received data
-    create_action(action_rx_done);
+  if (h == &SPI_HANDLE) { // LoRa device received data
+    create_action(action_rx_opcode);
   }
 }
 
@@ -96,8 +92,9 @@ void setup(void) {
   // start timers
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
 
-  // finally, set LoRa to receive mode
-  lora_mode_rx(&g_lora, false);
+  // finally, set LoRa to receive mode, and receive OPCODE in async mode
+  lora_mode_rx(&g_lora, true);
+  lora_receive_async(&g_lora, g_lora_buffer, sizeof(opcode_t));
 }
 
 void loop(void) {

@@ -18,7 +18,7 @@ void recv_request_code(void);
 // trigger: receive OP_RELEASE_POD
 void recv_release_pod(void);
 
-// trigger: RxDone signal from LoRa SPI
-void action_rx_done(void);
+// trigger: RxDone signal from LoRa SPI -- received OPCODE, receive remaining payload data as required
+void action_rx_opcode(void);
 
 #endif

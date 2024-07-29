@@ -59,8 +59,11 @@ void register_request_code_callback(request_code_callback_t cb);
 // register rcallback for OP_RELEASE_POD
 void register_release_pod_callback(release_pod_callback_t cb);
 
-// recieve payload; pass data to and invoke necessary callbacks
-void on_recv_payload(payload *payload);
+// return payload size, in bytes, for the given opcode
+uint64_t get_payload_size(uint8_t opcode);
+
+// recieve payload; given buffer of received data, invoke callback with data
+void on_recv_payload(opcode_t opcode, void *buffer);
 
 // transmit a lone opcode over LoRa
 void transmit_opcode(lora_t *lora, opcode_t opcode);
