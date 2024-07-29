@@ -93,3 +93,9 @@ void display_write_digit(display_t *display, uint8_t segment, uint8_t value, boo
   // write to correct register
   write(display, unit, port_a ? MSP_ADDR_GPIOA : MSP_ADDR_GPIOB, data);
 }
+
+void display_clear(display_t *display) {
+  for (uint16_t i = 0; i < display->digit_count; i++) {
+    write(display, i / 2, i % 2 ? MSP_ADDR_GPIOB : MSP_ADDR_GPIOA, 0);
+  }
+}
