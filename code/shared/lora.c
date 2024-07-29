@@ -117,6 +117,7 @@ void lora_setup(lora_t *lora, SPI_InitTypeDef *spi, port_t *nss_port, pin_t nss_
   
   // enter into LoRa mode
   write_byte(lora, REG_OP_MODE, MODE_SLEEP);
+  HAL_DELAY(1);
   lora_mode_sleep(lora);
   
   // set up FIFO base addresses
@@ -187,6 +188,10 @@ uint8_t lora_rx_size(lora_t *lora) {
   return size;
 }
 
+void lora_rx_reset_buffer(lora_t *lora) {
+  write_byte(lora, REG_FIFO_ADDR_PTR, 0);
+}
+
 void lora_rx_point_next_packet(lora_t *lora) {
   // reset FIFO address ptr to start of next packet
   uint8_t start_addr;
@@ -210,7 +215,7 @@ uint8_t lora_receive(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
   return size;
 }
 
-void lora_receive_async(lora_t *lora, uint8_t *buffer, uint8_t size) {
+void lora_receive_async(lora_t *lora, uint8_t *buffer, uint16_t size) {
   read_bytes_it(lora, REG_FIFO_ACCESS, buffer, size);
 }
 

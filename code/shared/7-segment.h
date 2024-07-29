@@ -23,4 +23,7 @@ void display_write(display_t *display, uint64_t value, uint32_t decimal_points);
 // display digit (0-9) at given segment position and state if decimal point is on or off
 void display_write_digit(display_t *display, uint8_t segment, uint8_t value, bool decimal_point);
 
+// clear a display (turn all segments off)
+void display_clear(display_t *display);
+
 #endif

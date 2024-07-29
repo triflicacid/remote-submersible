@@ -38,17 +38,30 @@ void recv_release_pod(void) {
   HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);
 }
 
-void action_rx_done(void) {
-  // fetch data from LoRa device
+void action_rx_opcode(void) {
   lora_rx_point_next_packet(&g_lora);
-  lora_receive(&g_lora, g_lora_buffer, sizeof(g_lora_buffer));
+
+  // get opcode from buffer
+  opcode_t opcode = g_lora_buffer[0];
+
+  // get expected payload size; receive if necessary
+  uint64_t size = get_payload_size(opcode);
+
+  if (size > 0) {
+    lora_mode_rx(&g_lora, false);
+    lora_receive(&g_lora, g_lora_buffer, size);
+  }
 
   // clear IRQ flags
   lora_irq_clear(&g_lora);
 
   // deliver payload
-  on_recv_payload(g_lora_buffer);
+  on_recv_payload(opcode, g_lora_buffer);
+
+  // reset FIFO
+  lora_rx_reset_buffer(&g_lora);
 
   // go back to listening on RX
   lora_mode_rx(&g_lora, false);
+  lora_receive_async(&g_lora, g_lora_buffer, sizeof(opcode_t));
 }

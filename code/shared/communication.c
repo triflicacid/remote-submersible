@@ -7,10 +7,10 @@
   if (f)           \
     f();
 
-// call `f` if not NULL, with `payload->data` interpreted as the given type `t`, providing `t *` as an argument
-#define CALL_FN_ARG(f, t) \
-  if (f)                  \
-    f((t *)((uint8_t *)payload + sizeof(opcode_t)));
+// call `f` if not NULL, with the given arg
+#define CALL_FN_ARG(f, arg) \
+  if (f)                    \
+    f(arg);
 
 // store address of operation callbacks
 static propeller_callback_t propeller_cb = NULL;
@@ -39,17 +39,30 @@ void register_release_pod_callback(release_pod_callback_t cb) {
   release_pod_cb = cb;
 }
 
-void on_recv_payload(payload *payload) {
-  // action depends on opcode...
-  switch (payload->opcode) {
+uint64_t get_payload_size(uint8_t opcode) {
+  switch (opcode) {
     case OP_PROPELLER:
-      CALL_FN_ARG(propeller_cb, propeller_data)
+      return sizeof(propeller_data);
+    case OP_BALLAST:
+      return sizeof(ballast_data);
+    case OP_SEND_CODE:
+      return sizeof(code_data);
+    default:
+      return 0;
+  }
+}
+
+void on_recv_payload(opcode_t opcode, void *buffer) {
+  // action depends on opcode...
+  switch (opcode) {
+    case OP_PROPELLER:
+      CALL_FN_ARG(propeller_cb, buffer)
       break;
     case OP_BALLAST:
-      CALL_FN_ARG(ballast_cb, ballast_data)
+      CALL_FN_ARG(ballast_cb, buffer)
       break;
     case OP_SEND_CODE:
-      CALL_FN_ARG(send_code_cb, code_data)
+      CALL_FN_ARG(send_code_cb, buffer)
       break;
     case OP_REQUEST_CODE:
       CALL_FN(request_code_cb)
