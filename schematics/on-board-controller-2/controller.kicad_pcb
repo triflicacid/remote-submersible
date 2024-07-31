@@ -115,7 +115,7 @@
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "C:/Users/admin/Documents/team-2/repo/remote-submersible/schematics/on-board-controller-2/gerber/")
 		)
 	)
 	(net 0 "")
@@ -12844,7 +12844,7 @@
 			)
 		)
 		(property "Value" "RFM98W-433S2"
-			(at -2.5 8 180)
+			(at -2.5 8 360)
 			(layer "F.Fab")
 			(uuid "84f61706-b84d-409a-806b-d3e78266073b")
 			(effects
