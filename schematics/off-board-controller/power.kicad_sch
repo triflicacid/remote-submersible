@@ -1938,7 +1938,7 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
+		(property "Footprint" "Diode_THT:D_A-405_P7.62mm_Horizontal"
 			(at 210.82 87.63 0)
 			(effects
 				(font
