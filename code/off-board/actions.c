@@ -5,6 +5,17 @@
 #include "shared/stored-code.h"
 #include "shared/util.h"
 
+// record balast state (NOT tri-state switch state)
+tristate_t ballast_state = TRISTATE_UNDEF;
+
+// mapping between ballast_state and tri-state switch position (+ 1)
+// map[ballast][tri-state switch] = new ballast
+tristate_t ballast_map[3][3] = {
+  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }, // ballast = -1 (false)
+  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }, // ballast = 0  (undef)
+  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }  // ballast = 1  (true)
+};
+
 // convert result from ADC joystick to float [0,1].
 inline double adc_joystick_conv(dma_t value) {
   // TODO proper conversion
@@ -22,8 +33,40 @@ void action_propeller(void) {
 }
 
 void action_ballast(void) {
-  // determine tri-state switch mode
-  ballast_data data = { read_tristate_pins(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN) };
+  // read which pin is active (position of switch)
+  tristate_t position = read_tristate_pins(BALLAST_PORT, BALLAST_DOWN_PIN, BALLAST_PORT, BALLAST_UP_PIN);
+
+  // calculate new ballast position
+  tristate_t new_state = ballast_state;
+
+  switch (ballast_state) {
+    case TRISTATE_FALSE:
+      if (position == TRISTATE_TRUE) {
+        new_state = TRISTATE_UNDEF;
+      }
+      break;
+    case TRISTATE_UNDEF:
+      if (position != TRISTATE_UNDEF) {
+        new_state = position;
+      }
+      break;
+    case TRISTATE_TRUE:
+      if (position == TRISTATE_FALSE) {
+        new_state = TRISTATE_UNDEF;
+      }
+      break;
+  }
+
+  // exit if there is no change
+  if (new_state == ballast_state) {
+    return;
+  }
+
+  // update state
+  ballast_state = new_state;
+
+  // create payload
+  ballast_data data = { ballast_state };
 
 #ifdef PREDICT_DEPTH
   // update vertical direction for depth estimation
