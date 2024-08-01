@@ -2154,7 +2154,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "capacitor handsolder")
 		(property "Reference" "C9"
-			(at -5 0 360)
+			(at -5 0 0)
 			(layer "F.SilkS")
 			(uuid "9979d2a5-880c-4662-abcd-291728ba7f51")
 			(effects
@@ -2165,7 +2165,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 0.2875 -1.75 360)
+			(at 0.2875 -1.75 0)
 			(layer "F.Fab")
 			(uuid "3efaa0bb-202e-49ce-bd81-26a9061eb9e9")
 			(effects
@@ -2320,7 +2320,7 @@
 			(uuid "a4115c7a-e5ff-45df-b208-b61c08cab7a3")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "0f8defdd-aa00-4b19-8176-142c5ec789b8")
 			(effects
@@ -15770,7 +15770,7 @@
 		)
 		(fp_arc
 			(start 1.915913 -2.578)
-			(mid 4.318 -0.972977)
+			(mid 4.317997 -0.972977)
 			(end 3.754391 1.860478)
 			(stroke
 				(width 0.12)
@@ -15842,7 +15842,7 @@
 		)
 		(fp_arc
 			(start 2.026779 -2.580405)
-			(mid 4.409324 -0.95079)
+			(mid 4.409327 -0.950791)
 			(end 3.754391 1.860478)
 			(stroke
 				(width 0.1)
@@ -17757,50 +17757,11 @@
 			)
 		)
 		(property "Sim.Device" "NMOS"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c8f20c63-89f8-4ac6-a24d-1aa8dfb9f255")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Type" "VDMOS"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9b88c29d-bb5c-4ead-af15-7c72fe6b7470")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=D 2=G 3=S"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "463c16b8-5e07-4cae-aa55-70908732d9bd")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=D 2=G 3=S"
 			(at -0.070625 0.256375 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "46ab5da6-f0d5-4e4f-9034-498f64dfa2e6")
+			(uuid "b2cddbd2-1344-456d-a217-ef978eeb8a9b")
 			(effects
 				(font
 					(size 1 1)
@@ -17821,12 +17782,12 @@
 				)
 			)
 		)
-		(property "Sim.Device" "NMOS"
+		(property "Sim.Pins" "1=D 2=G 3=S"
 			(at -0.070625 0.256375 90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b2cddbd2-1344-456d-a217-ef978eeb8a9b")
+			(uuid "46ab5da6-f0d5-4e4f-9034-498f64dfa2e6")
 			(effects
 				(font
 					(size 1 1)
@@ -17850,7 +17811,7 @@
 		)
 		(fp_arc
 			(start 1.820913 -2.346)
-			(mid 4.223005 -0.740976)
+			(mid 4.223006 -0.740978)
 			(end 3.659391 2.092478)
 			(stroke
 				(width 0.12)
@@ -17922,7 +17883,7 @@
 		)
 		(fp_arc
 			(start 1.931779 -2.348405)
-			(mid 4.314324 -0.71879)
+			(mid 4.314327 -0.718791)
 			(end 3.659391 2.092478)
 			(stroke
 				(width 0.1)

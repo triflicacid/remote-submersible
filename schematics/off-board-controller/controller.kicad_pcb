@@ -2563,37 +2563,11 @@
 			)
 		)
 		(property "Sim.Device" "NMOS"
-			(at 0 0 -90)
+			(at 0.004375 0.123375 -90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b2c2f19a-cf89-401a-a9b2-607b38b91925")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=D 2=G 3=S"
-			(at 0 0 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "122eab36-9db3-4a36-ada6-d4efe9439667")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Type" "VDMOS"
-			(at 0 0 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b82aa848-cc0c-4684-8f27-f4784646f0f1")
+			(uuid "ff0a1aba-3862-453b-b549-b774dfeefedf")
 			(effects
 				(font
 					(size 1 1)
@@ -2620,19 +2594,6 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "54378459-feec-42e0-b96c-6c31017b52c0")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Sim.Device" "NMOS"
-			(at 0.004375 0.123375 -90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "ff0a1aba-3862-453b-b549-b774dfeefedf")
 			(effects
 				(font
 					(size 1 1)
@@ -2668,7 +2629,7 @@
 		)
 		(fp_arc
 			(start 1.895913 -2.479)
-			(mid 4.298005 -0.873976)
+			(mid 4.298006 -0.873978)
 			(end 3.734391 1.959478)
 			(stroke
 				(width 0.12)
@@ -2740,7 +2701,7 @@
 		)
 		(fp_arc
 			(start 2.006779 -2.481405)
-			(mid 4.389324 -0.85179)
+			(mid 4.389327 -0.851791)
 			(end 3.734391 1.959478)
 			(stroke
 				(width 0.1)
