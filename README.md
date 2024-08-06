@@ -41,6 +41,7 @@ These files are copied on both controllers, although all of them are not necessa
 - `stepper-motor-event` - library for driving a stepper motor between three fixed positions.
 - `stored-code` - functions to save and fetch a stored code.
 - [*UNUSED*] `timed-events` - library for managing events on a timeout.
+- `tm1637` - library for controlling the TM1637 segment display module.
 - `util` - contains utility functions and macros.
 
 ### Common Distinct
