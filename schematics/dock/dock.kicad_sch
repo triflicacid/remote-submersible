@@ -1,0 +1,131 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "0775f04a-8a0e-41f5-b442-dacb2efdb863")
+	(paper "A4")
+	(title_block
+		(title "Dock")
+		(date "2024-07-20")
+	)
+	(lib_symbols)
+	(sheet
+		(at 124.46 29.21)
+		(size 83.82 22.86)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "75911a2a-67a3-4491-aa2f-c0cb98fc09a7")
+		(property "Sheetname" "radio"
+			(at 124.46 28.4984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "radio.kicad_sch"
+			(at 124.46 52.6546 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dock"
+				(path "/0775f04a-8a0e-41f5-b442-dacb2efdb863"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 27.94 29.21)
+		(size 80.01 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "91cafd9f-69c3-4236-80de-a9ef98ffb65d")
+		(property "Sheetname" "mcu"
+			(at 27.94 28.4984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mcu.kicad_sch"
+			(at 27.94 55.1946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dock"
+				(path "/0775f04a-8a0e-41f5-b442-dacb2efdb863"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 73.66 71.12)
+		(size 92.71 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "92c85f3a-14b3-4661-ad21-779315976c0e")
+		(property "Sheetname" "io"
+			(at 73.66 70.4084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "io.kicad_sch"
+			(at 73.66 97.1046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "dock"
+				(path "/0775f04a-8a0e-41f5-b442-dacb2efdb863"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
