@@ -2,19 +2,12 @@
 #include "constants.h"
 #include "depth.h"
 #include "globals.h"
+#include "shared/counter.h"
 #include "shared/stored-code.h"
 #include "shared/util.h"
 
 // record balast state (NOT tri-state switch state)
 tristate_t ballast_state = TRISTATE_UNDEF;
-
-// mapping between ballast_state and tri-state switch position (+ 1)
-// map[ballast][tri-state switch] = new ballast
-tristate_t ballast_map[3][3] = {
-  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }, // ballast = -1 (false)
-  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }, // ballast = 0  (undef)
-  { TRISTATE_FALSE, TRISTATE_FALSE, TRISTATE_UNDEF }  // ballast = 1  (true)
-};
 
 // convert result from ADC joystick to float [0,1].
 inline double adc_joystick_conv(dma_t value) {
@@ -71,6 +64,7 @@ void action_ballast(void) {
 #ifdef PREDICT_DEPTH
   // update vertical direction for depth estimation
   set_vert_dir(data.mode);
+#endif
 
   // start or stop depth timer if hovering
   if (data.mode == TRISTATE_UNDEF) {
@@ -78,7 +72,6 @@ void action_ballast(void) {
   } else {
     HAL_TIM_Base_Start_IT(&TIMER_DEPTH_HANDLE);
   }
-#endif
 
   transmit(&g_lora, OP_BALLAST, &data, sizeof(data));
 }
@@ -136,7 +129,12 @@ void action_predict_depth_tick(void) {
   // increase time spent in direction
   inc_time_in_dir(TIMER_DEPTH_INTERVAL);
 
-  // display depth in form `X.XXX`
-  display_write(&g_display, estimate_depth() * 1000, 0x8);
+  // display depth in form `X.XX`
+  display_write(&g_display, estimate_depth() * 100, 0x4);
 }
 #endif
+
+void action_display_movement_tick(void) {
+  // tick movement counter
+  counter_tick(&movement_counter);
+}

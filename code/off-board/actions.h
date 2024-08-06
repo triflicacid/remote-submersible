@@ -29,4 +29,7 @@ void recv_send_code(code_data *data);
 // trigger: timer (TIMER_DEPTH_HANDLE)
 void action_predict_depth_tick(void);
 
+// trigger: timer (TIMER_DEPTH_HANDLE)
+void action_display_movement_tick(void);
+
 #endif

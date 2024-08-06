@@ -7,7 +7,7 @@
 #define MSP_ADDR_GPIOB 0x13
 
 // a = bit 0, g = bit 6
-static uint8_t segment_mask[] = { 0x3F,  0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
+static uint8_t segment_mask[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
 static uint8_t dp_mask = 1 << 7;
 
 // get control byte
@@ -66,6 +66,19 @@ void display_init(display_t *display, SPI_HandleTypeDef *spi, ploc_t *units, uin
   }
 }
 
+void display_write_manual(display_t *display, uint8_t segment, uint32_t value) {
+  if (segment >= display->digit_count) {
+    return;
+  }
+
+  // get unit location and determine port (for register address)
+  uint8_t unit = segment / 2;
+  bool port_a = segment % 2;
+
+  // write to correct register
+  write(display, unit, port_a ? MSP_ADDR_GPIOA : MSP_ADDR_GPIOB, value);
+}
+
 void display_write(display_t *display, uint64_t value, uint32_t decimal_points) {
   // iterate, extracting and writing digits
   for (uint16_t i = 0, k = 1; i < display->digit_count; i++, k <<= 1) {
@@ -75,13 +88,9 @@ void display_write(display_t *display, uint64_t value, uint32_t decimal_points) 
 }
 
 void display_write_digit(display_t *display, uint8_t segment, uint8_t value, bool decimal_point) {
-  if (segment >= display->digit_count || value > 9) {
+  if (value > 9) {
     return;
   }
-
-  // get unit location and determine port (for register address)
-  uint8_t unit = segment / 2;
-  bool port_a = segment % 2;
 
   // calculate register data 
   uint8_t data = segment_mask[value];
@@ -90,8 +99,7 @@ void display_write_digit(display_t *display, uint8_t segment, uint8_t value, boo
     data |= dp_mask;
   }
 
-  // write to correct register
-  write(display, unit, port_a ? MSP_ADDR_GPIOA : MSP_ADDR_GPIOB, data);
+  display_write_manual(display, segment, data);
 }
 
 void display_clear(display_t *display) {

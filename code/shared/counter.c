@@ -18,10 +18,10 @@ uint32_t counter_get(counter_t *counter) {
 
 void counter_tick(counter_t *counter) {
   // increment current value, overflow if needed
-  if (counter->value == counter->limit) {
+  counter->value++;
+
+  if (counter->value >= counter->limit) {
     counter->value = 0;
-  } else {
-    counter->value++;
   }
 
   // invoke callback with new tick count

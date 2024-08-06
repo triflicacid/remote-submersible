@@ -60,7 +60,7 @@
 // TIM_HandleTypeDef, configured to 100ms
 #define TIMER_HANDLE htim7
 
-// TIM_HandleTypeDef, configured to 100ms (to be used for depth estimation ONLY)
+// TIM_HandleTypeDef, configured to 100ms (only enabled when moving up or down)
 #define TIMER_DEPTH_HANDLE htim6
 
 // TIMER_DEPTH_HANDLE: get interval in seconds

@@ -17,6 +17,9 @@ typedef struct {
 // initialise a display
 void display_init(display_t *display, SPI_HandleTypeDef *spi, ploc_t *units, uint8_t digit_count);
 
+// control segments of a digit exactly
+void display_write_manual(display_t *display, uint8_t segment, uint32_t value);
+
 // display given number to display, provide decimal point bit mask (0x1 = dp1, 0x2 = dp2, 0x4 = dp3, ..., 0x3 = dp1 & dp2, ...)
 void display_write(display_t *display, uint64_t value, uint32_t decimal_points);
 
