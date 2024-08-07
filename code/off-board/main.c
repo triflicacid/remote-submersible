@@ -27,7 +27,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
     case SEND_CODE_PIN: // press 'send code' button
       create_action(action_send_code);
       break;
-    case REQUEST_CODE_PORT: // press 'request code' button
+    case REQUEST_CODE_PIN: // press 'request code' button
       create_action(action_request_code);
       break;
     case RELEASE_POD_PIN: // press 'release escape pod' button
