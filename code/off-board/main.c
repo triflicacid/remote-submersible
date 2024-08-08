@@ -4,6 +4,7 @@
 #include "depth.h"
 #include "shared/action-mgr.h"
 #include "shared/stored-code.h"
+#include "shared/timed-lock.h"
 
 display_t g_display;
 lora_t g_lora;
@@ -11,6 +12,8 @@ volatile bool is_adc_complete = false; // indicate if the ADC has completed conv
 volatile dma_t g_joystick_data[ADC_NCONV];
 volatile dma_t prev_joystick_data[ADC_NCONV]; // store prevous results for comparison
 counter_t movement_counter;
+
+timed_lock_t lock_send_code, lock_req_code, lock_release_pod, lock_tristate_down, lock_tristate_up;
 
 // segment data for movement on 7-segment display
 // none, top, middle, bottom
@@ -21,21 +24,44 @@ uint32_t movement_segment_data[] = {
   0b0001000
 };
 
+// interrupt handler various actions, but not as an actual interrupt
+void interrupt_send_code(void) {
+  timed_lock_call(&lock_send_code, HAL_GetTick());
+}
+
+void interrupt_request_code(void) {
+  timed_lock_call(&lock_req_code, HAL_GetTick());
+}
+
+void interrupt_release_pod(void) {
+  timed_lock_call(&lock_release_pod, HAL_GetTick());
+}
+
+void interrupt_tristate_up(void) {
+  timed_lock_call(&lock_tristate_up, HAL_GetTick());
+}
+
+void interrupt_tristate_down(void) {
+  timed_lock_call(&lock_tristate_down, HAL_GetTick());
+}
+
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
     case SEND_CODE_PIN: // press 'send code' button
-      create_action(action_send_code);
+      create_action(interrupt_send_code);
       break;
     case REQUEST_CODE_PIN: // press 'request code' button
-      create_action(action_request_code);
+      create_action(interrupt_request_code);
       break;
     case RELEASE_POD_PIN: // press 'release escape pod' button
-      create_action(action_release_pod);
+      create_action(interrupt_release_pod);
       break;
-    case BALLAST_UP_PIN:
-    case BALLAST_DOWN_PIN: // toggle tri-state switch
-      create_action(action_ballast);
+    case BALLAST_UP_PIN: // move tri-state switch into up position
+      create_action(interrupt_tristate_up);
+      break;
+    case BALLAST_DOWN_PIN: // move tri-state switch into down position
+      create_action(interrupt_tristate_down);
       break;
   }
 }
@@ -117,6 +143,13 @@ void setup(void) {
 
   // start timers
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
+
+  // initialise debouncing locks
+  timed_lock_init(&lock_send_code, 10, action_send_code);
+  timed_lock_init(&lock_req_code, 10, action_request_code);
+  timed_lock_init(&lock_release_pod, 10, action_release_pod);
+  timed_lock_init(&lock_tristate_up, 10, action_ballast);
+  timed_lock_init(&lock_tristate_down, 10, action_ballast);
 
   // setup movement counter
   counter_init(&movement_counter, 4);
