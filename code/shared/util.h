@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "main.h"
 
 // type holding a tri-state value: `TRISTATE_TRUE`, `TRISTATE_UNDEF`, or `TRISTATE_TRUE`
 typedef int8_t tristate_t;

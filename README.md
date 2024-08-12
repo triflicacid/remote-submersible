@@ -36,7 +36,8 @@ These files are copied on both controllers, although all of them are not necessa
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
 - `counter` - library for implementing a counter with a callback.
 - `dc-motor` - library for driving a DC motor.
-- `lora` - library for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.
+- `lora` - library for sending and receivig data using LoRa on an RFM95/96/97/98 radio module.7
+- `mcp23s17` - library for interfacing with the MCP23S17 pin extender.
 - `stepper-motor` - library for driving a 4-pin stepper motor.
 - `stepper-motor-event` - library for driving a stepper motor between three fixed positions.
 - `stored-code` - functions to save and fetch a stored code.
