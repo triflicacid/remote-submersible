@@ -71,4 +71,10 @@
 // number of ADC conversions per (item count)
 #define ADC_NCONV 2
 
+// joystick x-y axis bounds
+#define JOYSTICK_X_MIN 851
+#define JOYSTICK_X_MAX 2842
+#define JOYSTICK_Y_MIN 939
+#define JOYSTICK_Y_MAX 2862
+
 #endif

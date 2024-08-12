@@ -17,3 +17,8 @@ tristate_t read_tristate_pins(port_t *false_port, pin_t false_pin, port_t *true_
     return TRISTATE_UNDEF;
   }
 }
+
+double map_range(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max) {
+  double percentage = (double) (value - old_min) / (old_max - old_min);
+  return percentage * (new_max - new_min) + new_min;
+}

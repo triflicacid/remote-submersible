@@ -38,4 +38,7 @@ bool read_pin(port_t *port, pin_t pin);
 // returns `TRISTATE_FALSE` if the false pin is set, same for the true pin, otherwise `TRISTATE_UNDEF`
 tristate_t read_tristate_pins(port_t *false_port, pin_t false_pin, port_t *true_port, pin_t true_pin);
 
+// map value from range to range
+double map_range(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max);
+
 #endif

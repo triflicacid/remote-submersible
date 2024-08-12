@@ -9,18 +9,11 @@
 // record balast state (NOT tri-state switch state)
 tristate_t ballast_state = TRISTATE_UNDEF;
 
-// convert result from ADC joystick to float [0,1].
-inline double adc_joystick_conv(dma_t value) {
-  // TODO proper conversion
-  // ADC is configured to 12-bit
-  return (double)value / 0xFFF;
-}
-
 void action_propeller(void) {
   // convert raw ADC values into range
   propeller_data data;
-  data.x = adc_joystick_conv(g_joystick_data[0]);
-  data.y = adc_joystick_conv(g_joystick_data[1]);
+  data.x = map_range(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, 0, 1);
+  data.y = map_range(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, 0, 1);
 
   transmit(&g_lora, OP_PROPELLER, &data, sizeof(data));
 }

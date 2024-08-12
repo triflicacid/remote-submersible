@@ -8,7 +8,6 @@
 
 display_t g_display;
 lora_t g_lora;
-volatile bool is_adc_complete = false; // indicate if the ADC has completed conversion
 volatile dma_t g_joystick_data[ADC_NCONV];
 volatile dma_t prev_joystick_data[ADC_NCONV]; // store prevous results for comparison
 counter_t movement_counter;
@@ -69,19 +68,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
-    // if ADC is done, check if data is different from previous
-    if (is_adc_complete && (g_joystick_data[0] != prev_joystick_data[0] || g_joystick_data[1] != prev_joystick_data[1])) {
-      is_adc_complete = false;
-
-      // update previous values
-      prev_joystick_data[0] = g_joystick_data[0];
-      prev_joystick_data[1] = g_joystick_data[1];
-
-      // queue action handler
-      create_action(action_propeller);
-
-      return;
-    }
+    // poll joystick; start ADC
+    HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
 
     if (h == &TIMER_DEPTH_HANDLE) {
       create_action(action_display_movement_tick);
@@ -96,7 +84,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 
 // INTERRUPT: override ADC completion callback
 void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
-  is_adc_complete = true;
+  // if ADC is done, check if data is different from previous
+  if (ig_joystick_data[0] != prev_joystick_data[0] || g_joystick_data[1] != prev_joystick_data[1]) {
+    // update previous values
+    prev_joystick_data[0] = g_joystick_data[0];
+    prev_joystick_data[1] = g_joystick_data[1];
+
+    // queue action handler
+    create_action(action_propeller);
+
+    return;
+  }
 }
 
 // INTERRUPT: SPI device RX complete
@@ -132,9 +130,6 @@ void setup(void) {
     { DISPLAY_SELECT1_2_PORT, DISPLAY_SELECT1_2_PIN },
     { DISPLAY_SELECT3_4_PORT, DISPLAY_SELECT3_4_PIN }
   }, 4);
-
-  // start joystick ADC in DMA mode
-  HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
 
 #ifdef CODE_INTERNAL_VALUE
   // hardcode internal code
