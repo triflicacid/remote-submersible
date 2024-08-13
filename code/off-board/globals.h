@@ -1,7 +1,7 @@
 #ifndef _GLOBALS_H_
 #define _GLOBALS_H_
 
-#include "shared/7-segment.h"
+#include "7-segment.h"
 #include "shared/counter.h"
 #include "shared/lora.h"
 

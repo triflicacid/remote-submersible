@@ -31,7 +31,6 @@ There will also be files for both controllers to specify the exact configuration
 
 These files are copied on both controllers, although all of them are not necessarily required for a given controller.
 
-- `7-segment` - library for arbitrary-digit 7-segment displays.
 - `action-mgr` - library for creating actions, storing as pending, and executing them.
 - `communications` - types for various actions' payloads, and functions to receive payload packet.
 - `counter` - library for implementing a counter with a callback.
@@ -58,6 +57,7 @@ These files are present on both controllers but contain different code (but the 
 
 These files are distinct to and present only on the off-board controller.
 
+- `7-segment` - library for arbitrary-digit full-pin 7-segment displays.
 - `depth` - functions for estimating the depth of the platform.
 
 ### On-Board Distinct

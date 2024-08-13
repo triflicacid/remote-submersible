@@ -126,9 +126,13 @@ void setup(void) {
   register_send_code_callback(recv_send_code);
 
   // initialise 7-segment display
-  display_init(&g_display, &SPI_HANDLE, (ploc_t[2]) {
-    { DISPLAY_SELECT1_2_PORT, DISPLAY_SELECT1_2_PIN },
-    { DISPLAY_SELECT3_4_PORT, DISPLAY_SELECT3_4_PIN }
+  mcp23s17_t digits_1_2, digits_3_4;
+  mcp23s17_init(&digits_1_2, &SPI_HANDLE, DISPLAY_SELECT1_2_PORT, DISPLAY_SELECT1_2_PIN, 0x00);
+  mcp23s17_init(&digits_3_4, &SPI_HANDLE, DISPLAY_SELECT3_4_PORT, DISPLAY_SELECT3_4_PIN, 0x00);
+
+  display_init(&g_display, (mcp23s17_t[2]) {
+    digits_1_2,
+    digits_3_4
   }, 4);
 
 #ifdef CODE_INTERNAL_VALUE
