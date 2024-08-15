@@ -1,11 +1,11 @@
 #include "depth.h"
 #include "constants.h"
-#include "shared/tri-state-switch.h"
+#include "../Lib/util.h"
 
 #ifdef PREDICT_DEPTH
 
 // current platform direction
-static volatile int8_t _dir = TRISTATE_MID;
+static volatile tristate_t _dir = TRISTATE_UNDEF;
 
 // time spent in this direction (s)
 static volatile double _time = 0;
@@ -34,7 +34,7 @@ void set_vert_dir(int8_t dir) {
 
 double estimate_depth(void) {
   // mid=hover, so delta makes no difference
-  if (_dir == TRISTATE_MID) {
+  if (_dir == TRISTATE_UNDEF) {
     return _depth;
   }
 
@@ -42,7 +42,7 @@ double estimate_depth(void) {
   double delta = calc_delta();
 
   // clamp at zero
-  if (_dir == TRISTATE_UP && delta > _depth) {
+  if (_dir == TRISTATE_TRUE && delta > _depth) {
     return 0;
   }
 

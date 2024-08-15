@@ -9,14 +9,8 @@
 #define PLATFORM_ACCELERATION 0.0245
 #endif
 
-// we want to store two codes
-#define STORED_CODE_COUNT 2
-// index of internal code
-#define CODE_INTERNAL 0
-// index of downloaded code
-#define CODE_DOWNLOADED 1
 // hard-coded code
-#define CODE_INTERNAL_VALUE 1234
+#define CODE_INITIAL_VALUE 1234
 
 // main SPI handle of type SPI_HandleTypeDef
 #define SPI_HANDLE hspi1
@@ -47,7 +41,7 @@
 
 // ballast tri-state switch
 #define BALLAST_PORT GPIOC
-#define BALLAST_UP_PIN GOIO_PIN_6
+#define BALLAST_UP_PIN GPIO_PIN_6
 #define BALLAST_DOWN_PIN GPIO_PIN_7
 
 // 7-segment display select

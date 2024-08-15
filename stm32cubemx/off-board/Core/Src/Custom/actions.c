@@ -2,11 +2,11 @@
 #include "constants.h"
 #include "depth.h"
 #include "globals.h"
-#include "shared/counter.h"
-#include "shared/stored-code.h"
-#include "shared/util.h"
+#include "../Lib/counter.h"
+#include "../Lib/stored-code.h"
+#include "../Lib/util.h"
 
-// record balast state (NOT tri-state switch state)
+// record ballast state (NOT tri-state switch state)
 tristate_t ballast_state = TRISTATE_UNDEF;
 
 void action_propeller(void) {
@@ -71,7 +71,7 @@ void action_ballast(void) {
 
 void action_send_code(void) {
   // create payload to contain our stored code
-  code_data data = { fetch_code(CODE_INTERNAL) };
+  code_data data = { fetch_code() };
   transmit(&g_lora, OP_SEND_CODE, &data, sizeof(data));
 }
 
@@ -112,8 +112,6 @@ void action_rx_opcode(void) {
 }
 
 void recv_send_code(code_data *data) {
-  // save downloaded code and display to operator
-  save_code(CODE_DOWNLOADED, data->code);
   display_write(&g_display, data->code, 0x0);
 }
 

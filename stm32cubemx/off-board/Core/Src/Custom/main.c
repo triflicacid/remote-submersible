@@ -2,14 +2,14 @@
 #include "actions.h"
 #include "globals.h"
 #include "depth.h"
-#include "shared/action-mgr.h"
-#include "shared/stored-code.h"
-#include "shared/timed-lock.h"
+#include "../Lib/action-mgr.h"
+#include "../Lib/stored-code.h"
+#include "../Lib/timed-lock.h"
 
 display_t g_display;
 lora_t g_lora;
-volatile dma_t g_joystick_data[ADC_NCONV];
-volatile dma_t prev_joystick_data[ADC_NCONV]; // store prevous results for comparison
+volatile uint16_t g_joystick_data[ADC_NCONV];
+volatile uint16_t prev_joystick_data[ADC_NCONV]; // store previous results for comparison
 counter_t movement_counter;
 
 timed_lock_t lock_send_code, lock_req_code, lock_release_pod, lock_tristate_down, lock_tristate_up;
@@ -69,13 +69,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
     // poll joystick; start ADC
-    HAL_ADC_Start_DMA(&ADC_HANDLE, g_joystick_data, ADC_NCONV);
+    HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
 
     if (h == &TIMER_DEPTH_HANDLE) {
       create_action(action_display_movement_tick);
       
 #ifdef PREDICT_DEPTH
-      create_ation(action_predict_depth_tick);
+      create_action(action_predict_depth_tick);
 #endif
       return;
     }
@@ -85,7 +85,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 // INTERRUPT: override ADC completion callback
 void HAL_ADC_ConvCompltCallback(ADC_HandleTypeDef *h) {
   // if ADC is done, check if data is different from previous
-  if (ig_joystick_data[0] != prev_joystick_data[0] || g_joystick_data[1] != prev_joystick_data[1]) {
+  if (g_joystick_data[0] != prev_joystick_data[0] || g_joystick_data[1] != prev_joystick_data[1]) {
     // update previous values
     prev_joystick_data[0] = g_joystick_data[0];
     prev_joystick_data[1] = g_joystick_data[1];
@@ -135,10 +135,8 @@ void setup(void) {
     digits_3_4
   }, 4);
 
-#ifdef CODE_INTERNAL_VALUE
   // hardcode internal code
-  save_code(CODE_INTERNAL, CODE_INTERNAL_VALUE);
-#endif
+  save_code(CODE_INITIAL_VALUE);
 
   // start timers
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);

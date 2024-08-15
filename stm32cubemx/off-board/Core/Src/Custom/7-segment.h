@@ -1,7 +1,7 @@
 #ifndef _7_SEGMENT_H_
 #define _7_SEGMENT_H_
 
-#include "mcp23s17.h";
+#include "../Lib/mcp23s17.h"
 
 // ! segment map: a = bit 0, b = bit 1, ..., g = bit 6, dp = bit 7
 // ! unit 0, port a = ones digit, unit 0, port b = tens, unit 1, port a = hundreds, ...
