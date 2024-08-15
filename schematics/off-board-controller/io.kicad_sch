@@ -4954,7 +4954,7 @@
 	)
 	(text "USING INTERNAL PULL UP/PULL DOWN"
 		(exclude_from_sim no)
-		(at 312.674 85.852 0)
+		(at 252.222 24.638 0)
 		(effects
 			(font
 				(size 1.27 1.27)
