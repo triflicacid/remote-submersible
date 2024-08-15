@@ -1,7 +1,7 @@
 #include "actions.h"
 #include "constants.h"
 #include "globals.h"
-#include "shared/util.h"
+#include "../Lib/util.h"
 
 void action_request_code(void) {
   transmit_opcode(&g_lora, OP_REQUEST_CODE);
@@ -36,7 +36,5 @@ void action_rx_opcode(void) {
 }
 
 void recv_send_code(code_data *data) {
-  // save downloaded code and display to operator
-  save_code(0, data->code);
-  tm1637_write_int(&g_display, data->code, 0);
+  tm1637_display(&g_display, data->code, false);
 }

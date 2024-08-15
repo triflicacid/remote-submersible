@@ -1,7 +1,7 @@
 #ifndef _ACTIONS_H_
 #define _ACTIONS_H_
 
-#include "shared/communication.h"
+#include "../Lib/communication.h"
 
 #include <stdint.h>
 

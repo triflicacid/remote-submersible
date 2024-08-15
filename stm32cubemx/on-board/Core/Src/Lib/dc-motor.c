@@ -2,19 +2,19 @@
 
 #include <stdbool.h>
 
-inline void write_in1(dc_motor_t *motor, bool state) {
+static inline void write_in1(dc_motor_t *motor, bool state) {
   write_pin(motor->port, motor->in1, state);
 }
 
-inline void write_in2(dc_motor_t *motor, bool state) {
+static inline void write_in2(dc_motor_t *motor, bool state) {
   write_pin(motor->port, motor->in2, state);
 }
 
-inline bool read_in1(dc_motor_t *motor) {
+static inline bool read_in1(dc_motor_t *motor) {
   return read_pin(motor->port, motor->in1);
 }
 
-inline bool read_in2(dc_motor_t *motor) {
+static inline bool read_in2(dc_motor_t *motor) {
   return read_pin(motor->port, motor->in2);
 }
 

@@ -1,8 +1,8 @@
 #include "constants.h"
 #include "globals.h"
 #include "actions.h"
-#include "shared/action-mgr.h"
-#include "shared/timed-lock.h"
+#include "../Lib/action-mgr.h"
+#include "../Lib/timed-lock.h"
 
 tm1637_t g_display;
 lora_t g_lora;
