@@ -1,7 +1,7 @@
 #include "actions.h"
 #include "constants.h"
 #include "globals.h"
-#include "shared/stored-code.h"
+#include "../Lib/stored-code.h"
 
 void recv_propeller(propeller_data *data) {
   // update the velocity of both propeller motors
@@ -20,13 +20,13 @@ void recv_ballast(ballast_data *data) {
 }
 
 void recv_send_code(code_data *data) {
-  // cache code, we ned to send it later
-  save_code(0, data->code);
+  // cache code, we need to send it later
+  save_code(data->code);
 }
 
 void recv_request_code(void) {
   // respond with our cached code
-  code_data data = { fetch_code(0) };
+  code_data data = { fetch_code() };
   transmit(&g_lora, OP_SEND_CODE, &data, sizeof(data));
 }
 

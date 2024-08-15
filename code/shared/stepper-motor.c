@@ -35,11 +35,11 @@ static uint8_t sequence_half_drive[] = {
   0b1001
 };
 
-// map mode to sequuences, length determined by sequence_count[]
+// map mode to sequences, length determined by sequence_count[]
 static uint8_t *sequences[] = { sequence_wave_drive, sequence_full_drive, sequence_half_drive };
 
 
-void stepper_motor_init(stepper_motor_t *motor, port_t *port, uint1pin_t6_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
+void stepper_motor_init(stepper_motor_t *motor, port_t *port, pin_t pins[STEPPER_MOTOR_PINS], uint8_t mode) {
   motor->port = port;
   
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {

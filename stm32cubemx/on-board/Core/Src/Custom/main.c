@@ -1,7 +1,7 @@
 #include "constants.h"
 #include "actions.h"
 #include "globals.h"
-#include "shared/action-mgr.h"
+#include "../Lib/action-mgr.h"
 
 lora_t g_lora;
 dc_motor_t g_primary_motor;
@@ -53,7 +53,7 @@ void setup(void) {
 
   // initialise stepper motor and the ballast event operating it
   stepper_motor_init(&ballast_motor, STEPPER_PORT, (uint16_t[4]) { STEPPER_IN1, STEPPER_IN2, STEPPER_IN3, STEPPER_IN4 }, STEPPER_MOTOR_FULL_DRIVE);
-  stepper_event_init(&g_ballast_event, BALLAST_ASCEND_POSITION, BALLAST_DESCEND_POSITION);
+  stepper_event_init(&g_ballast, BALLAST_ASCEND_POSITION, BALLAST_DESCEND_POSITION);
 
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
