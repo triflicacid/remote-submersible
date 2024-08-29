@@ -1,0 +1,4 @@
+../Core/Src/Lib/action-mgr.c:11:6:create_action	16	static
+../Core/Src/Lib/action-mgr.c:23:10:count_pending_actions	4	static
+../Core/Src/Lib/action-mgr.c:27:9:next_action	4	static
+../Core/Src/Lib/action-mgr.c:32:6:execute_pending_actions	16	static

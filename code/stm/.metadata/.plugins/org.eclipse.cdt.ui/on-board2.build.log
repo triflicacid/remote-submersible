@@ -1,0 +1,26 @@
+15:16:54 **** Incremental Build of configuration Debug for project on-board2 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+../Core/Src/Custom/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/Custom/main.c:26:44: warning: passing argument 2 of 'stepper_event_step' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   26 |     if (stepper_event_step(&ballast_motor, &g_ballast)) {
+      |                                            ^~~~~~~~~~
+In file included from ../Core/Src/Custom/globals.h:6,
+                 from ../Core/Src/Custom/main.c:3:
+../Core/Src/Custom/../Lib/stepper-motor-event.h:36:66: note: expected 'stepper_event_t *' but argument is of type 'volatile stepper_event_t *'
+   36 | bool stepper_event_step(stepper_motor_t *motor, stepper_event_t *event);
+      |                                                 ~~~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "on-board2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\stm\on-board2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="on-board2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: on-board2.elf
+ 
+arm-none-eabi-size  on-board2.elf 
+arm-none-eabi-objdump -h -S on-board2.elf  > "on-board2.list"
+   text	   data	    bss	    dec	    hex	filename
+  13672	     60	   1876	  15608	   3cf8	on-board2.elf
+Finished building: default.size.stdout
+ 
+Finished building: on-board2.list
+ 
+
+15:16:55 Build Finished. 0 errors, 1 warnings. (took 1s.64ms)
+

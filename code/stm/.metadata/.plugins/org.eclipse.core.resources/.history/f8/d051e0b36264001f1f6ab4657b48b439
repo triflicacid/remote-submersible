@@ -1,0 +1,4 @@
+../Core/Src/Custom/main.c:16:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/Custom/main.c:33:6:HAL_SPI_RxCompltCallback	16	static
+../Core/Src/Custom/main.c:39:6:setup	16	static
+../Core/Src/Custom/main.c:82:6:loop	4	static

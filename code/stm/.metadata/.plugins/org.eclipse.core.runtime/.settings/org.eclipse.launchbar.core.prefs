@@ -1,0 +1,14 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:New_configuration,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:off-board-io Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper-event Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-on-board,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm\ Debug\ (1)/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:stm\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-on-board/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper-event\ Debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:New_configuration/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:New_configuration/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

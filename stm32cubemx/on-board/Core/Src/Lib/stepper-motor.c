@@ -1,7 +1,7 @@
 #include "stepper-motor.h"
 
-// number of sequences, for each mode
-static uint8_t sequence_count[] = {
+// number of states in each sequence (indexed by mode)
+static uint8_t sequence_lengths[] = {
   4, // wave drive
   4, // full drive
   8, // half drive
@@ -24,6 +24,7 @@ static uint8_t sequence_full_drive[] = {
 };
 
 // step sequence for half drive
+// (MSB) red, green, blue, black (LSB)
 static uint8_t sequence_half_drive[] = {
   0b0001,
   0b0011,
@@ -45,47 +46,56 @@ void stepper_motor_init(stepper_motor_t *motor, port_t *port, pin_t pins[STEPPER
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {
     motor->pins[i] = pins[i];
   }
-  
-  // set current step to max, so 'next' will trigger step 0
-  motor->step = sequence_count[mode];
+
+  motor->step = 0;
   
   // store motor drive mode
   motor->mode = mode;
 }
 
 // set a stepper motor to the given step
-static void step_to(stepper_motor_t *motor, uint8_t step) {
+static void stepper_set_state(stepper_motor_t *motor, uint8_t step) {
   // extract sequence data from corresponding step
-  uint8_t sequence = sequences[motor->mode][step];
+  uint8_t state = sequences[motor->mode][step];
   
   // mask to check against sequence
   uint32_t mask = 1;
   
   // set motor pins
   for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {
-    write_pin(motor->port, motor->pins[i], sequence & mask);
+    write_pin(motor->port, motor->pins[i], state & mask);
     mask <<= 1;
   }
 }
 
-void stepper_motor_step(stepper_motor_t *motor) {
+void stepper_motor_microstep(stepper_motor_t *motor) {
+  stepper_set_state(motor, motor->step);
+
   // increase step count, overflowing if necessary
   motor->step++;
   
-  if (motor->step >= sequence_count[motor->mode]) {
+  if (motor->step >= sequence_lengths[motor->mode]) {
     motor->step = 0;
   }
-  
-  step_to(motor, motor->step);
 }
 
-void stepper_motor_step_back(stepper_motor_t *motor) {
-  step_to(motor, motor->step);
+void stepper_motor_microstep_back(stepper_motor_t *motor) {
+  stepper_set_state(motor, motor->step);
 
-  // decrease step count, underfloweing if necessary
+  // decrease step count, underflowing if necessary
   if (motor->step == 0) {
-    motor->step = sequence_count[motor->mode] - 1;
+    motor->step = sequence_lengths[motor->mode] - 1;
   } else {
     motor->step--;
+  }
+}
+
+uint8_t stepper_motor_microstep_count(stepper_motor_t *motor) {
+  return sequence_lengths[motor->mode];
+}
+
+void stepper_motor_depower(stepper_motor_t *motor) {
+  for (uint8_t i = 0; i < STEPPER_MOTOR_PINS; i++) {
+    write_pin(motor->port, motor->pins[i], false);
   }
 }

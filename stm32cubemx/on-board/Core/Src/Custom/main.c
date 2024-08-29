@@ -3,6 +3,8 @@
 #include "globals.h"
 #include "../Lib/action-mgr.h"
 
+#include "../Lib/dc-motor.h"
+
 lora_t g_lora;
 dc_motor_t g_primary_motor;
 dc_motor_t g_secondary_motor;
@@ -58,6 +60,9 @@ void setup(void) {
   // finally, set LoRa to receive mode
   lora_mode_rx(&g_lora, false);
   lora_receive_async(&g_lora, g_lora_buffer, sizeof(opcode_t));
+
+  dc_motor_forwards(&g_primary_motor);
+  dc_motor_set_speed(&g_primary_motor, 1.0);
 }
 
 void loop(void) {

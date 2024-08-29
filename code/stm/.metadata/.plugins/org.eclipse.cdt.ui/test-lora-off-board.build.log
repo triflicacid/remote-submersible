@@ -1,0 +1,10 @@
+13:53:31 **** Incremental Build of configuration Debug for project test-lora-off-board ****
+make -j12 all 
+arm-none-eabi-size  test-lora-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12692	     28	   1732	  14452	   3874	test-lora-off-board.elf
+Finished building: default.size.stdout
+ 
+
+13:53:31 Build Finished. 0 errors, 0 warnings. (took 412ms)
+

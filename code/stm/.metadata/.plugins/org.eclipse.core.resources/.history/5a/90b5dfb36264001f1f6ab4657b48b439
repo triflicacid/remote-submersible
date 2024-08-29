@@ -1,0 +1,6 @@
+../Core/Src/Custom/actions.c:6:6:recv_propeller	1
+../Core/Src/Custom/actions.c:12:6:recv_ballast	2
+../Core/Src/Custom/actions.c:22:6:recv_send_code	1
+../Core/Src/Custom/actions.c:27:6:recv_request_code	1
+../Core/Src/Custom/actions.c:33:6:recv_release_pod	1
+../Core/Src/Custom/actions.c:41:6:action_rx_opcode	2

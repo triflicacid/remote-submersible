@@ -14,8 +14,8 @@
 typedef struct {
   int8_t target_pos; // direction of stepper motor (POSITION_* macro)
   bool step_fwd; // true=step, false=step_back
-  uint32_t steps; // steps carried out to satisfy target
-  uint32_t target; // steps required to meet desired position
+  uint32_t progress; // microsteps carried out to satisfy target
+  uint32_t target; // microsteps required to meet desired position
   
   int32_t target_fwd; // absolute forward target
   int32_t target_bwd; // absolute backwards target
@@ -33,9 +33,9 @@ void stepper_event_update(stepper_event_t *event, int8_t new_position);
 
 // step a stepper motor to progress the given event, *only* if event is not done
 // return if the event is now done after step
-bool stepper_event_step(stepper_motor_t *motor, stepper_event_t *event);
+bool stepper_event_microstep(stepper_motor_t *motor, stepper_event_t *event);
 
 // same as stepper_event_step, but steps motor even if done
-void stepper_event_force_step(stepper_motor_t *motor, stepper_event_t *event);
+void stepper_event_force_microstep(stepper_motor_t *motor, stepper_event_t *event);
 
 #endif

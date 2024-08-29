@@ -22,9 +22,15 @@ typedef struct {
 void stepper_motor_init(stepper_motor_t *motor, port_t *port, pin_t pins[STEPPER_MOTOR_PINS], uint8_t drive_mode);
 
 // drive stepper motor forward one step
-void stepper_motor_step(stepper_motor_t *motor);
+void stepper_motor_microstep(stepper_motor_t *motor);
 
 // drive stepper motor backwards one step
-void stepper_motor_step_back(stepper_motor_t *motor);
+void stepper_motor_microstep_back(stepper_motor_t *motor);
+
+// get number of microsteps in a step
+uint8_t stepper_motor_microstep_count(stepper_motor_t *motor);
+
+// de-power all coils in stepper motor
+void stepper_motor_depower(stepper_motor_t *motor);
 
 #endif

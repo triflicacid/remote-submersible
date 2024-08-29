@@ -1,6 +1,6 @@
 LTspice 24.0.12 for Windows
 Circuit: * C:\Users\admin\Documents\team-2\repo\remote-submersible\simulations\electromagnet.asc
-Start Time: Wed Jul 17 16:00:24 2024
+Start Time: Tue Aug 20 11:01:46 2024
 solver = Normal
 Maximum thread count: 12
 tnom = 27
@@ -10,10 +10,6 @@ Limiting rise time of source v1 to 0.05
 Limiting fall time of source v1 to 0.05
 Limiting rise time of source v4 to 0.05
 Limiting fall time of source v4 to 0.05
-WARNING: Node NC_02 is floating.
-
-WARNING: Less than two connections to node nc_01.  This node is used by d2.
-WARNING: Less than two connections to node nc_02.  This node is used by d2.
 Direct Newton iteration for .op point succeeded.
-Total elapsed time: 0.181 seconds.
+Total elapsed time: 0.209 seconds.
 
