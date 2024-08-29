@@ -66,8 +66,10 @@ void setup(void) {
 void loop(void) {
 	if (do_start_rx) {
 		do_start_rx = false;
+		lora_prepare_receive(&lora);
+		// lora_rx_reset_buffer(&lora);
 		lora_mode_rx(&lora, false);
-		lora_rx_reset_buffer(&lora);
+
 		lora_receive_async(&lora, buffer, sizeof(buffer));
 	}
 

@@ -59,6 +59,9 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define RadioSelect_Pin GPIO_PIN_2
 #define RadioSelect_GPIO_Port GPIOA
+#define RadioDIO_Pin GPIO_PIN_8
+#define RadioDIO_GPIO_Port GPIOA
+#define RadioDIO_EXTI_IRQn EXTI9_5_IRQn
 #define RadioReset_Pin GPIO_PIN_9
 #define RadioReset_GPIO_Port GPIOA
 #define SendCode_Pin GPIO_PIN_10

@@ -56,6 +56,10 @@
 #define MODE_RXSINGLE 0x06
 #define MODE_CAD 0x07
 
+#define DIO_MAP_RX_DONE 0x00
+#define DIO_MAP_TX_DONE 0x01
+#define DIO_MAP_CAD_DONE 0x10
+
 // global buffer of size `MAX_PAYLOAD_SIZE` for utility purposes
 extern uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 
@@ -69,6 +73,7 @@ typedef struct {
   pin_t nss_pin;
   port_t *reset_port;
   pin_t reset_pin;
+  uint8_t dio_mapping;
 } lora_t;
 
 // setup the given LoRa device using the LORA_CONFIG_* configuration
@@ -102,15 +107,14 @@ void lora_rx_reset_buffer(lora_t *lora);
 // TIP: do this to ensure reading correct packet on RxDone
 void lora_rx_point_next_packet(lora_t *lora);
 
+// prepare LoRa device to receive
+// must be placed in an RX mode after this call
+void lora_prepare_receive(lora_t *lora);
+
 // read full RX FIFO buffer from device
 // read maximum `max_size` bytes into `buffer` and return its size
 // NOTE IRQ flags are not cleared
-uint8_t lora_receive(lora_t *lora, uint8_t *buffer, uint8_t max_size);
-
-// read first `size` bytes of RX FIFO buffer from device in non-blocking (interrupt) mode
-// call RxCompltCallback when done
-// NOTE IRQ flags are not cleared
-void lora_receive_async(lora_t *lora, uint8_t *buffer, uint16_t size);
+uint8_t lora_read_fifo(lora_t *lora, uint8_t *buffer, uint8_t max_size);
 
 // send message using LoRa device
 // states: set to STANDY, then set to TX. Automatically set to STANDBY on trnsmission completion

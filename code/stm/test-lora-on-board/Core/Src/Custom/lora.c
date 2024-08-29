@@ -4,6 +4,7 @@
 
 #define REG_OP_MODE 0x01
 #define MODE_LONG_RANGE 0x80
+#define MODE_HIGH_FREQ  0x08
 
 #define REG_FR_MSB 0x06
 #define REG_FR_MID 0x07
@@ -15,6 +16,7 @@
 #define REG_TX_BASE 0x0E
 #define TX_BASE_ADDR 0x80
 #define REG_RX_BASE 0x0F
+#define REG_RX_CURR_ADDR 0x10
 #define RX_BASE_ADDR 0x00
 #define REG_NUMBER_OF_BYTES 0x13
 #define REG_MODEM_STAT 0x18
@@ -36,7 +38,7 @@ uint8_t g_lora_buffer[LORA_MAX_PAYLOAD_SIZE];
 // config table, see defined constants LORA_CONFIG_ for indexes
 uint8_t configs[][3] = {
   // MC1, MC2, MC3
-  {0x72, 0x74, 0x00},
+  {0x72, 0x70, 0x00},
   {0x92, 0x74, 0x00},
   {0x48, 0x94, 0x00},
   {0x78, 0xC4, 0x00},
@@ -81,19 +83,8 @@ static inline void spi_receive_it(lora_t *lora, uint8_t *data, uint16_t size) {
   end_transaction(lora);
 }
 
-// read bytes from the given address in interrupt mode
-static void read_bytes_it(lora_t *lora, uint8_t address, uint8_t *buffer, uint16_t size) {
-  // command - request address to read
-  uint8_t cmd = address & 0x7F;
-
-  start_transaction(lora);
-  spi_transmit(lora, &cmd, 1);
-  spi_receive_it(lora, buffer, size);
-  end_transaction(lora);
-}
-
 // write bytes starting at the given address
- void write_bytes(lora_t *lora, uint8_t address, uint8_t *data, uint8_t size) {
+void write_bytes(lora_t *lora, uint8_t address, uint8_t *data, uint8_t size) {
   // command - tell device to write to address
   uint8_t cmd = 0x80 | address;
 
@@ -115,17 +106,19 @@ void lora_setup(lora_t *lora, SPI_HandleTypeDef *spi, port_t *nss_port, pin_t ns
   lora->nss_pin = nss_pin;
   lora->reset_port = reset_port;
   lora->reset_pin = reset_pin;
+  lora->dio_mapping = 0;
   
   // set reset to high and ensure wait time
   write_pin(reset_port, reset_pin, true);
-  HAL_Delay(5);
+  lora_reset(lora);
 
   // ensure select is high
   end_transaction(lora);
 
   // enter into LoRa mode
+  HAL_Delay(10);
   write_byte(lora, REG_OP_MODE, MODE_SLEEP);
-  lora_mode_sleep(lora);
+  write_byte(lora, REG_OP_MODE, MODE_LONG_RANGE | MODE_HIGH_FREQ | MODE_SLEEP);
   
   // set up FIFO base addresses
   write_byte(lora, REG_RX_BASE, RX_BASE_ADDR);
@@ -133,9 +126,9 @@ void lora_setup(lora_t *lora, SPI_HandleTypeDef *spi, port_t *nss_port, pin_t ns
   lora_mode_standby(lora);
 
   lora_configure_modem(lora, LORA_CONFIG_BW125_CR45_SF128);
-  lora_set_preamble_length(lora, 8);
-  lora_set_frequency(lora, LORA_DEFAULT_FREQ);
-  lora_set_tx_power(lora, 15, false);
+  //lora_set_preamble_length(lora, 8);
+  //lora_set_frequency(lora, LORA_DEFAULT_FREQ);
+  //lora_set_tx_power(lora, 15, false);
   write_byte(lora, REG_MAX_PAYLOAD_LEN, LORA_MAX_PAYLOAD_SIZE);
 }
 
@@ -213,7 +206,16 @@ void lora_rx_point_next_packet(lora_t *lora) {
   write_byte(lora, REG_FIFO_ADDR_PTR, start_addr);
 }
 
-uint8_t lora_receive(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
+void lora_prepare_receive(lora_t *lora) {
+  lora_mode_standby(lora);
+
+  // set ptr to rx base
+  uint8_t rx_base;
+  read_bytes(lora, REG_RX_BASE, &rx_base, 1);
+  write_byte(lora, REG_FIFO_ADDR_PTR, rx_base);
+}
+
+uint8_t lora_read_fifo(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
   // read payload length
   uint8_t size = lora_rx_size(lora);
 
@@ -223,14 +225,17 @@ uint8_t lora_receive(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
       size = max_size;
     }
 
-    read_bytes(lora, REG_FIFO_ACCESS, buffer, size);
+    // set FifoPtrAddr = FifoRxCurrentAddr
+    uint8_t rx_ptr;
+    read_bytes(lora, REG_RX_CURR_ADDR, &rx_ptr, 1);
+    write_byte(lora, REG_FIFO_ADDR_PTR, rx_ptr);
+
+    for (uint8_t i = 0; i < size; ++i) {
+    	read_byte(lora, REG_FIFO_ACCESS, buffer + i, 1);
+    }
   }
 
   return size;
-}
-
-void lora_receive_async(lora_t *lora, uint8_t *buffer, uint16_t size) {
-  read_bytes_it(lora, REG_FIFO_ACCESS, buffer, size);
 }
 
 void lora_send(lora_t *lora, uint8_t *buffer, uint8_t size) {
@@ -240,13 +245,13 @@ void lora_send(lora_t *lora, uint8_t *buffer, uint8_t size) {
 
   // set pointer to TX base
   write_byte(lora, REG_FIFO_ADDR_PTR, TX_BASE_ADDR);
-  
-  // write payload buffer
-  write_bytes(lora, REG_FIFO_ACCESS, buffer, size);
 
   // set payload length
   write_byte(lora, REG_PAYLOAD_LEN, size);
   
+  // write payload buffer
+  write_bytes(lora, REG_FIFO_ACCESS, buffer, size);
+
   // set to TX (transmit) mode
   // LoRa will switch to STANDBY when done
   lora_mode_tx(lora);
@@ -268,26 +273,29 @@ static void lora_set_mode(lora_t *lora, uint8_t mode) {
 }
 
 void lora_mode_standby(lora_t *lora) {
-  lora_set_mode(lora, MODE_LONG_RANGE | MODE_STANDBY);
+  lora_set_mode(lora, MODE_STANDBY);
 }
 
 void lora_mode_sleep(lora_t *lora) {
-  lora_set_mode(lora, MODE_LONG_RANGE | MODE_SLEEP);
+  lora_set_mode(lora, MODE_SLEEP);
 }
 
 void lora_mode_rx(lora_t *lora, bool continuous) {
   lora_set_mode(lora, continuous ? MODE_RXCONTINUOUS : MODE_RXSINGLE);
-  write_byte(lora, REG_DIO_MAP1, 0x00); // interrupt DIO0 on RxDone
+  lora->dio_mapping = DIO_MAP_RX_DONE;
+  write_byte(lora, REG_DIO_MAP1, DIO_MAP_RX_DONE << 6); // interrupt DIO0 on RxDone
 }
 
 void lora_mode_tx(lora_t *lora) {
   lora_set_mode(lora, MODE_TX);
-  write_byte(lora, REG_DIO_MAP1, 0x01); // interrupt DIO0 on TxDone
+  lora->dio_mapping = DIO_MAP_TX_DONE;
+  write_byte(lora, REG_DIO_MAP1, DIO_MAP_TX_DONE << 6); // interrupt DIO0 on TxDone
 }
 
 void lora_mode_cad(lora_t *lora) {
   lora_set_mode(lora, MODE_CAD);
-  write_byte(lora, REG_DIO_MAP1, 0x02); // interrupt DIO0 on CadDone
+  lora->dio_mapping = DIO_MAP_CAD_DONE;
+  write_byte(lora, REG_DIO_MAP1, DIO_MAP_CAD_DONE << 6); // interrupt DIO0 on CadDone
 }
 
 bool lora_test_irq(lora_t *lora, uint8_t mask) {
