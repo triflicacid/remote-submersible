@@ -298,17 +298,10 @@ void lora_mode_cad(lora_t *lora) {
   write_byte(lora, REG_DIO_MAP1, DIO_MAP_CAD_DONE << 6); // interrupt DIO0 on CadDone
 }
 
-bool lora_test_irq(lora_t *lora, uint8_t mask) {
+uint8_t lorq_irq(lora_t *lora) {
   uint8_t flags;
   read_bytes(lora, REG_IRQ_FLAGS, &flags, 1);
-  return flags & mask;
-}
-
-bool lora_test_irq_clear(lora_t *lora, uint8_t mask) {
-  uint8_t flags;
-  read_bytes(lora, REG_IRQ_FLAGS, &flags, 1);
-  write_byte(lora, REG_IRQ_FLAGS, flags & ~mask);
-  return flags & mask;
+  return flags;
 }
 
 void lora_irq_clear(lora_t *lora) {

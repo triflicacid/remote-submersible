@@ -141,11 +141,8 @@ void lora_mode_tx(lora_t *lora);
 // set to CAD mode
 void lora_mode_cad(lora_t *lora);
 
-// check if IRQ flag `IRQ_*` is set
-bool lora_test_irq(lora_t *lora, uint8_t mask);
-
-// same as `lora_test_irq`, but clear masked bit(s) after
-bool lora_test_irq_clear(lora_t *lora, uint8_t mask);
+// read IRQ flags
+uint8_t lora_irq(lora_t *lora);
 
 // clear all IRQ flags
 void lora_irq_clear(lora_t *lora);
