@@ -69,20 +69,37 @@ void loop(void) {
 		lora_prepare_receive(&lora);
 		// lora_rx_reset_buffer(&lora);
 		lora_mode_rx(&lora, false);
-
-		lora_receive_async(&lora, buffer, sizeof(buffer));
 	}
 
 	toggle_pin(Led0_GPIO_Port, Led0_Pin);
 	HAL_Delay(250);
 }
 
-void HAL_SPI_RxCompltCallback(SPI_HandleTypeDef *h) {
+void on_receive(void) {
+	// read FIFO buffer
+	lora_read_fifo(&lora, buffer, sizeof(buffer));
+
+	// sleep -- resets FIFO buffer
+	lora_mode_sleep(&lora);
+
+	// flash LEDs
 	toggle_pin(Led1_GPIO_Port, Led1_Pin);
 	toggle_pin(Led2_GPIO_Port, Led2_Pin);
 	toggle_pin(Led3_GPIO_Port, Led3_Pin);
 
 	do_start_rx = true;
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t pin) {
+	if (pin == RadioDone_Pin) {
+		uint8_t irq = lora_irq(&lora);
+
+		if (irq & IRQ_RX_DONE) {
+			on_receive();
+		}
+
+		lorq_irq_clear(&lora);
+	}
 }
 /* USER CODE END 0 */
 
@@ -256,6 +273,16 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : RadioData_Pin */
+  GPIO_InitStruct.Pin = RadioData_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(RadioData_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

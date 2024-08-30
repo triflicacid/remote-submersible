@@ -92,6 +92,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 	  case ReleasePod_Pin:
 	  	  timed_lock_call(&release_pod_lock, HAL_GetTick());
 	  	  break;
+	  case RadioDone_Pin: {
+		  uint8_t irq = lora_irq(&lora);
+		  lora_irq_clear(&lora);
+		  break;
+	  }
 	  }
 }
 /* USER CODE END 0 */
