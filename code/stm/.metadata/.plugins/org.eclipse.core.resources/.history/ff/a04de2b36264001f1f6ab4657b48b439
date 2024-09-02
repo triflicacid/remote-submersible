@@ -1,5 +1,0 @@
-../Core/Src/Lib/stepper-motor-event.c:3:6:stepper_event_init	1
-../Core/Src/Lib/stepper-motor-event.c:12:6:stepper_event_done	1
-../Core/Src/Lib/stepper-motor-event.c:16:6:stepper_event_update	6
-../Core/Src/Lib/stepper-motor-event.c:47:6:stepper_event_step	2
-../Core/Src/Lib/stepper-motor-event.c:60:6:stepper_event_force_step	2

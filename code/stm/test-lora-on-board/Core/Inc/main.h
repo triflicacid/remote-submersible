@@ -67,9 +67,9 @@ void Error_Handler(void);
 #define Led3_GPIO_Port GPIOC
 #define RadioReset_Pin GPIO_PIN_0
 #define RadioReset_GPIO_Port GPIOB
-#define RadioData_Pin GPIO_PIN_1
-#define RadioData_GPIO_Port GPIOB
-#define RadioData_EXTI_IRQn EXTI1_IRQn
+#define RadioDIO_Pin GPIO_PIN_1
+#define RadioDIO_GPIO_Port GPIOB
+#define RadioDIO_EXTI_IRQn EXTI1_IRQn
 #define RadioSelect_Pin GPIO_PIN_12
 #define RadioSelect_GPIO_Port GPIOB
 

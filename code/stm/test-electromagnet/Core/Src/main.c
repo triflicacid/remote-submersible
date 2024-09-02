@@ -56,10 +56,14 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 void setup(void) {
 	write_pin(Electromagnet_GPIO_Port, Electromagnet_Pin, false);
+	write_pin(Led1_GPIO_Port, Led1_Pin, false);
+	write_pin(Led2_GPIO_Port, Led2_Pin, true);
 }
 
 void loop(void) {
 	toggle_pin(Electromagnet_GPIO_Port, Electromagnet_Pin);
+	toggle_pin(Led1_GPIO_Port, Led1_Pin);
+	toggle_pin(Led2_GPIO_Port, Led2_Pin);
 	HAL_Delay(250);
 }
 /* USER CODE END 0 */

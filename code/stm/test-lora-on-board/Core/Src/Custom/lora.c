@@ -4,7 +4,7 @@
 
 #define REG_OP_MODE 0x01
 #define MODE_LONG_RANGE 0x80
-#define MODE_HIGH_FREQ  0x08
+#define MODE_LOW_FREQ  0x08
 
 #define REG_FR_MSB 0x06
 #define REG_FR_MID 0x07
@@ -118,7 +118,7 @@ void lora_setup(lora_t *lora, SPI_HandleTypeDef *spi, port_t *nss_port, pin_t ns
   // enter into LoRa mode
   HAL_Delay(10);
   write_byte(lora, REG_OP_MODE, MODE_SLEEP);
-  write_byte(lora, REG_OP_MODE, MODE_LONG_RANGE | MODE_HIGH_FREQ | MODE_SLEEP);
+  write_byte(lora, REG_OP_MODE, MODE_LONG_RANGE | MODE_SLEEP);
   
   // set up FIFO base addresses
   write_byte(lora, REG_RX_BASE, RX_BASE_ADDR);
@@ -212,7 +212,7 @@ void lora_prepare_receive(lora_t *lora) {
   // set ptr to rx base
   uint8_t rx_base;
   read_bytes(lora, REG_RX_BASE, &rx_base, 1);
-  write_byte(lora, REG_FIFO_ADDR_PTR, rx_base);
+  write_bytes(lora, REG_FIFO_ADDR_PTR, &rx_base, 1);
 }
 
 uint8_t lora_read_fifo(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
@@ -231,7 +231,7 @@ uint8_t lora_read_fifo(lora_t *lora, uint8_t *buffer, uint8_t max_size) {
     write_byte(lora, REG_FIFO_ADDR_PTR, rx_ptr);
 
     for (uint8_t i = 0; i < size; ++i) {
-    	read_byte(lora, REG_FIFO_ACCESS, buffer + i, 1);
+    	read_bytes(lora, REG_FIFO_ACCESS, buffer + i, 1);
     }
   }
 
@@ -281,15 +281,15 @@ void lora_mode_sleep(lora_t *lora) {
 }
 
 void lora_mode_rx(lora_t *lora, bool continuous) {
-  lora_set_mode(lora, continuous ? MODE_RXCONTINUOUS : MODE_RXSINGLE);
   lora->dio_mapping = DIO_MAP_RX_DONE;
   write_byte(lora, REG_DIO_MAP1, DIO_MAP_RX_DONE << 6); // interrupt DIO0 on RxDone
+  lora_set_mode(lora, continuous ? MODE_RXCONTINUOUS : MODE_RXSINGLE);
 }
 
 void lora_mode_tx(lora_t *lora) {
-  lora_set_mode(lora, MODE_TX);
   lora->dio_mapping = DIO_MAP_TX_DONE;
   write_byte(lora, REG_DIO_MAP1, DIO_MAP_TX_DONE << 6); // interrupt DIO0 on TxDone
+  lora_set_mode(lora, MODE_TX);
 }
 
 void lora_mode_cad(lora_t *lora) {
@@ -298,7 +298,7 @@ void lora_mode_cad(lora_t *lora) {
   write_byte(lora, REG_DIO_MAP1, DIO_MAP_CAD_DONE << 6); // interrupt DIO0 on CadDone
 }
 
-uint8_t lorq_irq(lora_t *lora) {
+uint8_t lora_irq(lora_t *lora) {
   uint8_t flags;
   read_bytes(lora, REG_IRQ_FLAGS, &flags, 1);
   return flags;

@@ -45,7 +45,8 @@ SPI_HandleTypeDef hspi2;
 /* USER CODE BEGIN PV */
 lora_t lora;
 uint8_t buffer[1] = {0};
-volatile bool do_start_rx = false;
+volatile bool do_start_rx = false, was_interrupt = false;
+uint8_t irq = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,18 +64,6 @@ void setup(void) {
 	do_start_rx = true;
 }
 
-void loop(void) {
-	if (do_start_rx) {
-		do_start_rx = false;
-		lora_prepare_receive(&lora);
-		// lora_rx_reset_buffer(&lora);
-		lora_mode_rx(&lora, false);
-	}
-
-	toggle_pin(Led0_GPIO_Port, Led0_Pin);
-	HAL_Delay(250);
-}
-
 void on_receive(void) {
 	// read FIFO buffer
 	lora_read_fifo(&lora, buffer, sizeof(buffer));
@@ -82,23 +71,43 @@ void on_receive(void) {
 	// sleep -- resets FIFO buffer
 	lora_mode_sleep(&lora);
 
+	buffer[0] %= 8;
+
 	// flash LEDs
-	toggle_pin(Led1_GPIO_Port, Led1_Pin);
-	toggle_pin(Led2_GPIO_Port, Led2_Pin);
-	toggle_pin(Led3_GPIO_Port, Led3_Pin);
+	write_pin(Led1_GPIO_Port, Led1_Pin, buffer[0] & 0x1);
+	write_pin(Led2_GPIO_Port, Led2_Pin, buffer[0] & 0x2);
+	write_pin(Led3_GPIO_Port, Led3_Pin, buffer[0] & 0x4);
 
 	do_start_rx = true;
 }
 
-void HAL_GPIO_EXTI_Callback(uint16_t pin) {
-	if (pin == RadioDone_Pin) {
-		uint8_t irq = lora_irq(&lora);
+void loop(void) {
+	if (do_start_rx) {
+		do_start_rx = false;
+		lora_prepare_receive(&lora);
+		// lora_rx_reset_buffer(&lora);
+		lora_mode_rx(&lora, true);
+
+	}
+
+	if (was_interrupt) {
+		irq = lora_irq(&lora);
+		was_interrupt = false;
 
 		if (irq & IRQ_RX_DONE) {
 			on_receive();
 		}
 
-		lorq_irq_clear(&lora);
+		lora_irq_clear(&lora);
+	}
+
+	toggle_pin(Led0_GPIO_Port, Led0_Pin);
+	HAL_Delay(100);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t pin) {
+	if (pin == RadioDIO_Pin) {
+		was_interrupt = true;
 	}
 }
 /* USER CODE END 0 */
@@ -274,11 +283,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : RadioData_Pin */
-  GPIO_InitStruct.Pin = RadioData_Pin;
+  /*Configure GPIO pin : RadioDIO_Pin */
+  GPIO_InitStruct.Pin = RadioDIO_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(RadioData_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(RadioDIO_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);

@@ -1,4 +1,0 @@
-../Core/Src/Lib/util.c:3:6:write_pin	16	static
-../Core/Src/Lib/util.c:7:6:read_pin	16	static
-../Core/Src/Lib/util.c:11:12:read_tristate_pins	24	static
-../Core/Src/Lib/util.c:21:8:map_range	56	static

@@ -48,7 +48,7 @@ SPI_HandleTypeDef hspi1;
 lora_t lora;
 uint8_t buffer[1] = {0};
 timed_lock_t send_code_lock, req_code_lock, release_pod_lock;
-bool do_transmit = false;
+bool do_transmit = false, was_interrupt = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -79,6 +79,12 @@ void loop(void) {
 		lora_send(&lora, buffer, sizeof(buffer));
 		do_transmit = false;
 	}
+
+	if (was_interrupt) {
+		was_interrupt = false;
+		uint8_t irq = lora_irq(&lora);
+		lora_irq_clear(&lora);
+	}
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
@@ -92,11 +98,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 	  case ReleasePod_Pin:
 	  	  timed_lock_call(&release_pod_lock, HAL_GetTick());
 	  	  break;
-	  case RadioDone_Pin: {
-		  uint8_t irq = lora_irq(&lora);
-		  lora_irq_clear(&lora);
+	  case RadioDIO_Pin:
+		  was_interrupt = true;
 		  break;
-	  }
 	  }
 }
 /* USER CODE END 0 */
