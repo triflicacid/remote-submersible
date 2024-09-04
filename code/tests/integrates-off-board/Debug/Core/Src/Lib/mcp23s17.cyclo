@@ -1,0 +1,4 @@
+../Core/Src/Lib/mcp23s17.c:7:6:mcp_init	1
+../Core/Src/Lib/mcp23s17.c:27:6:mcp_write	1
+../Core/Src/Lib/mcp23s17.c:43:9:mcp_read	1
+../Core/Src/Lib/mcp23s17.c:64:6:mcp_reset	1

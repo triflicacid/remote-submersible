@@ -1,0 +1,7 @@
+../Core/Src/Custom/actions.c:13:6:action_propeller	1
+../Core/Src/Custom/actions.c:22:6:action_ballast	10
+../Core/Src/Custom/actions.c:71:6:action_send_code	1
+../Core/Src/Custom/actions.c:79:6:action_request_code	1
+../Core/Src/Custom/actions.c:83:6:action_release_pod	1
+../Core/Src/Custom/actions.c:87:6:recv_send_code	1
+../Core/Src/Custom/actions.c:101:6:action_display_movement_tick	1
