@@ -43,7 +43,7 @@
 
 /* USER CODE BEGIN PV */
 stepper_motor_t stepper;
-uint8_t microstep_count; // number of microsteps in one full step
+uint8_t microstep_count = 8; // number of microsteps in one full step
 bool forwards = true;
 int counter = 0;
 /* USER CODE END PV */
@@ -59,7 +59,7 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 void setup(void) {
 	stepper_motor_init(&stepper, GPIOC, (uint16_t[4]) { StepperBlack_Pin, StepperBlue_Pin, StepperGreen_Pin, StepperRed_Pin }, STEPPER_MOTOR_HALF_DRIVE);
-	microstep_count = stepper_motor_microstep_count(&stepper);
+	//microstep_count = stepper_motor_microstep_count(&stepper);
 }
 
 void loop(void) {

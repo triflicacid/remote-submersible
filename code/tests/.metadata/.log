@@ -649,3 +649,11 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2024-09-05 12:48:00.867
 !MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-09-05 13:35:49.743
+!MESSAGE Indexed 'test-stepper' (26 sources, 146 headers) in 6.78 sec: 12,839 declarations; 46,149 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.29%)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2024-09-05 13:42:01.181
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.debug.ui.actions.DsfSuspendCommand$4$1@68b0dc06): Status ERROR: org.eclipse.cdt.dsf.gdb code=10004 Suspend operation timeout.' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2024-09-05 13:42:01.181
+!MESSAGE Suspend operation timeout.

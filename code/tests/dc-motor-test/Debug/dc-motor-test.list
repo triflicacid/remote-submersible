@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  000274c3  00000000  00000000  0001ccdd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000130aa  00000000  00000000  000441a0  2**0
+ 17 .debug_line   000130a6  00000000  00000000  000441a0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000efcfb  00000000  00000000  0005724a  2**0
+ 18 .debug_str    000efcfb  00000000  00000000  00057246  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00146f45  2**0
+ 19 .comment      00000043  00000000  00000000  00146f41  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004750  00000000  00000000  00146f88  2**2
+ 20 .debug_frame  00004750  00000000  00000000  00146f84  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007f  00000000  00000000  0014b6d8  2**0
+ 21 .debug_line_str 0000007f  00000000  00000000  0014b6d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1132,7 +1132,7 @@ void loop(void) {
  8000c84:	ed9f 0b0a 	vldr	d0, [pc, #40]	@ 8000cb0 <loop+0x30>
  8000c88:	480d      	ldr	r0, [pc, #52]	@ (8000cc0 <loop+0x40>)
  8000c8a:	f000 f927 	bl	8000edc <dc_motor_set_speed>
-		HAL_Delay(10000);
+	HAL_Delay(10000);
  8000c8e:	f242 7010 	movw	r0, #10000	@ 0x2710
  8000c92:	f001 f875 	bl	8001d80 <HAL_Delay>
 	dc_motor_set_speed(&g_primary_motor, 0.4);

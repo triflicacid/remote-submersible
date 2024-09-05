@@ -71,7 +71,7 @@ void setup(void) {
 void loop(void) {
   //execute_pending_actions();
 	dc_motor_set_speed(&g_primary_motor, 0.0);
-		HAL_Delay(10000);
+	HAL_Delay(10000);
 	dc_motor_set_speed(&g_primary_motor, 0.4);
 	HAL_Delay(4000);
 

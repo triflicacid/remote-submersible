@@ -1,0 +1,5 @@
+../Core/Src/Custom/stepper-motor.c:43:6:stepper_motor_init	2
+../Core/Src/Custom/stepper-motor.c:57:13:stepper_set_state	2
+../Core/Src/Custom/stepper-motor.c:71:6:stepper_motor_microstep	2
+../Core/Src/Custom/stepper-motor.c:82:6:stepper_motor_microstep_back	2
+../Core/Src/Custom/stepper-motor.c:93:6:stepper_motor_depower	2

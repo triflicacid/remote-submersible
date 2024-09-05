@@ -1,0 +1,4 @@
+../Core/Src/Custom/util.c:3:6:write_pin	1
+../Core/Src/Custom/util.c:7:6:read_pin	1
+../Core/Src/Custom/util.c:11:12:read_tristate_pins	3
+../Core/Src/Custom/util.c:21:8:map_range	1
