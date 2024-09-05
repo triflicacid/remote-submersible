@@ -1,0 +1,34 @@
+!SESSION 2024-09-05 11:41:51.751 -----------------------------------------------
+eclipse.buildId=Version 1.16.0
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-09-05 11:42:40.350
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-09-05 11:42:40.354
+!MESSAGE Log4j2 initialized with config file C:\Users\admin\Documents\team-2\repo\remote-submersible\code\stm\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-09-05 11:42:45.074
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-09-05 11:47:20.736 -----------------------------------------------
+eclipse.buildId=Version 1.16.0
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\stm\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\stm\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-09-05 11:47:38.543
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-09-05 11:47:38.545
+!MESSAGE Log4j2 initialized with config file C:\Users\admin\Documents\team-2\repo\remote-submersible\code\stm\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-09-05 11:47:43.161
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-09-05 11:47:49.836
+!MESSAGE Indexed 'stm' (6 sources, 82 headers) in 4.21 sec: 4,559 declarations; 7,750 references; 4 unresolved inclusions; 32 syntax errors; 1,366 unresolved names (10%)

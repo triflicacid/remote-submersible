@@ -1,0 +1,9 @@
+../Core/Src/Lib/communication.c:22:6:register_propeller_callback	1
+../Core/Src/Lib/communication.c:26:6:register_ballast_callback	1
+../Core/Src/Lib/communication.c:30:6:register_send_code_callback	1
+../Core/Src/Lib/communication.c:34:6:register_request_code_callback	1
+../Core/Src/Lib/communication.c:38:6:register_release_pod_callback	1
+../Core/Src/Lib/communication.c:42:10:get_payload_size	5
+../Core/Src/Lib/communication.c:55:6:on_recv_payload	11
+../Core/Src/Lib/communication.c:76:6:transmit_opcode	1
+../Core/Src/Lib/communication.c:80:6:transmit	2
