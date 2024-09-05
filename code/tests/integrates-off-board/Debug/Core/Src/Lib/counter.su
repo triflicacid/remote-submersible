@@ -1,0 +1,5 @@
+../Core/Src/Lib/counter.c:5:6:counter_init	16	static
+../Core/Src/Lib/counter.c:11:6:counter_on_tick	16	static
+../Core/Src/Lib/counter.c:15:10:counter_get	16	static
+../Core/Src/Lib/counter.c:19:6:counter_tick	16	static
+../Core/Src/Lib/counter.c:33:6:counter_reset	16	static

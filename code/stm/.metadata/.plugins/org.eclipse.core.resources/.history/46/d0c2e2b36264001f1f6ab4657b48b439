@@ -1,4 +1,0 @@
-../Core/Src/Lib/stepper-motor.c:42:6:stepper_motor_init	32	static
-../Core/Src/Lib/stepper-motor.c:57:13:step_to	24	static
-../Core/Src/Lib/stepper-motor.c:71:6:stepper_motor_step	16	static
-../Core/Src/Lib/stepper-motor.c:82:6:stepper_motor_step_back	16	static

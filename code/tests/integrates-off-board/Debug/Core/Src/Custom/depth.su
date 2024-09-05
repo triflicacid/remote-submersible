@@ -1,0 +1,5 @@
+../Core/Src/Custom/depth.c:15:15:calc_delta	8	static
+../Core/Src/Custom/depth.c:21:8:get_vert_dir	4	static
+../Core/Src/Custom/depth.c:25:6:set_vert_dir	16	static
+../Core/Src/Custom/depth.c:33:8:estimate_depth	16	static
+../Core/Src/Custom/depth.c:51:6:inc_time_in_dir	16	static
