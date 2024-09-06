@@ -44,14 +44,29 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
     case GPIO_PIN_1: // radio DIO
       create_action(interrupt_radio);
+      break;
+    default:
+    	break;
   }
 }
 
 void setup(void) {
+	//global reset
+	set_pin(&pin_reset);
+	HAL_Delay(1);
+	reset_pin(&pin_reset);
+	HAL_Delay(1);
+	set_pin(&pin_reset);
+	HAL_Delay(5);
+
   // initialise LoRa device with +20dBm
   lora_init(&g_lora, &SPI_HANDLE, &pin_cs_radio, &pin_reset);
   g_lora.on_receive = on_radio_receive;
   lora_set_tx_power(&g_lora, 20);
+
+  // finally, set LoRa to receive mode
+    lora_receive(&g_lora, 0);
+
 
   // register payload receive handlers
   register_propeller_callback(recv_propeller);
@@ -59,6 +74,8 @@ void setup(void) {
   register_send_code_callback(recv_send_code);
   register_request_code_callback(recv_request_code);
   register_release_pod_callback(recv_release_pod);
+
+  return;
 
   // initialise DC motors and respective PWM channels
   dc_motor_init(&g_primary_motor, &TIMER_PWM_HANDLE, TIM_CHANNEL_1, &pins_dc_in[0], &pins_dc_in[1]);
@@ -71,10 +88,10 @@ void setup(void) {
   uint8_t count = stepper_motor_microstep_count(&ballast_motor);
   stepper_event_init(&g_ballast, BALLAST_ASCEND_POSITION * count, BALLAST_DESCEND_POSITION * count);
 
-  // finally, set LoRa to receive mode
-  lora_receive(&g_lora, 0);
+
 }
 
 void loop(void) {
   execute_pending_actions();
+
 }

@@ -2,5 +2,5 @@
 ../Core/Src/Custom/main.c:33:6:interrupt_radio	8	static
 ../Core/Src/Custom/main.c:38:6:on_radio_receive	16	static
 ../Core/Src/Custom/main.c:43:6:HAL_GPIO_EXTI_Callback	16	static
-../Core/Src/Custom/main.c:50:6:setup	48	static
-../Core/Src/Custom/main.c:78:6:loop	8	static
+../Core/Src/Custom/main.c:53:6:setup	24	static
+../Core/Src/Custom/main.c:94:6:loop	8	static

@@ -62,10 +62,12 @@ static uint8_t _read(lora_t *lora, uint8_t address) {
   // command - request address to read
   uint8_t cmd = address & 0x7F, data;
 
+  __disable_irq();
   reset_pin(lora->cs);
   HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
   HAL_SPI_Receive(lora->spi, &data, 1, 100);
   set_pin(lora->cs);
+  __enable_irq();
 
   return data;
 }
@@ -74,10 +76,12 @@ static void _write_bytes(lora_t *lora, uint8_t address, const uint8_t *data, uin
   // command - tell device to write to address
   uint8_t cmd = 0x80 | address;
 
+  __disable_irq();
   reset_pin(lora->cs);
   HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
   HAL_SPI_Transmit(lora->spi, data, size, 100);
   set_pin(lora->cs);
+  __enable_irq();
 }
 
 static void _write(lora_t *lora, uint8_t address, uint8_t data) {
@@ -107,10 +111,10 @@ void lora_init(lora_t *lora, SPI_HandleTypeDef *spi, const pin_t *cs, const pin_
   set_pin(lora->cs);
 
   // toggle reset
-  reset_pin(lora->rst);
-  HAL_Delay(5);
-  set_pin(lora->rst);
-  HAL_Delay(5);
+  //reset_pin(lora->rst);
+  //HAL_Delay(5);
+  //set_pin(lora->rst);
+  //HAL_Delay(5);
 
   // put in sleep mode
   lora_sleep(lora);

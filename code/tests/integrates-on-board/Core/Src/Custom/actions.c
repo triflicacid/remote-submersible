@@ -28,7 +28,7 @@ void recv_send_code(const payload_header *hdr, const code_data *data) {
 void recv_request_code(const payload_header *hdr) {
   // reply with our cached code
   code_data data = { fetch_code() };
-  transmit(&g_lora, OP_SEND_CODE, hdr->sender, &data, sizeof(data));
+  //transmit(&g_lora, OP_SEND_CODE, hdr->sender, &data, sizeof(data));
 }
 
 void recv_release_pod(const payload_header *hdr) {
@@ -36,5 +36,10 @@ void recv_release_pod(const payload_header *hdr) {
   set_pin(&pin_electromagnet);
 
   // start electromagnet timer
+  //HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
   HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);
+
+  //HAL_Delay(2000);
+  //reset_pin(&pin_electromagnet);
+  //HAL_Delay(2000);
 }

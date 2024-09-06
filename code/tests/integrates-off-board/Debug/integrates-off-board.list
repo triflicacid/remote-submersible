@@ -37,9 +37,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00029caf  00000000  00000000  00026f1f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0001a7ac  00000000  00000000  00050bce  2**0
+ 17 .debug_line   0001a7ad  00000000  00000000  00050bce  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00103904  00000000  00000000  0006b37a  2**0
+ 18 .debug_str    00103903  00000000  00000000  0006b37b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  19 .comment      00000043  00000000  00000000  0016ec7e  2**0
                   CONTENTS, READONLY
@@ -1552,7 +1552,7 @@ void action_send_code(void) {
  8001058:	2204      	movs	r2, #4
  800105a:	9200      	str	r2, [sp, #0]
  800105c:	2202      	movs	r2, #2
- 800105e:	2101      	movs	r1, #1
+ 800105e:	2110      	movs	r1, #16
  8001060:	4808      	ldr	r0, [pc, #32]	@ (8001084 <action_send_code+0x3c>)
  8001062:	f000 fb2d 	bl	80016c0 <transmit>
 
@@ -1582,7 +1582,7 @@ void action_request_code(void) {
  800108e:	af00      	add	r7, sp, #0
   transmit_opcode(&g_lora, OP_REQUEST_CODE, RADIO_ON_BOARD_IDENTIFIER);
  8001090:	2202      	movs	r2, #2
- 8001092:	2102      	movs	r1, #2
+ 8001092:	2111      	movs	r1, #17
  8001094:	4802      	ldr	r0, [pc, #8]	@ (80010a0 <action_request_code+0x14>)
  8001096:	f000 faed 	bl	8001674 <transmit_opcode>
 }
@@ -1598,7 +1598,7 @@ void action_release_pod(void) {
  80010a6:	af00      	add	r7, sp, #0
   transmit_opcode(&g_lora, OP_RELEASE_POD, RADIO_ON_BOARD_IDENTIFIER);
  80010a8:	2202      	movs	r2, #2
- 80010aa:	2103      	movs	r1, #3
+ 80010aa:	2120      	movs	r1, #32
  80010ac:	4802      	ldr	r0, [pc, #8]	@ (80010b8 <action_release_pod+0x14>)
  80010ae:	f000 fae1 	bl	8001674 <transmit_opcode>
 }
