@@ -1,0 +1,6 @@
+../Core/Src/Custom/util.c:3:6:write_pin	16	static
+../Core/Src/Custom/util.c:7:6:read_pin	16	static
+../Core/Src/Custom/util.c:11:6:toggle_pin	16	static
+../Core/Src/Custom/util.c:15:12:read_tristate_pins	24	static
+../Core/Src/Custom/util.c:25:12:tristate_transition	16	static
+../Core/Src/Custom/util.c:49:8:map_range	56	static
