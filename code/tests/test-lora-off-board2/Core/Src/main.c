@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Custom/util.h"
+#include "Custom/timed-lock.h"
+#include "Custom/lora.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,7 +45,11 @@
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
-
+const pin_t cs = { GPIOA, GPIO_PIN_2 }, rst = { GPIOA, GPIO_PIN_9 };
+uint8_t buffer[1] = {0};
+lora_t lora;
+timed_lock_t send_code_lock, req_code_lock, release_pod_lock;
+volatile bool do_transmit = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,7 +62,42 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void transmit_message(void) {
+	if (++buffer[0] > 7) buffer[0] = 0;
+	do_transmit = true;
+}
 
+void setup(void) {
+	lora_init(&lora, &hspi1, &cs, &rst);
+	lora_set_tx_power(&lora, 20);
+
+	timed_lock_init(&send_code_lock, 100, transmit_message);
+	timed_lock_init(&req_code_lock, 100, transmit_message);
+	timed_lock_init(&release_pod_lock, 100, transmit_message);
+}
+
+void loop(void) {
+	if (do_transmit) {
+		lora_begin_packet(&lora, false);
+		lora_write_bytes(&lora, buffer, sizeof(buffer));
+		lora_end_packet(&lora, true);
+		do_transmit = false;
+	}
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t pin) {
+	switch (pin) {
+	  case SendCode_Pin:
+		  timed_lock_call(&send_code_lock, HAL_GetTick());
+		  break;
+	  case RequestCode_Pin:
+      timed_lock_call(&req_code_lock, HAL_GetTick());
+      break;
+	  case ReleasePod_Pin:
+      timed_lock_call(&release_pod_lock, HAL_GetTick());
+      break;
+	  }
+}
 /* USER CODE END 0 */
 
 /**
