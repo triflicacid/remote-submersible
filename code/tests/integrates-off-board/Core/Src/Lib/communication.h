@@ -16,11 +16,16 @@
 // send with implicit header?
 #define RADIO_IMPLICIT_HEADER false
 
-#define OP_PROPELLER 0x1
+//#define OP_PROPELLER 0x1
 #define OP_BALLAST 0x5
-#define OP_SEND_CODE 0x10
-#define OP_REQUEST_CODE 0x11
-#define OP_RELEASE_POD 0x20
+//#define OP_SEND_CODE 0x10
+//#define OP_REQUEST_CODE 0x11
+//#define OP_RELEASE_POD 0x20
+
+#define OP_PROPELLER 0x09
+#define OP_SEND_CODE 0x01
+#define OP_REQUEST_CODE 0x02
+#define OP_RELEASE_POD 0x03
 
 // header information
 typedef struct {

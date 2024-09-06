@@ -12,15 +12,15 @@ void mcp_init(mcp_t *mcp, SPI_HandleTypeDef *spi, const pin_t *cs, uint8_t hw_ad
 
   // toggle reset & chip select
   set_pin(cs);
-  set_pin(rst);
+  //set_pin(rst);
   HAL_Delay(1);
 
   reset_pin(cs);
-  reset_pin(rst);
+  //reset_pin(rst);
   HAL_Delay(1);
 
   set_pin(cs);
-  set_pin(rst);
+  //set_pin(rst);
   HAL_Delay(5);
 }
 

@@ -1,10 +1,17 @@
-09:58:56 **** Incremental Build of configuration Debug for project integrates-off-board ****
+11:58:27 **** Incremental Build of configuration Debug for project integrates-off-board ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
 arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
    text	   data	    bss	    dec	    hex	filename
-  30452	     40	   2272	  32764	   7ffc	integrates-off-board.elf
+  30224	     40	   2272	  32536	   7f18	integrates-off-board.elf
 Finished building: default.size.stdout
  
+Finished building: integrates-off-board.list
+ 
 
-09:58:56 Build Finished. 0 errors, 0 warnings. (took 641ms)
+11:58:28 Build Finished. 0 errors, 0 warnings. (took 1s.111ms)
 

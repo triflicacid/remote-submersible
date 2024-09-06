@@ -1,14 +1,15 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:dc-motor-test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-electromagnet Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-on-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-off-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-on-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:dc-motor-test Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-stepper Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-electromagnet Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-on-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-on-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-off-board Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:dc-motor-test\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:dc-motor-test\ Debug/activeLaunchTarget=null\:---
-org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-off-board\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-off-board\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:integrates-on-board\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board2/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:on-board2/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-electromagnet\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-off-board2\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:test-lora-on-board\ Debug/activeLaunchMode=debug

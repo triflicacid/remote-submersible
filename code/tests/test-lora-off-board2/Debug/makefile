@@ -61,8 +61,8 @@ all: main-build
 main-build: test-lora-off-board2.elf secondary-outputs
 
 # Tool invocations
-test-lora-off-board2.elf test-lora-off-board2.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\remote-submersible\code\tests\test-lora-off-board2\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "test-lora-off-board2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\remote-submersible\code\tests\test-lora-off-board2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-lora-off-board2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+test-lora-off-board2.elf test-lora-off-board2.map: $(OBJS) $(USER_OBJS) C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\test-lora-off-board2\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "test-lora-off-board2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\test-lora-off-board2\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="test-lora-off-board2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

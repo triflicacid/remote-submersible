@@ -7,4 +7,4 @@
 ../Core/Src/Custom/main.c:78:6:HAL_TIM_PeriodElapsedCallback	6
 ../Core/Src/Custom/main.c:113:6:movement_counter_on_tick	3
 ../Core/Src/Custom/main.c:125:6:setup	1
-../Core/Src/Custom/main.c:159:6:loop	1
+../Core/Src/Custom/main.c:177:6:loop	1

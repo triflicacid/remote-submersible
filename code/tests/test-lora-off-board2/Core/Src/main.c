@@ -139,7 +139,7 @@ int main(void)
   setup();
   while (1)
   {
-	  setup();
+	  loop();
     /* USER CODE END WHILE */
 
 

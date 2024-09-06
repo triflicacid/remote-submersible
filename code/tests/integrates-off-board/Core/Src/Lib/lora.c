@@ -107,10 +107,10 @@ void lora_init(lora_t *lora, SPI_HandleTypeDef *spi, const pin_t *cs, const pin_
   set_pin(lora->cs);
 
   // toggle reset
-  reset_pin(lora->rst);
-  HAL_Delay(5);
-  set_pin(lora->rst);
-  HAL_Delay(5);
+  //reset_pin(lora->rst);
+  //HAL_Delay(5);
+  //set_pin(lora->rst);
+  //HAL_Delay(5);
 
   // put in sleep mode
   lora_sleep(lora);
