@@ -1,0 +1,2 @@
+../Core/Src/Lib/stored-code.c:5:8:fetch_code	4	static
+../Core/Src/Lib/stored-code.c:9:6:save_code	16	static

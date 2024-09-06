@@ -1,0 +1,5 @@
+../Core/Src/Custom/actions.c:7:6:recv_propeller	16	static
+../Core/Src/Custom/actions.c:13:6:recv_ballast	16	static
+../Core/Src/Custom/actions.c:23:6:recv_send_code	16	static
+../Core/Src/Custom/actions.c:28:6:recv_request_code	32	static
+../Core/Src/Custom/actions.c:34:6:recv_release_pod	16	static

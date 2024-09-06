@@ -1,0 +1,9 @@
+../Core/Src/Lib/dc-motor.c:5:6:dc_motor_init	24	static
+../Core/Src/Lib/dc-motor.c:13:6:dc_motor_stop	24	static
+../Core/Src/Lib/dc-motor.c:21:6:dc_motor_forwards	24	static
+../Core/Src/Lib/dc-motor.c:30:6:dc_motor_backwards	24	static
+../Core/Src/Lib/dc-motor.c:39:6:dc_motor_reverse	24	static
+../Core/Src/Lib/dc-motor.c:45:6:dc_motor_set_speed	48	static
+../Core/Src/Lib/dc-motor.c:67:8:dc_motor_get_speed	24	static
+../Core/Src/Lib/dc-motor.c:71:6:dc_motor_set_velocity	32	static
+../Core/Src/Lib/dc-motor.c:85:8:dc_motor_get_velocity	16	static

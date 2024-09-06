@@ -62,8 +62,8 @@ all: main-build
 main-build: integrates-off-board.elf secondary-outputs
 
 # Tool invocations
-integrates-off-board.elf integrates-off-board.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\remote-submersible\code\stm\integrates-off-board\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\remote-submersible\code\stm\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+integrates-off-board.elf integrates-off-board.map: $(OBJS) $(USER_OBJS) C:\Users\User\Desktop\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\User\Desktop\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

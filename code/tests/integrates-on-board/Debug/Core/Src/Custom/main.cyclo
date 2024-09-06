@@ -1,0 +1,6 @@
+../Core/Src/Custom/main.c:15:6:HAL_TIM_PeriodElapsedCallback	4
+../Core/Src/Custom/main.c:33:6:interrupt_radio	1
+../Core/Src/Custom/main.c:38:6:on_radio_receive	1
+../Core/Src/Custom/main.c:43:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/Custom/main.c:50:6:setup	1
+../Core/Src/Custom/main.c:78:6:loop	1
