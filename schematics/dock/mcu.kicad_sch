@@ -3684,7 +3684,7 @@
 			)
 		)
 	)
-	(global_label "CS_DATA"
+	(global_label "DISPLAY_DATA"
 		(shape output)
 		(at 229.87 144.78 270)
 		(fields_autoplaced yes)
@@ -3728,7 +3728,7 @@
 			)
 		)
 	)
-	(global_label "CS_CLK"
+	(global_label "DISPLAY_CLK"
 		(shape output)
 		(at 226.06 144.78 270)
 		(fields_autoplaced yes)

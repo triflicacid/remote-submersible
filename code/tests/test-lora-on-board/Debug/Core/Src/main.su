@@ -1,9 +1,0 @@
-../Core/Src/main.c:63:6:on_receive	24	static
-../Core/Src/main.c:81:6:setup	16	static
-../Core/Src/main.c:88:6:loop	8	static
-../Core/Src/main.c:98:6:HAL_GPIO_EXTI_Callback	16	static
-../Core/Src/main.c:109:5:main	8	static
-../Core/Src/main.c:155:6:SystemClock_Config	96	static
-../Core/Src/main.c:205:13:MX_SPI2_Init	8	static
-../Core/Src/main.c:245:13:MX_GPIO_Init	40	static
-../Core/Src/main.c:298:6:Error_Handler	4	static,ignoring_inline_asm

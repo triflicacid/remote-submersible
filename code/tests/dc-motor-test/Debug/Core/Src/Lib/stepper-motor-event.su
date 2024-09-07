@@ -1,5 +1,0 @@
-../Core/Src/Lib/stepper-motor-event.c:3:6:stepper_event_init	24	static
-../Core/Src/Lib/stepper-motor-event.c:12:6:stepper_event_done	16	static
-../Core/Src/Lib/stepper-motor-event.c:16:6:stepper_event_update	16	static
-../Core/Src/Lib/stepper-motor-event.c:47:6:stepper_event_microstep	16	static
-../Core/Src/Lib/stepper-motor-event.c:60:6:stepper_event_force_microstep	16	static

@@ -1,3 +1,0 @@
-../Core/Src/Custom/timed-lock.c:3:6:timed_lock_init	24	static
-../Core/Src/Custom/timed-lock.c:9:6:timed_lock_reset	16	static
-../Core/Src/Custom/timed-lock.c:13:6:timed_lock_call	16	static

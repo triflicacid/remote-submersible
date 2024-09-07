@@ -463,7 +463,7 @@
 		)
 		(uuid "f52eac04-6ee7-45b3-b16e-79093833ffc9")
 	)
-	(global_label "CS_CLK"
+	(global_label "DISPLAY_CLK"
 		(shape output)
 		(at 166.37 83.82 0)
 		(fields_autoplaced yes)
@@ -485,7 +485,7 @@
 			)
 		)
 	)
-	(global_label "CS_DATA"
+	(global_label "DISPLAY_DATA"
 		(shape output)
 		(at 166.37 78.74 0)
 		(fields_autoplaced yes)

@@ -1,9 +1,0 @@
-../Core/Src/Lib/tm1637.c:33:13:delay	8	static
-../Core/Src/Lib/tm1637.c:37:13:start	16	static
-../Core/Src/Lib/tm1637.c:42:13:stop	16	static
-../Core/Src/Lib/tm1637.c:51:13:read_ack	16	static
-../Core/Src/Lib/tm1637.c:67:13:write	32	static
-../Core/Src/Lib/tm1637.c:82:13:write_buffer	32	static
-../Core/Src/Lib/tm1637.c:101:6:tm1637_init	24	static
-../Core/Src/Lib/tm1637.c:111:6:tm1637_display	32	static
-../Core/Src/Lib/tm1637.c:129:6:tm1637_brightness	16	static

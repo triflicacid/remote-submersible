@@ -1,5 +1,0 @@
-../Core/Src/Custom/7-segment.c:11:6:display_init	32	static
-../Core/Src/Custom/7-segment.c:30:6:display_write_manual	24	static
-../Core/Src/Custom/7-segment.c:42:6:display_write	40	static
-../Core/Src/Custom/7-segment.c:50:6:display_write_digit	24	static
-../Core/Src/Custom/7-segment.c:65:6:display_clear	24	static

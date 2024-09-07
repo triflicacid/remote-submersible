@@ -1,6 +1,0 @@
-../Core/Src/Lib/mcp23s17.c:3:23:get_control_byte	1
-../Core/Src/Lib/mcp23s17.c:8:20:select	1
-../Core/Src/Lib/mcp23s17.c:13:20:deselect	1
-../Core/Src/Lib/mcp23s17.c:19:6:mcp23s17_write	1
-../Core/Src/Lib/mcp23s17.c:33:9:mcp23s17_read	1
-../Core/Src/Lib/mcp23s17.c:51:6:mcp23s17_init	1

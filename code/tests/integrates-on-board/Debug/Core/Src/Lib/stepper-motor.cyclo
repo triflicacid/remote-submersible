@@ -1,6 +1,0 @@
-../Core/Src/Lib/stepper-motor.c:43:6:stepper_motor_init	2
-../Core/Src/Lib/stepper-motor.c:53:13:stepper_set_state	2
-../Core/Src/Lib/stepper-motor.c:67:6:stepper_motor_microstep	2
-../Core/Src/Lib/stepper-motor.c:78:6:stepper_motor_microstep_back	2
-../Core/Src/Lib/stepper-motor.c:89:9:stepper_motor_microstep_count	1
-../Core/Src/Lib/stepper-motor.c:93:6:stepper_motor_depower	2
