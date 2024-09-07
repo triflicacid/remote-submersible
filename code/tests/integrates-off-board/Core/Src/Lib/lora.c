@@ -74,10 +74,16 @@ static void _write_bytes(lora_t *lora, uint8_t address, const uint8_t *data, uin
   // command - tell device to write to address
   uint8_t cmd = 0x80 | address;
 
+
+  __disable_irq();
+  HAL_NVIC_EnableIRQ(SysTick_IRQn);
   reset_pin(lora->cs);
+   HAL_Delay(1);
   HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
   HAL_SPI_Transmit(lora->spi, data, size, 100);
+  HAL_Delay(1);
   set_pin(lora->cs);
+  __enable_irq();
 }
 
 static void _write(lora_t *lora, uint8_t address, uint8_t data) {

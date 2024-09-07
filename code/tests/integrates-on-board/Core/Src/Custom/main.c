@@ -94,6 +94,6 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
-  //HAL_Delay(1);
+  HAL_Delay(1);
 
 }

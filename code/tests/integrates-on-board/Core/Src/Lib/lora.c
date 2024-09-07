@@ -62,12 +62,17 @@ static uint8_t _read(lora_t *lora, uint8_t address) {
   // command - request address to read
   uint8_t cmd = address & 0x7F, data;
 
-  __disable_irq();
+
   reset_pin(lora->cs);
+  HAL_Delay(1);
+  __disable_irq();
   HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
   HAL_SPI_Receive(lora->spi, &data, 1, 100);
-  set_pin(lora->cs);
   __enable_irq();
+  HAL_Delay(1);
+  set_pin(lora->cs);
+
+  HAL_Delay(1);
 
   return data;
 }
@@ -76,12 +81,16 @@ static void _write_bytes(lora_t *lora, uint8_t address, const uint8_t *data, uin
   // command - tell device to write to address
   uint8_t cmd = 0x80 | address;
 
-  __disable_irq();
-  reset_pin(lora->cs);
-  HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
-  HAL_SPI_Transmit(lora->spi, data, size, 100);
-  set_pin(lora->cs);
-  __enable_irq();
+
+    reset_pin(lora->cs);
+     HAL_Delay(1);
+     __disable_irq();
+    HAL_SPI_Transmit(lora->spi, &cmd, 1, 100);
+    HAL_SPI_Transmit(lora->spi, data, size, 100);
+    __enable_irq();
+    HAL_Delay(1);
+    set_pin(lora->cs);
+    HAL_Delay(1);
 }
 
 static void _write(lora_t *lora, uint8_t address, uint8_t data) {
