@@ -38,7 +38,9 @@ void recv_release_pod(const payload_header *hdr) {
 
   // start electromagnet timer
   //HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
-  TIM_ResetCounter(TIMER_ELECTROMAGNET_HANDLE.Instance);
+  //TIM_ResetCounter(TIMER_ELECTROMAGNET_HANDLE.Instance);
+  TIMER_ELECTROMAGNET_HANDLE.Instance->CNT=0;
+  __HAL_TIM_CLEAR_FLAG(&TIMER_ELECTROMAGNET_HANDLE, TIM_SR_UIF);
   HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);
 
   //HAL_Delay(2000);
