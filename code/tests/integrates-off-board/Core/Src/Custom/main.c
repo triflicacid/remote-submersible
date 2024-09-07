@@ -178,6 +178,5 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
-	//transmit_opcode(&g_lora, 1, 0);
-	//HAL_Delay(1);
+	HAL_Delay(1);
 }
