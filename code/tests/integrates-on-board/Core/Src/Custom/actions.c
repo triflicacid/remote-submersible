@@ -17,6 +17,8 @@ void recv_ballast(const payload_header *hdr, const ballast_data *data) {
 
   // if action is to be taken, start clock
   if (!stepper_event_done(&g_ballast)) {
+	TIMER_STEPPER_HANDLE.Instance->CNT=0;
+	__HAL_TIM_CLEAR_FLAG(&TIMER_STEPPER_HANDLE, TIM_SR_UIF);
     HAL_TIM_Base_Start_IT(&TIMER_STEPPER_HANDLE);
   }
 }
