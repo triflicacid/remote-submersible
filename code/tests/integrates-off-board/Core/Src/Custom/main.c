@@ -157,6 +157,8 @@ void setup(void) {
   save_code(CODE_INITIAL_VALUE);
 
   // start timers
+  TIMER_HANDLE.Instance->CNT=0;
+  __HAL_TIM_CLEAR_FLAG(&TIMER_HANDLE, TIM_SR_UIF);
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
 
   // initialise debouncing locks
