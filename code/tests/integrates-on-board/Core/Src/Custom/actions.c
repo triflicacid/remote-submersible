@@ -2,6 +2,7 @@
 #include "constants.h"
 #include "globals.h"
 #include "pins.h"
+#include "../Lib/timer.h"
 #include "../Lib/stored-code.h"
 
 void recv_propeller(const payload_header *hdr, const propeller_data *data) {
@@ -37,6 +38,7 @@ void recv_release_pod(const payload_header *hdr) {
 
   // start electromagnet timer
   //HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
+  TIM_ResetCounter(TIMER_ELECTROMAGNET_HANDLE.Instance);
   HAL_TIM_Base_Start_IT(&TIMER_ELECTROMAGNET_HANDLE);
 
   //HAL_Delay(2000);

@@ -51,6 +51,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 }
 
 void setup(void) {
+
 	//global reset
 	set_pin(&pin_reset);
 	HAL_Delay(1);
@@ -93,5 +94,6 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
+  HAL_Delay(1);
 
 }
