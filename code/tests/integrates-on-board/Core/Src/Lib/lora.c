@@ -81,7 +81,6 @@ static void _write_bytes(lora_t *lora, uint8_t address, const uint8_t *data, uin
   // command - tell device to write to address
   uint8_t cmd = 0x80 | address;
 
-
     reset_pin(lora->cs);
      HAL_Delay(1);
      __disable_irq();

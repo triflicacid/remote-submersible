@@ -90,18 +90,14 @@ void on_recv_payload(const payload_header *header, const void *buffer) {
 }
 
 void transmit_opcode(lora_t *lora, uint8_t opcode, uint8_t recipient) {
-	__disable_irq();
   lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
   lora_write(lora, opcode);
-  //lora_write_bytes(lora, &opcode, 1);
   lora_write(lora, RADIO_IDENTIFIER);
   lora_write(lora, recipient);
   lora_end_packet(lora, true);
-  __enable_irq();
 }
 
 void transmit(lora_t *lora, uint8_t opcode, uint8_t recipient, const void *data, uint8_t data_size) {
-	__disable_irq();
 	lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
   lora_write(lora, opcode);
   //lora_write_bytes(lora, &opcode, 1);
@@ -109,5 +105,4 @@ void transmit(lora_t *lora, uint8_t opcode, uint8_t recipient, const void *data,
   lora_write(lora, recipient);
   lora_write_bytes(lora, data, data_size);
   lora_end_packet(lora, true);
-  __enable_irq();
 }
