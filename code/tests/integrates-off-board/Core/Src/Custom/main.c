@@ -77,6 +77,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
+
+	  //temporary for debugging purposes
+	 return;
+
     // poll joystick; start ADC
     HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
 
@@ -109,6 +113,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     return;
   }
 }
+static int x = 1;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+	x++;
+}
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
+	x++;
+}
+void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc){
+	x++;
+}
 
 // on-tick callback for movement counter
 void movement_counter_on_tick(uint32_t tick) {
@@ -123,7 +137,14 @@ void movement_counter_on_tick(uint32_t tick) {
   display_write_manual(&g_display, 4, movement_segment_data[i]);
 }
 
+static uint16_t adc_buf[4096];
+
 void setup(void) {
+	hadc1.Init.ContinuousConvMode = ENABLE;
+	hadc1.Init.DMAContinuousRequests = ENABLE;
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buf, 4096);
+	//return;
+
 	//reset all io
 	set_pin(&pin_reset);
 	HAL_Delay(1);
@@ -161,6 +182,11 @@ void setup(void) {
   TIMER_HANDLE.Instance->CNT=0;
   __HAL_TIM_CLEAR_FLAG(&TIMER_HANDLE, TIM_SR_UIF);
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
+
+  //start adc
+  //HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
+
+
 
   // initialise debouncing locks
   timed_lock_init(&lock_send_code, 10, action_send_code);
