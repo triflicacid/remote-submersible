@@ -31,7 +31,7 @@ void recv_send_code(const payload_header *hdr, const code_data *data) {
 void recv_request_code(const payload_header *hdr) {
   // reply with our cached code
   code_data data = { fetch_code() };
-  //transmit(&g_lora, OP_SEND_CODE, hdr->sender, &data, sizeof(data));
+  transmit(&g_lora, OP_SEND_CODE, hdr->sender, &data, sizeof(data));
 }
 
 void recv_release_pod(const payload_header *hdr) {

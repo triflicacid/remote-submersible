@@ -76,7 +76,7 @@ void setup(void) {
   register_request_code_callback(recv_request_code);
   register_release_pod_callback(recv_release_pod);
 
-  return;
+
 
   // initialise DC motors and respective PWM channels
   dc_motor_init(&g_primary_motor, &TIMER_PWM_HANDLE, TIM_CHANNEL_1, &pins_dc_in[0], &pins_dc_in[1]);
@@ -84,16 +84,20 @@ void setup(void) {
   dc_motor_init(&g_secondary_motor, &TIMER_PWM_HANDLE, TIM_CHANNEL_3, &pins_dc_in[2], &pins_dc_in[3]);
   HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, TIM_CHANNEL_3);
 
+
+
   // initialise stepper motor and the ballast event operating it
-  stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_FULL_DRIVE);
+  stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_HALF_DRIVE);
   uint8_t count = stepper_motor_microstep_count(&ballast_motor);
   stepper_event_init(&g_ballast, BALLAST_ASCEND_POSITION * count, BALLAST_DESCEND_POSITION * count);
-
 
 }
 
 void loop(void) {
   execute_pending_actions();
+
+  //delay minimises chances of new event added just before setting count to 0
+  // (therefore new event not executed)
   HAL_Delay(1);
 
 }

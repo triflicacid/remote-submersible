@@ -83,8 +83,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     // DMA writes ADC results to buffer
     // compare new results, only update if differ to old
     if (read_joystick) {
-      if (!is_within_tolerance(g_joystick_data[0], prev_joystick_data[0], JOYSTICK_TOLERANCE) || !is_within_tolerance(g_joystick_data[1], prev_joystick_data[1], JOYSTICK_TOLERANCE)) {
-    	//create_action(action_propeller);
+      if (!is_within_tolerance(g_joystick_data[0], prev_joystick_data[0], JOYSTICK_TOLERANCE)
+    		  || !is_within_tolerance(g_joystick_data[1], prev_joystick_data[1], JOYSTICK_TOLERANCE)) {
+    	create_action(action_propeller);
 
     	// update previous values
     	prev_joystick_data[0] = g_joystick_data[0];
@@ -178,5 +179,8 @@ void setup(void) {
 
 void loop(void) {
   execute_pending_actions();
+
+  //delay minimises chances of new event added just before setting count to 0
+  // (therefore new event not executed)
 	HAL_Delay(1);
 }
