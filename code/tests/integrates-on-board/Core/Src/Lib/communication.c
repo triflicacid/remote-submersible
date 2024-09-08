@@ -1,5 +1,8 @@
 #include "communication.h"
 
+
+#include "../Custom/globals.h"
+
 // call `f` if not NULL, with the given arg
 #define CALL_FN1(F, ARG) \
   if (F)                 \
@@ -59,8 +62,17 @@ void on_recv(lora_t *lora, uint8_t recv_size) {
     _buffer[i] = lora_read(lora);
   }
 
+  propeller_data data;
+  data.x = *((double *)(_buffer + 3));
+  data.y = *(((double *)(_buffer + 3))+1);
+
+  //payload_header ph = {.opcode = _buffer[0], .sender = _buffer[1], .receiver = _buffer[2]};
+
   // invoke handler
-  on_recv_payload((const payload_header *) _buffer, _buffer + sizeof(payload_header));
+  //on_recv_payload((const payload_header *) _buffer, _buffer + sizeof(payload_header));
+  //on_recv_payload(&ph, &data);
+  on_recv_payload((const payload_header *) _buffer, &data);
+
 }
 
 void on_recv_payload(const payload_header *header, const void *buffer) {

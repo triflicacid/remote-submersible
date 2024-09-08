@@ -1,10 +1,21 @@
-17:44:51 **** Incremental Build of configuration Debug for project integrates-on-board ****
+21:03:20 **** Incremental Build of configuration Debug for project integrates-on-board ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:69:18: warning: unused variable 'ph' [-Wunused-variable]
+   69 |   payload_header ph = {.opcode = _buffer[0], .sender = _buffer[1], .receiver = _buffer[2]};
+      |                  ^~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
 arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
    text	   data	    bss	    dec	    hex	filename
-  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+  23904	     44	   2448	  26396	   671c	integrates-on-board.elf
 Finished building: default.size.stdout
  
+Finished building: integrates-on-board.list
+ 
 
-17:44:52 Build Finished. 0 errors, 0 warnings. (took 343ms)
+21:03:22 Build Finished. 0 errors, 1 warnings. (took 1s.905ms)
 
