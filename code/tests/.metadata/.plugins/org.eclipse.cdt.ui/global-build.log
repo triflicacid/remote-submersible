@@ -358,3 +358,101 @@ arm-none-eabi-size  integrates-on-board.elf
   23664	     44	   2448	  26156	   662c	integrates-on-board.elf
 Finished building: default.size.stdout
  
+16:44:21 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+16:45:50 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+17:05:11 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+17:28:06 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+17:35:25 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23372	     44	   2448	  25864	   6508	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+17:36:07 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23372	     44	   2448	  25864	   6508	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+17:40:00 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+17:40:54 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+17:44:20 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+17:44:51 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23664	     44	   2448	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 

@@ -86,7 +86,6 @@ void setup(void) {
   HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, TIM_CHANNEL_3);
 
 
-
   // initialise stepper motor and the ballast event operating it
   stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_HALF_DRIVE);
   uint8_t count = stepper_motor_microstep_count(&ballast_motor);
