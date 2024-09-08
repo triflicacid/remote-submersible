@@ -28,10 +28,14 @@
 #define ADC_IDX_Y 1
 
 // joystick x-y axis bounds
-#define JOYSTICK_X_MIN 851
-#define JOYSTICK_X_MAX 2842
-#define JOYSTICK_Y_MIN 939
-#define JOYSTICK_Y_MAX 2862
+//#define JOYSTICK_X_MIN 851
+#define JOYSTICK_X_MIN 922
+//#define JOYSTICK_X_MAX 2842
+#define JOYSTICK_X_MAX 2709
+//#define JOYSTICK_Y_MIN 939
+#define JOYSTICK_Y_MIN 922
+//#define JOYSTICK_Y_MAX 2862
+#define JOYSTICK_Y_MAX 2622
 #define JOYSTICK_TOLERANCE 150
 
 #endif

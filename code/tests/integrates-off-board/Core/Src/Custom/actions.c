@@ -13,8 +13,8 @@ tristate_t ballast_state = TRISTATE_UNDEF;
 void action_propeller(void) {
   // convert raw ADC values into range
   propeller_data data;
-  data.x = map_range(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, 0, 1);
-  data.y = map_range(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, 0, 1);
+  data.x = map_range(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, -1, 1);
+  data.y = map_range(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, -1, 1);
 
   transmit(&g_lora, OP_PROPELLER, RADIO_ON_BOARD_IDENTIFIER, &data, sizeof(data));
 }

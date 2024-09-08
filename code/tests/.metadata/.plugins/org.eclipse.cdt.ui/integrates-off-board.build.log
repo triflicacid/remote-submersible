@@ -1,32 +1,10 @@
-16:20:46 **** Incremental Build of configuration Debug for project integrates-off-board ****
+22:04:17 **** Incremental Build of configuration Debug for project integrates-off-board ****
 make -j12 all 
-arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
-../Core/Src/Custom/main.c: In function 'setup':
-../Core/Src/Custom/main.c:186:41: warning: passing argument 2 of 'display_init' from incompatible pointer type [-Wincompatible-pointer-types]
-  186 |   display_init(&g_display, (mcp_t *[2]) { &mcp1_2, &mcp3_4 }, 4, true);
-      |                                         ^~~~~~~~~~~~~~~~~~~~
-      |                                         |
-      |                                         mcp_t **
-In file included from ../Core/Src/Custom/globals.h:4,
-                 from ../Core/Src/Custom/main.c:3:
-../Core/Src/Custom/7-segment.h:18:52: note: expected 'const mcp_t **' but argument is of type 'mcp_t **'
-   18 | void display_init(display_t *display, const mcp_t *units[], uint8_t digit_count, bool inverted);
-      |                                       ~~~~~~~~~~~~~^~~~~~~
-../Core/Src/Custom/main.c: At top level:
-../Core/Src/Custom/main.c:119:12: warning: 'x' defined but not used [-Wunused-variable]
-  119 | static int x = 1;
-      |            ^
-arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: integrates-off-board.elf
- 
 arm-none-eabi-size  integrates-off-board.elf 
-arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
    text	   data	    bss	    dec	    hex	filename
   28908	     40	   2272	  31220	   79f4	integrates-off-board.elf
 Finished building: default.size.stdout
  
-Finished building: integrates-off-board.list
- 
 
-16:20:47 Build Finished. 0 errors, 2 warnings. (took 1s.203ms)
+22:04:18 Build Finished. 0 errors, 0 warnings. (took 456ms)
 
