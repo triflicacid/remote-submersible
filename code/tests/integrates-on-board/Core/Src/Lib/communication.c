@@ -68,10 +68,15 @@ void on_recv(lora_t *lora, uint8_t recv_size) {
 
   //payload_header ph = {.opcode = _buffer[0], .sender = _buffer[1], .receiver = _buffer[2]};
 
+  static uint8_t copy[252];
+  for (int i = 0; i < 252; i++){
+	  copy[i] = _buffer[i+3];
+  }
   // invoke handler
   //on_recv_payload((const payload_header *) _buffer, _buffer + sizeof(payload_header));
   //on_recv_payload(&ph, &data);
-  on_recv_payload((const payload_header *) _buffer, &data);
+  //on_recv_payload((const payload_header *) _buffer, &data);
+  on_recv_payload((const payload_header *) _buffer, (const void *)copy);
 
 }
 

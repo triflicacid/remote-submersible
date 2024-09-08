@@ -940,3 +940,374 @@ Finished building: default.size.stdout
  
 Finished building: integrates-on-board.list
  
+21:09:24 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23884	     44	   2224	  26152	   6628	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:10:23 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23888	     44	   2224	  26156	   662c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:13:43 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23884	     44	   2448	  26376	   6708	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:19:20 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23888	     44	   2448	  26380	   670c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:20:53 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23888	     44	   2448	  26380	   670c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:22:34 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23888	     44	   2448	  26380	   670c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:25:22 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:71:30: error: invalid initializer
+   71 |   static uint8_t copy[252] = &(*(_buffer+3));
+      |                              ^
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+make: *** [Core/Src/Lib/subdir.mk:43: Core/Src/Lib/communication.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+21:26:27 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:72:8: error: assignment to expression with array type
+   72 |   copy = &(*(_buffer+3));
+      |        ^
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+make: *** [Core/Src/Lib/subdir.mk:43: Core/Src/Lib/communication.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+21:28:32 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23920	     44	   2696	  26660	   6824	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:30:26 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23920	     44	   2696	  26660	   6824	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:33:20 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+../Core/Src/Lib/communication.c: At top level:
+../Core/Src/Lib/communication.c:83:6: error: conflicting types for 'on_recv_payload'; have 'void(const payload_header *, const uint8_t *)' {aka 'void(const payload_header *, const unsigned char *)'}
+   83 | void on_recv_payload(const payload_header *header, const uint8_t *buffer) {
+      |      ^~~~~~~~~~~~~~~
+In file included from ../Core/Src/Lib/communication.c:1:
+../Core/Src/Lib/communication.h:76:6: note: previous declaration of 'on_recv_payload' with type 'void(const payload_header *, const void *)'
+   76 | void on_recv_payload(const payload_header *header, const void *buffer);
+      |      ^~~~~~~~~~~~~~~
+../Core/Src/Lib/communication.c: In function 'on_recv_payload':
+../Core/Src/Lib/communication.c:92:38: warning: passing argument 2 of 'propeller_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:92:38: note: expected 'const propeller_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: warning: passing argument 2 of 'ballast_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+      |                                    |
+      |                                    const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: note: expected 'const ballast_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: warning: passing argument 2 of 'send_code_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: note: expected 'const code_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+make: *** [Core/Src/Lib/subdir.mk:43: Core/Src/Lib/communication.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+21:34:01 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+../Core/Src/Lib/communication.c: In function 'on_recv_payload':
+../Core/Src/Lib/communication.c:92:38: warning: passing argument 2 of 'propeller_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:92:38: note: expected 'const propeller_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: warning: passing argument 2 of 'ballast_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+      |                                    |
+      |                                    const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: note: expected 'const ballast_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: warning: passing argument 2 of 'send_code_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: note: expected 'const code_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23920	     44	   2696	  26660	   6824	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:36:36 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:71:18: warning: variable 'copy' set but not used [-Wunused-but-set-variable]
+   71 |   static uint8_t copy[252];
+      |                  ^~~~
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+../Core/Src/Lib/communication.c: In function 'on_recv_payload':
+../Core/Src/Lib/communication.c:92:38: warning: passing argument 2 of 'propeller_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:92:38: note: expected 'const propeller_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   92 |       CALL_FN2(propeller_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: warning: passing argument 2 of 'ballast_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+      |                                    |
+      |                                    const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:95:36: note: expected 'const ballast_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   95 |       CALL_FN2(ballast_cb, header, buffer)
+      |                                    ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: warning: passing argument 2 of 'send_code_cb' from incompatible pointer type [-Wincompatible-pointer-types]
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+      |                                      |
+      |                                      const uint8_t * {aka const unsigned char *}
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+../Core/Src/Lib/communication.c:98:38: note: expected 'const code_data *' but argument is of type 'const uint8_t *' {aka 'const unsigned char *'}
+   98 |       CALL_FN2(send_code_cb, header, buffer)
+      |                                      ^~~~~~
+../Core/Src/Lib/communication.c:14:15: note: in definition of macro 'CALL_FN2'
+   14 |     (F)(ARG1, ARG2);
+      |               ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23928	     44	   2696	  26668	   682c	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+21:37:42 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+../Core/Src/Lib/communication.c: In function 'on_recv':
+../Core/Src/Lib/communication.c:65:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   65 |   propeller_data data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23920	     44	   2696	  26660	   6824	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
