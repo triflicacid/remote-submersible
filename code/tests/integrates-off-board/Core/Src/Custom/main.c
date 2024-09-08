@@ -77,12 +77,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
-
-	  //temporary for debugging purposes
-	 return;
-
+	  //don't need to poll as in continuous conversion
     // poll joystick; start ADC
-    HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
+    //HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
+
+	  //sample g_joystick data, as dma means constantly changing
+//	  uint16_t joystick_data[ADC_NCONV];
+//	  for (int8_t i = 0; i < ADC_NCONV; i++){
+//		  joystick_data[i] = g_joystick_data[i];
+//	  }
 
     // DMA writes ADC results to buffer
     // compare new results, only update if differ to old
@@ -114,15 +117,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   }
 }
 static int x = 1;
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-	x++;
-}
-void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
-	x++;
-}
-void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc){
-	x++;
-}
+//void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
+//	x++;
+//}
+//void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
+//}
+//void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc){
+//}
+
+//void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc){
+//	uint16_t value = hadc->Instance->DR;
+//	uint16_t uhADCxConvertedValue = HAL_ADC_GetValue(&ADC_HANDLE);
+//}
 
 // on-tick callback for movement counter
 void movement_counter_on_tick(uint32_t tick) {
@@ -137,12 +143,16 @@ void movement_counter_on_tick(uint32_t tick) {
   display_write_manual(&g_display, 4, movement_segment_data[i]);
 }
 
-static uint16_t adc_buf[4096];
+//static uint16_t adc_buf[4096];
 
 void setup(void) {
-	hadc1.Init.ContinuousConvMode = ENABLE;
-	hadc1.Init.DMAContinuousRequests = ENABLE;
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buf, 4096);
+	//HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buf, 32);
+	//HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t*)adc_buf, 4096);
+	//HAL_ADC_Start_IT(&ADC_HANDLE);
+
+	//start adc
+	HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
+
 	//return;
 
 	//reset all io
@@ -183,8 +193,7 @@ void setup(void) {
   __HAL_TIM_CLEAR_FLAG(&TIMER_HANDLE, TIM_SR_UIF);
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
 
-  //start adc
-  //HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
+
 
 
 
