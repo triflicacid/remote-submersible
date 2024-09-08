@@ -24,6 +24,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     // step ballast motor, stopping the timer if done
     if (stepper_event_microstep(&ballast_motor, &g_ballast)) {
       HAL_TIM_Base_Stop_IT(h);
+      stepper_motor_depower(&ballast_motor);
     }
 
     return;
