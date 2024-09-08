@@ -17,6 +17,6 @@
 #define TIMER_STEPPER_HANDLE htim7
 
 // TIM_HandleTypeDef, used for PWM
-#define TIMER_PWM_HANDLE htim3
+#define TIMER_PWM_HANDLE htim2
 
 #endif
