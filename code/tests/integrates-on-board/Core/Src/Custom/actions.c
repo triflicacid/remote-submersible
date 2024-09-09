@@ -36,7 +36,7 @@ void recv_request_code(const payload_header *hdr) {
 
 void recv_release_pod(const payload_header *hdr) {
   // de-activate electromagnet
-  set_pin(&pin_electromagnet);
+  reset_pin(&pin_electromagnet);
 
   // start electromagnet timer
   //HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);

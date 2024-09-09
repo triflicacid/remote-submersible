@@ -15,7 +15,7 @@ stepper_event_t g_ballast;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_ELECTROMAGNET_HANDLE) {
     // times up! reactivate magnet and cancel timer
-    reset_pin(&pin_electromagnet);
+    set_pin(&pin_electromagnet);
     HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
     return;
   }
@@ -57,6 +57,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 }
 
 void setup(void) {
+	set_pin(&pin_electromagnet);
+
   // global reset
   toggle_reset(&pin_reset, 5);
 
