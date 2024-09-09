@@ -267,3 +267,4 @@ VP_TIM7_VS_ClockSourceINT.Signal=TIM7_VS_ClockSourceINT
 board=NUCLEO-L476RG
 boardIOC=true
 isbadioc=false
+isbadioc=false
