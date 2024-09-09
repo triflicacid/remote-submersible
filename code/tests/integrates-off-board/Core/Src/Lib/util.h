@@ -51,6 +51,9 @@ inline bool read_pin(const pin_t *pin) {
   return HAL_GPIO_ReadPin(pin->port, pin->pin) == GPIO_PIN_SET;
 }
 
+// toggle a reset pin, with given final delay (other delays are 1ms)
+void toggle_reset(const pin_t *pin, uint32_t final_delay);
+
 // read a tri-state switch, or other simlar structure
 // returns `TRISTATE_FALSE` if the false pin is set, same for the true pin, otherwise `TRISTATE_UNDEF`
 tristate_t read_tristate_pins(const pin_t *false_pin, const pin_t *true_pin);

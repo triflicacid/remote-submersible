@@ -6,6 +6,17 @@ extern inline void reset_pin(const pin_t *);
 extern inline void toggle_pin(const pin_t *);
 extern inline bool read_pin(const pin_t *);
 
+void toggle_reset(const pin_t *pin, uint32_t final_delay) {
+  set_pin(pin);
+  HAL_Delay(1);
+
+  reset_pin(pin);
+  HAL_Delay(1);
+
+  set_pin(pin);
+  HAL_Delay(final_delay);
+}
+
 tristate_t read_tristate_pins(const pin_t *false_pin, const pin_t *true_pin) {
   if (read_pin(false_pin)) {
     return TRISTATE_FALSE;

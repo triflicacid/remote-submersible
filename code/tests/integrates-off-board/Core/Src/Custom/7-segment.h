@@ -15,7 +15,7 @@ typedef struct {
 
 // initialise a display, maximum 16 digits
 // map: unit 0 gpioa is LSB, unit n gpiob is MSB
-void display_init(display_t *display, const mcp_t *units[], uint8_t digit_count, bool inverted);
+void display_init(display_t *display, mcp_t *units[], uint8_t digit_count, bool inverted);
 
 // control segments of a digit exactly
 void display_write_manual(display_t *display, uint8_t segment, uint8_t value);

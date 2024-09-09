@@ -1,13 +1,12 @@
 #include "dc-motor.h"
 
-#include <stdbool.h>
-
 void dc_motor_init(dc_motor_t *motor, TIM_HandleTypeDef *htim, uint32_t channel, const pin_t *in1, const pin_t *in2) {
   motor->htim = htim;
   motor->channel = channel;
   motor->in1 = in1;
   motor->in2 = in2;
   motor->vel = 0;
+  motor->on_switch_direction = NULL;
 }
 
 void dc_motor_stop(dc_motor_t *motor) {
@@ -15,6 +14,7 @@ void dc_motor_stop(dc_motor_t *motor) {
     // 0 0 / 1 1
     write_pin(motor->in1, read_pin(motor->in2));
     motor->vel = 0;
+    __HAL_TIM_SET_COMPARE(motor->htim, motor->channel, 0);
   }
 }
 
@@ -71,6 +71,17 @@ double dc_motor_get_speed(dc_motor_t *motor) {
 void dc_motor_set_velocity(dc_motor_t *motor, double frac) {
   if (motor->vel == frac) {
     return;
+  }
+
+  // halt if =0 or near 0
+  if (frac > -DC_MOTOR_STOP_LIMIT && frac < DC_MOTOR_STOP_LIMIT) {
+	dc_motor_stop(motor);
+    return;
+  }
+
+  // direction reversal?
+  if (SIGN(frac) != SIGN(motor->vel) && motor->on_switch_direction) {
+    motor->on_switch_direction(motor);
   }
 
   if (frac < 0) {

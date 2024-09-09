@@ -98,7 +98,7 @@ void transmit_opcode(lora_t *lora, uint8_t opcode, uint8_t recipient) {
 }
 
 void transmit(lora_t *lora, uint8_t opcode, uint8_t recipient, const void *data, uint8_t data_size) {
-	lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
+  lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
   lora_write(lora, opcode);
   //lora_write_bytes(lora, &opcode, 1);
   lora_write(lora, RADIO_IDENTIFIER);

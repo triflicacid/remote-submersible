@@ -26,6 +26,9 @@ typedef struct {
     (value) = (max);           \
   }
 
+// get the sign of a number
+#define SIGN(value) (value < 0 ? -1 : value > 0 ? 1 : 0)
+
 // set (state=true) or reset (state=false) the given pin
 inline void write_pin(const pin_t *pin, bool state) {
   HAL_GPIO_WritePin(pin->port, pin->pin, state ? GPIO_PIN_SET : GPIO_PIN_RESET);
@@ -50,6 +53,9 @@ inline void toggle_pin(const pin_t *pin) {
 inline bool read_pin(const pin_t *pin) {
   return HAL_GPIO_ReadPin(pin->port, pin->pin) == GPIO_PIN_SET;
 }
+
+// toggle a reset pin, with given final delay (other delays are 1ms)
+void toggle_reset(const pin_t *pin, uint32_t final_delay);
 
 // read a tri-state switch, or other simlar structure
 // returns `TRISTATE_FALSE` if the false pin is set, same for the true pin, otherwise `TRISTATE_UNDEF`

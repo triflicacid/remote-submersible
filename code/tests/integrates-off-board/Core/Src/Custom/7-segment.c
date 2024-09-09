@@ -8,7 +8,7 @@ static uint8_t segment_mask[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07
 static uint8_t segment_mask_flipped[] = { 0x7E, 0x30, /**/ 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
 static uint8_t dp_mask = 1 << 7;
 
-void display_init(display_t *display, const mcp_t *units[], uint8_t digit_count, bool inverted) {
+void display_init(display_t *display, mcp_t *units[], uint8_t digit_count, bool inverted) {
   display->invert = inverted;
   display->digit_count = digit_count;
   uint8_t unit_count = (digit_count + 1) / 2;

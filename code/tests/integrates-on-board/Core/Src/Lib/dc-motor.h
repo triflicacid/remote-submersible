@@ -3,14 +3,17 @@
 
 #include "util.h"
 
+// stop dc motors if abs(frac) < this value
+#define DC_MOTOR_STOP_LIMIT 0.1
+
 // represents a DC motor interface
-// !DO NOT ACCESS MANUALLY
-typedef struct {
+typedef struct dc_motor {
   TIM_HandleTypeDef *htim;  // handle of PWM timer
   uint32_t channel;  // PWM timer channel
   const pin_t *in1;  // IN1 pin
   const pin_t *in2;  // IN2 pin
   double vel;  // cache velocity
+  void (*on_switch_direction)(struct dc_motor *);  // callback invoked on direction reversal
 } dc_motor_t;
 
 // initialise a DC motor struct

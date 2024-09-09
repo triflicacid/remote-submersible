@@ -22,6 +22,8 @@ counter_t g_movement_counter;
 
 static timed_lock_t lock_send_code, lock_req_code, lock_release_pod, lock_tristate_down, lock_tristate_up;
 
+volatile bool radio_check_irq = false;
+
 
 // segment data for movement on 7-segment display
 // { none, top, middle, bottom }
@@ -53,6 +55,10 @@ void interrupt_tristate_down(void) {
   timed_lock_call(&lock_tristate_down, HAL_GetTick());
 }
 
+void interrupt_radio_dio(void) {
+  lora_dio_interrupt(&g_lora);
+}
+
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
@@ -74,19 +80,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   }
 }
 
+void on_receive(int size) {
+  on_recv(&g_lora, size);
+  radio_check_irq = false;
+  lora_idle(&g_lora); // only receive once. it will be enabled again when needed.
+}
+
 // INTERRUPT: override timer callback
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_HANDLE) {
-	  //don't need to poll as in continuous conversion
-    // poll joystick; start ADC
-    //HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
-
-	  //sample g_joystick data, as dma means constantly changing
-//	  uint16_t joystick_data[ADC_NCONV];
-//	  for (int8_t i = 0; i < ADC_NCONV; i++){
-//		  joystick_data[i] = g_joystick_data[i];
-//	  }
-
     // DMA writes ADC results to buffer
     // compare new results, only update if differ to old
     if (read_joystick) {
@@ -105,6 +107,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
       read_joystick = true;
     }
 
+    // check if LoRa data available...
+    if (radio_check_irq) {
+    	create_action(interrupt_radio_dio);
+    }
+
     return;
   }
 
@@ -116,19 +123,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     return;
   }
 }
-static int x = 1;
-//void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-//	x++;
-//}
-//void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
-//}
-//void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc){
-//}
-
-//void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* hadc){
-//	uint16_t value = hadc->Instance->DR;
-//	uint16_t uhADCxConvertedValue = HAL_ADC_GetValue(&ADC_HANDLE);
-//}
 
 // on-tick callback for movement counter
 void movement_counter_on_tick(uint32_t tick) {
@@ -146,43 +140,30 @@ void movement_counter_on_tick(uint32_t tick) {
 //static uint16_t adc_buf[4096];
 
 void setup(void) {
-	//HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_buf, 32);
-	//HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t*)adc_buf, 4096);
-	//HAL_ADC_Start_IT(&ADC_HANDLE);
+  // start adc
+  HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
 
-	//start adc
-	HAL_ADC_Start_DMA(&ADC_HANDLE, (uint32_t *) g_joystick_data, ADC_NCONV);
-
-	//return;
-
-	//reset all io
-	set_pin(&pin_reset);
-	HAL_Delay(1);
-	reset_pin(&pin_reset);
-	HAL_Delay(1);
-	set_pin(&pin_reset);
-	HAL_Delay(5);
+  // toggle io reset
+  toggle_reset(&pin_reset, 5);
 
   // initialise LoRa device with +20dBm
   lora_init(&g_lora, &SPI_HANDLE, &pin_cs_radio, &pin_reset);
   lora_set_tx_power(&g_lora, 20);
+  g_lora.on_receive = on_receive;
 
+  // initialise debouncing locks
   timed_lock_init(&lock_send_code, 10, action_send_code);
-    timed_lock_init(&lock_req_code, 10, action_request_code);
-    timed_lock_init(&lock_release_pod, 10, action_release_pod);
-    timed_lock_init(&lock_tristate_up, 10, action_ballast);
-    timed_lock_init(&lock_tristate_down, 10, action_ballast);
+  timed_lock_init(&lock_req_code, 10, action_request_code);
+  timed_lock_init(&lock_release_pod, 5000, action_release_pod); // high delay to give electromagnet rest
+  timed_lock_init(&lock_tristate_up, 10, action_ballast);
+  timed_lock_init(&lock_tristate_down, 10, action_ballast);
 
   // set payload receive handlers
   register_send_code_callback(recv_send_code);
 
-
-
   // initialise 7-segment display
   mcp_init(&mcp1_2, &SPI_HANDLE, &pin_cs1_2, 0x00, &pin_reset);
-
   mcp_init(&mcp3_4, &SPI_HANDLE, &pin_cs3_4, 0x00, &pin_reset);
-
   display_init(&g_display, (mcp_t *[2]) { &mcp1_2, &mcp3_4 }, 4, true);
 
   // hardcode internal code
@@ -193,29 +174,15 @@ void setup(void) {
   __HAL_TIM_CLEAR_FLAG(&TIMER_HANDLE, TIM_SR_UIF);
   HAL_TIM_Base_Start_IT(&TIMER_HANDLE);
 
-
-
-
-
-  // initialise debouncing locks
-  timed_lock_init(&lock_send_code, 10, action_send_code);
-  timed_lock_init(&lock_req_code, 10, action_request_code);
-  timed_lock_init(&lock_release_pod, 10, action_release_pod);
-  timed_lock_init(&lock_tristate_up, 10, action_ballast);
-  timed_lock_init(&lock_tristate_down, 10, action_ballast);
-
   // setup movement counter
   counter_init(&g_movement_counter, 4);
   counter_on_tick(&g_movement_counter, movement_counter_on_tick);
-
-  // finally, set LoRa to receive mode
-  //lora_receive(&g_lora, 0);
 }
 
 void loop(void) {
   execute_pending_actions();
 
-  //delay minimises chances of new event added just before setting count to 0
+  // delay minimises chances of new event added just before setting count to 0
   // (therefore new event not executed)
-	HAL_Delay(1);
+  HAL_Delay(1);
 }

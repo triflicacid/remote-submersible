@@ -31,10 +31,7 @@ handler next_action(void) {
 
 void execute_pending_actions(void) {
   // iterate over array and call handlers
-  for (uint16_t i = 0; i < count; i++) {
+  for (uint16_t i = 0; i < count; i++, count--) {
     pending_actions[i]();
   }
-  
-  // 'empty' array (old entries will be overwritten)
-  count = 0;
 }

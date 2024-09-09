@@ -1,5 +1,5 @@
-#ifndef _PINS_H
-#define _PINS_H
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
 
 // LoRa device SPI handler name of type SPI_HandleTypeDef
 #define SPI_HANDLE hspi2
@@ -13,7 +13,7 @@
 // TIM_HandleTypeDef, configured to 2s
 #define TIMER_ELECTROMAGNET_HANDLE htim6
 
-// TIM_HandleTypeDef, configured to 5ms
+// TIM_HandleTypeDef, configured to <5ms
 #define TIMER_STEPPER_HANDLE htim7
 
 // TIM_HandleTypeDef, used for PWM
