@@ -197,13 +197,14 @@ void lora_end_packet(lora_t *lora, bool async) {
 }
 
 bool lora_is_transmitting(lora_t *lora) {
-  if (_read(lora, REG_OP_MODE) & MODE_TX) {
-    return true;
-  }
+  //if (_read(lora, REG_OP_MODE) & MODE_TX) {
+  //  return true;
+  //}
 
   if (_read(lora, REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) {
     // clear IRQ's
     _write(lora, REG_IRQ_FLAGS, IRQ_TX_DONE_MASK);
+    return true;
   }
 
   return false;

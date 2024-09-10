@@ -7,8 +7,8 @@
 
 void recv_propeller(const payload_header *hdr, const propeller_data *data) {
   // update the velocity of both propeller motors
-  dc_motor_set_velocity(&g_primary_motor, (float) data->y / 127.0f);
-  dc_motor_set_velocity(&g_secondary_motor, (float) data->x / 127.0f);
+  dc_motor_set_velocity(&g_primary_motor, ((float) data->y / 127.0f) * DC_MOTOR_MAX_DUTY);
+  dc_motor_set_velocity(&g_secondary_motor, ((float) data->x / 127.0f) * DC_MOTOR_MAX_DUTY);
 }
 
 void recv_ballast(const payload_header *hdr, const ballast_data *data) {

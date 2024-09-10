@@ -16,7 +16,7 @@ display_t g_display;
 
 static volatile bool read_joystick = false; // prevent transmitting on first update
 volatile uint16_t g_joystick_data[ADC_NCONV];
-static volatile uint16_t prev_joystick_data[ADC_NCONV]; // store previous results for comparison
+volatile uint16_t prev_joystick_data[ADC_NCONV];
 
 counter_t g_movement_counter;
 
@@ -90,16 +90,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
     // DMA writes ADC results to buffer
     // compare new results, only update if differ to old
     if (read_joystick) {
-      if (!is_within_tolerance(g_joystick_data[0], prev_joystick_data[0], JOYSTICK_TOLERANCE)
-    		  || !is_within_tolerance(g_joystick_data[1], prev_joystick_data[1], JOYSTICK_TOLERANCE)) {
-    	create_action(action_propeller);
+      if (!is_within_tolerance(prev_joystick_data[0], prev_joystick_data[0], 150) || !is_within_tolerance(prev_joystick_data[1], g_joystick_data[1], 150)) {
+        create_action(action_propeller);
 
-    	// update previous values
-    	prev_joystick_data[0] = g_joystick_data[0];
-    	prev_joystick_data[1] = g_joystick_data[1];
+        prev_joystick_data[0] = g_joystick_data[0];
+        prev_joystick_data[1] = g_joystick_data[1];
       }
     } else {
-      // update values and mark as read
       prev_joystick_data[0] = g_joystick_data[0];
       prev_joystick_data[1] = g_joystick_data[1];
       read_joystick = true;

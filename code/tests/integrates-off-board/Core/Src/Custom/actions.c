@@ -11,12 +11,20 @@
 tristate_t ballast_state = TRISTATE_UNDEF;
 
 void action_propeller(void) {
+  static propeller_data sent_data = { 0, 0 };
+
   // convert raw ADC values into range
   propeller_data data;
   data.x = map_range_int(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, -127, 127);
   data.y = map_range_int(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, -127, 127);
 
-  transmit(&g_lora, OP_PROPELLER, RADIO_ON_BOARD_IDENTIFIER, &data, sizeof(data));
+  // is this different?
+  if (!is_within_tolerance(data.x, sent_data.x, 20) || !is_within_tolerance(data.y, sent_data.y, 20)) {
+	sent_data.x = data.x;
+	sent_data.y = data.y;
+
+	transmit(&g_lora, OP_PROPELLER, RADIO_ON_BOARD_IDENTIFIER, &data, sizeof(data));
+  }
 }
 
 void action_ballast(void) {

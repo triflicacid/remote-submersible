@@ -1,10 +1,18 @@
-11:52:24 **** Incremental Build of configuration Debug for project integrates-off-board ****
+13:41:51 **** Incremental Build of configuration Debug for project integrates-off-board ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
 arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
    text	   data	    bss	    dec	    hex	filename
-  30376	     40	   2552	  32968	   80c8	integrates-off-board.elf
+  30528	     40	   2576	  33144	   8178	integrates-off-board.elf
 Finished building: default.size.stdout
  
+Finished building: integrates-off-board.list
+ 
 
-11:52:24 Build Finished. 0 errors, 0 warnings. (took 396ms)
+13:41:52 Build Finished. 0 errors, 0 warnings. (took 1s.888ms)
 

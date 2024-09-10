@@ -106,15 +106,22 @@ void on_recv_payload(const payload_header *header, const void *buffer) {
   }
 }
 
+uint32_t queued_transmits = 0;
+uint32_t transmits = 0;
+
 void transmit_opcode(lora_t *lora, uint8_t opcode, uint8_t recipient) {
+	queued_transmits++;
   lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
   write_header(lora, opcode, RADIO_IDENTIFIER, recipient);
-  lora_end_packet(lora, true);
+  lora_end_packet(lora, false);
+  transmits++;
 }
 
 void transmit(lora_t *lora, uint8_t opcode, uint8_t recipient, const void *data, uint8_t data_size) {
+	queued_transmits++;
   lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
   write_header(lora, opcode, RADIO_IDENTIFIER, recipient);
   lora_write_bytes(lora, data, data_size);
-  lora_end_packet(lora, true);
+  lora_end_packet(lora, false);
+  transmits++;
 }

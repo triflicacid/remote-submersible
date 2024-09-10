@@ -33,3 +33,382 @@ arm-none-eabi-size  integrates-on-board.elf
   23640	     44	   2384	  26068	   65d4	integrates-on-board.elf
 Finished building: default.size.stdout
  
+11:59:37 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30248	     40	   2552	  32840	   8048	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:00:30 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30248	     40	   2552	  32840	   8048	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+12:01:38 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30248	     40	   2560	  32848	   8050	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:30:29 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30376	     40	   2560	  32976	   80d0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:32:27 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30376	     40	   2552	  32968	   80c8	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:34:14 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+../Core/Src/Custom/actions.c: In function 'recv_propeller':
+../Core/Src/Custom/actions.c:12:34: error: 'dc' undeclared (first use in this function)
+   12 |         raw_x = data->x; raw_y = dc->y;
+      |                                  ^~
+../Core/Src/Custom/actions.c:12:34: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/Custom/subdir.mk:25: Core/Src/Custom/actions.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+12:34:24 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23696	     44	   2392	  26132	   6614	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+12:38:34 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
+arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  23640	     44	   2384	  26068	   65d4	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-on-board.list
+ 
+12:42:33 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30272	     40	   2560	  32872	   8068	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:46:25 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc "../Core/Src/Lib/lora.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/lora.d" -MT"Core/Src/Lib/lora.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/lora.o"
+arm-none-eabi-gcc "../Core/Src/Lib/mcp23s17.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/mcp23s17.d" -MT"Core/Src/Lib/mcp23s17.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/mcp23s17.o"
+arm-none-eabi-gcc "../Core/Src/Lib/util.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/util.d" -MT"Core/Src/Lib/util.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/util.o"
+arm-none-eabi-gcc "../Core/Src/Custom/7-segment.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/7-segment.d" -MT"Core/Src/Custom/7-segment.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/7-segment.o"
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/depth.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/depth.d" -MT"Core/Src/Custom/depth.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/depth.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc "../Core/Src/Custom/pins.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/pins.d" -MT"Core/Src/Custom/pins.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/pins.o"
+../Core/Src/Custom/7-segment.c:8:16: warning: 'segment_mask_flipped' defined but not used [-Wunused-variable]
+    8 | static uint8_t segment_mask_flipped[] = { 0x7E, 0x30, /**/ 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
+      |                ^~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30376	     40	   2560	  32976	   80d0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:53:53 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc "../Core/Src/Lib/lora.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/lora.d" -MT"Core/Src/Lib/lora.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/lora.o"
+arm-none-eabi-gcc "../Core/Src/Lib/mcp23s17.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/mcp23s17.d" -MT"Core/Src/Lib/mcp23s17.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/mcp23s17.o"
+arm-none-eabi-gcc "../Core/Src/Lib/util.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/util.d" -MT"Core/Src/Lib/util.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/util.o"
+arm-none-eabi-gcc "../Core/Src/Custom/7-segment.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/7-segment.d" -MT"Core/Src/Custom/7-segment.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/7-segment.o"
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/depth.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/depth.d" -MT"Core/Src/Custom/depth.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/depth.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc "../Core/Src/Custom/pins.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/pins.d" -MT"Core/Src/Custom/pins.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/pins.o"
+../Core/Src/Custom/7-segment.c:8:16: warning: 'segment_mask_flipped' defined but not used [-Wunused-variable]
+    8 | static uint8_t segment_mask_flipped[] = { 0x7E, 0x30, /**/ 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
+      |                ^~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+12:56:41 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:01:39 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:02:42 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:04:07 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:05:00 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23640	     44	   2384	  26068	   65d4	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+13:07:01 **** Incremental Build of configuration Debug for project integrates-on-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-on-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23640	     44	   2384	  26068	   65d4	integrates-on-board.elf
+Finished building: default.size.stdout
+ 
+13:07:50 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:08:06 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:10:03 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30444	     40	   2560	  33044	   8114	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:10:31 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30444	     40	   2560	  33044	   8114	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:12:09 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/lora.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/lora.d" -MT"Core/Src/Lib/lora.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/lora.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30428	     40	   2560	  33028	   8104	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:12:53 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30428	     40	   2560	  33028	   8104	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:13:55 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30360	     40	   2560	  32960	   80c0	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:16:10 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/communication.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/communication.d" -MT"Core/Src/Lib/communication.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/communication.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30420	     40	   2568	  33028	   8104	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:26:00 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/action-mgr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/action-mgr.d" -MT"Core/Src/Lib/action-mgr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/action-mgr.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30412	     40	   2568	  33020	   80fc	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:28:45 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  29920	     40	   2552	  32512	   7f00	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:31:10 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30412	     40	   2568	  33020	   80fc	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:35:17 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-size  integrates-off-board.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30412	     40	   2568	  33020	   80fc	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+13:36:32 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  29920	     40	   2552	  32512	   7f00	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 
+13:41:51 **** Incremental Build of configuration Debug for project integrates-off-board ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-off-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-off-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-off-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-off-board.elf
+ 
+arm-none-eabi-size  integrates-off-board.elf 
+arm-none-eabi-objdump -h -S integrates-off-board.elf  > "integrates-off-board.list"
+   text	   data	    bss	    dec	    hex	filename
+  30528	     40	   2576	  33144	   8178	integrates-off-board.elf
+Finished building: default.size.stdout
+ 
+Finished building: integrates-off-board.list
+ 

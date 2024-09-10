@@ -31,7 +31,9 @@ handler next_action(void) {
 
 void execute_pending_actions(void) {
   // iterate over array and call handlers
-  for (uint16_t i = 0; i < count; i++, count--) {
+  for (int i = 0; i < count; i++) {
     pending_actions[i]();
   }
+
+  count = 0;
 }

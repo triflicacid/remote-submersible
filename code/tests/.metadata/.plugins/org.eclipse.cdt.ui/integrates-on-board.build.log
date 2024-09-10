@@ -1,4 +1,4 @@
-11:53:38 **** Incremental Build of configuration Debug for project integrates-on-board ****
+13:07:01 **** Incremental Build of configuration Debug for project integrates-on-board ****
 make -j12 all 
 arm-none-eabi-size  integrates-on-board.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  integrates-on-board.elf
 Finished building: default.size.stdout
  
 
-11:53:38 Build Finished. 0 errors, 0 warnings. (took 403ms)
+13:07:02 Build Finished. 0 errors, 0 warnings. (took 463ms)
 

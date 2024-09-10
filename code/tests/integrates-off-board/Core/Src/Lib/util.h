@@ -60,7 +60,9 @@ tristate_t read_tristate_pins(const pin_t *false_pin, const pin_t *true_pin);
 
 // return if `value` is within `tolerance` of `target`
 inline bool is_within_tolerance(int target, int value, int tolerance) {
-  int delta = target < value ? value - target : target - value;
+  int delta = target - value;
+  if (delta < 0) delta *= -1;
+
   return delta <= tolerance;
 }
 

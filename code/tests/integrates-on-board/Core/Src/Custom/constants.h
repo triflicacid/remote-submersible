@@ -19,4 +19,6 @@
 // TIM_HandleTypeDef, used for PWM
 #define TIMER_PWM_HANDLE htim2
 
+#define DC_MOTOR_MAX_DUTY 0.6
+
 #endif
