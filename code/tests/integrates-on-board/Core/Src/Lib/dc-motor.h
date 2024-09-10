@@ -4,7 +4,7 @@
 #include "util.h"
 
 // stop dc motors if abs(frac) < this value
-#define DC_MOTOR_STOP_LIMIT 0.1
+#define DC_MOTOR_STOP_LIMIT 0.05
 
 // represents a DC motor interface
 typedef struct dc_motor {
