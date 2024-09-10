@@ -34,7 +34,5 @@
 #define JOYSTICK_Y_MAX 2622
 // tolerance before update
 #define JOYSTICK_TOLERANCE 150
-// absolute maximum of mapping function
-#define JOYSTICK_MAPPED_LIM 0.6
 
 #endif

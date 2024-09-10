@@ -42,7 +42,7 @@ void dc_motor_reverse(dc_motor_t *motor) {
   motor->vel = -motor->vel;
 }
 
-void dc_motor_set_speed(dc_motor_t *motor, double frac) {
+void dc_motor_set_speed(dc_motor_t *motor, float frac) {
   // clamp fraction
   if (frac < 0) {
     frac = 0;
@@ -68,7 +68,7 @@ double dc_motor_get_speed(dc_motor_t *motor) {
   return motor->vel < 0 ? -motor->vel : motor->vel;
 }
 
-void dc_motor_set_velocity(dc_motor_t *motor, double frac) {
+void dc_motor_set_velocity(dc_motor_t *motor, float frac) {
   if (motor->vel == frac) {
     return;
   }

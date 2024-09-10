@@ -13,6 +13,22 @@
 // buffer for packet storage
 static uint8_t _buffer[255];
 
+// given header fields, write using lora_write
+static void write_header(lora_t *lora, uint8_t opcode, uint8_t sender, uint8_t recipient) {
+  uint8_t hdr = ((opcode & 0xf) << 4) | ((sender & 0x3) << 2) | (recipient & 0x3);
+  lora_write(lora, hdr);
+}
+
+// given buffer to start of header, return payload header (increments buffer pointer)
+static payload_header read_header(const uint8_t *buffer) {
+  payload_header hdr;
+  hdr.receiver = *buffer & 0x3;
+  hdr.sender = (*buffer >> 2) & 0x3;
+  hdr.opcode = (*buffer >> 4) & 0xf;
+
+  return hdr;
+}
+
 // store address of operation callbacks
 static propeller_callback_t propeller_cb = NULL;
 static ballast_callback_t ballast_cb = NULL;
@@ -60,7 +76,8 @@ void on_recv(lora_t *lora, uint8_t recv_size) {
   }
 
   // invoke handler
-  on_recv_payload((const payload_header *) _buffer, _buffer + sizeof(payload_header));
+  payload_header hdr = read_header(_buffer);
+  on_recv_payload(&hdr, _buffer + PAYLOAD_SIZE);
 }
 
 void on_recv_payload(const payload_header *header, const void *buffer) {
@@ -91,18 +108,13 @@ void on_recv_payload(const payload_header *header, const void *buffer) {
 
 void transmit_opcode(lora_t *lora, uint8_t opcode, uint8_t recipient) {
   lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
-  lora_write(lora, opcode);
-  lora_write(lora, RADIO_IDENTIFIER);
-  lora_write(lora, recipient);
+  write_header(lora, opcode, RADIO_IDENTIFIER, recipient);
   lora_end_packet(lora, true);
 }
 
 void transmit(lora_t *lora, uint8_t opcode, uint8_t recipient, const void *data, uint8_t data_size) {
   lora_begin_packet(lora, RADIO_IMPLICIT_HEADER);
-  lora_write(lora, opcode);
-  //lora_write_bytes(lora, &opcode, 1);
-  lora_write(lora, RADIO_IDENTIFIER);
-  lora_write(lora, recipient);
+  write_header(lora, opcode, RADIO_IDENTIFIER, recipient);
   lora_write_bytes(lora, data, data_size);
   lora_end_packet(lora, true);
 }

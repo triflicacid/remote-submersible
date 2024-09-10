@@ -65,6 +65,8 @@ inline bool is_within_tolerance(int target, int value, int tolerance) {
 }
 
 // map value from range to range
-double map_range(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max);
+double map_range_decimal(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max);
+
+int32_t map_range_int(int32_t value, int32_t old_min, int32_t old_max, int32_t new_min, int32_t new_max);
 
 #endif

@@ -7,8 +7,8 @@
 
 void recv_propeller(const payload_header *hdr, const propeller_data *data) {
   // update the velocity of both propeller motors
-  dc_motor_set_velocity(&g_primary_motor, data->y);
-  dc_motor_set_velocity(&g_secondary_motor, data->x);
+  dc_motor_set_velocity(&g_primary_motor, (float) data->y / 127.0f);
+  dc_motor_set_velocity(&g_secondary_motor, (float) data->x / 127.0f);
 }
 
 void recv_ballast(const payload_header *hdr, const ballast_data *data) {
@@ -36,7 +36,7 @@ void recv_request_code(const payload_header *hdr) {
 
 void recv_release_pod(const payload_header *hdr) {
   // de-activate electromagnet
-  reset_pin(&pin_electromagnet);
+  set_pin(&pin_electromagnet);
 
   // start electromagnet timer
   //HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);

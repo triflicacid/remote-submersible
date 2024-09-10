@@ -9,17 +9,12 @@
 
 // record ballast state (NOT tri-state switch state)
 tristate_t ballast_state = TRISTATE_UNDEF;
-propeller_data prop_data;
 
 void action_propeller(void) {
   // convert raw ADC values into range
   propeller_data data;
-  prop_data.x=data.x = map_range(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, -JOYSTICK_MAPPED_LIM, JOYSTICK_MAPPED_LIM);
-  prop_data.y=data.y = map_range(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, -JOYSTICK_MAPPED_LIM, JOYSTICK_MAPPED_LIM);
-
-  if (data.x > 1 || data.y > 1) {
-	  data.x = data.x;
-  }
+  data.x = map_range_int(g_joystick_data[0], JOYSTICK_X_MIN, JOYSTICK_X_MAX, -127, 127);
+  data.y = map_range_int(g_joystick_data[1], JOYSTICK_Y_MIN, JOYSTICK_Y_MAX, -127, 127);
 
   transmit(&g_lora, OP_PROPELLER, RADIO_ON_BOARD_IDENTIFIER, &data, sizeof(data));
 }
@@ -83,8 +78,11 @@ void action_send_code(void) {
 
 void action_request_code(void) {
   transmit_opcode(&g_lora, OP_REQUEST_CODE, RADIO_ON_BOARD_IDENTIFIER);
-  lora_receive(&g_lora, 0);
-  radio_check_irq = true;
+
+  if (!radio_check_irq) {
+    lora_receive(&g_lora, 0);
+    radio_check_irq = true;
+  }
 }
 
 void action_release_pod(void) {
@@ -93,6 +91,13 @@ void action_release_pod(void) {
 
 void recv_send_code(const payload_header *hdr, const code_data *data) {
   display_write(&g_display, data->code, 0x0);
+
+  // put into receive mode on request code
+  // now we've got the code, turn it off
+  if (radio_check_irq) {
+    radio_check_irq = false;
+    lora_idle(&g_lora);
+  }
 }
 
 #ifdef PREDICT_DEPTH

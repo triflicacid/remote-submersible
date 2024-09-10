@@ -29,7 +29,15 @@ tristate_t read_tristate_pins(const pin_t *false_pin, const pin_t *true_pin) {
 
 extern inline bool is_within_tolerance(int target, int value, int tolerance);
 
-double map_range(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max) {
+double map_range_decimal(uint32_t value, uint32_t old_min, uint32_t old_max, double new_min, double new_max) {
+  if (value <= old_min) return new_min;
+  if (value >= old_max) return new_max;
+
+  double percentage = (double) (value - old_min) / (old_max - old_min);
+  return percentage * (new_max - new_min) + new_min;
+}
+
+int32_t map_range_int(int32_t value, int32_t old_min, int32_t old_max, int32_t new_min, int32_t new_max) {
   if (value <= old_min) return new_min;
   if (value >= old_max) return new_max;
 

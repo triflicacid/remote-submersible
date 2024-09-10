@@ -59,6 +59,10 @@ void interrupt_radio_dio(void) {
   lora_dio_interrupt(&g_lora);
 }
 
+void on_receive(int size) {
+  on_recv(&g_lora, size);
+}
+
 // INTERRUPT: override GPIO external interrupt callback
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
   switch (pin) {
@@ -78,12 +82,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
       create_action(interrupt_release_pod);
       break;
   }
-}
-
-void on_receive(int size) {
-  on_recv(&g_lora, size);
-  radio_check_irq = false;
-  lora_idle(&g_lora); // only receive once. it will be enabled again when needed.
 }
 
 // INTERRUPT: override timer callback
@@ -149,14 +147,15 @@ void setup(void) {
   // initialise LoRa device with +20dBm
   lora_init(&g_lora, &SPI_HANDLE, &pin_cs_radio, &pin_reset);
   lora_set_tx_power(&g_lora, 20);
+  lora_set_spreading_factor(&g_lora, 12);
   g_lora.on_receive = on_receive;
 
   // initialise debouncing locks
-  timed_lock_init(&lock_send_code, 10, action_send_code);
-  timed_lock_init(&lock_req_code, 10, action_request_code);
+  timed_lock_init(&lock_send_code, 1000, action_send_code);
+  timed_lock_init(&lock_req_code, 1000, action_request_code);
   timed_lock_init(&lock_release_pod, 5000, action_release_pod); // high delay to give electromagnet rest
-  timed_lock_init(&lock_tristate_up, 10, action_ballast);
-  timed_lock_init(&lock_tristate_down, 10, action_ballast);
+  timed_lock_init(&lock_tristate_up, 1000, action_ballast);
+  timed_lock_init(&lock_tristate_down, 1000, action_ballast);
 
   // set payload receive handlers
   register_send_code_callback(recv_send_code);

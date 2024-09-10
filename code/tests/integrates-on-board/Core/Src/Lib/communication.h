@@ -17,10 +17,10 @@
 #define RADIO_IMPLICIT_HEADER false
 
 #define OP_PROPELLER 0x1
-#define OP_BALLAST 0x5
-#define OP_SEND_CODE 0x10
-#define OP_REQUEST_CODE 0x11
-#define OP_RELEASE_POD 0x20
+#define OP_BALLAST 0x2
+#define OP_SEND_CODE 0x3
+#define OP_REQUEST_CODE 0x4
+#define OP_RELEASE_POD 0x5
 
 // header information
 typedef struct {
@@ -29,10 +29,13 @@ typedef struct {
   uint8_t receiver;
 } payload_header;
 
+// payload size in bytes
+#define PAYLOAD_SIZE 1
+
 // payload data for OP_PROPELLER
 typedef struct {
-  double x;  // secondary propeller, in [-1, 1]
-  double y;  // primary propeller, in [-1, 1]
+  int8_t x;  // secondary propeller
+  int8_t y;  // primary propeller
 } propeller_data;
 
 // payload data for OP_BALLAST

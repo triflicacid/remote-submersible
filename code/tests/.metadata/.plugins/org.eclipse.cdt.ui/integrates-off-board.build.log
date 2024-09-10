@@ -1,10 +1,10 @@
-14:55:02 **** Incremental Build of configuration Debug for project integrates-off-board ****
+11:52:24 **** Incremental Build of configuration Debug for project integrates-off-board ****
 make -j12 all 
 arm-none-eabi-size  integrates-off-board.elf 
    text	   data	    bss	    dec	    hex	filename
-  29840	     40	   2576	  32456	   7ec8	integrates-off-board.elf
+  30376	     40	   2552	  32968	   80c8	integrates-off-board.elf
 Finished building: default.size.stdout
  
 
-14:55:02 Build Finished. 0 errors, 0 warnings. (took 404ms)
+11:52:24 Build Finished. 0 errors, 0 warnings. (took 396ms)
 

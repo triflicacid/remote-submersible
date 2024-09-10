@@ -15,7 +15,7 @@ stepper_event_t g_ballast;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
   if (h == &TIMER_ELECTROMAGNET_HANDLE) {
     // times up! reactivate magnet and cancel timer
-    set_pin(&pin_electromagnet);
+    reset_pin(&pin_electromagnet);
     HAL_TIM_Base_Stop_IT(&TIMER_ELECTROMAGNET_HANDLE);
     return;
   }
@@ -57,7 +57,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 }
 
 void setup(void) {
-	set_pin(&pin_electromagnet);
+	//set_pin(&pin_electromagnet);
 
   // global reset
   toggle_reset(&pin_reset, 5);
@@ -66,6 +66,7 @@ void setup(void) {
   lora_init(&g_lora, &SPI_HANDLE, &pin_cs_radio, &pin_reset);
   g_lora.on_receive = on_radio_receive;
   lora_set_tx_power(&g_lora, 20);
+  lora_set_spreading_factor(&g_lora, 12);
 
   // set LoRa to receive mode
   lora_receive(&g_lora, 0);
