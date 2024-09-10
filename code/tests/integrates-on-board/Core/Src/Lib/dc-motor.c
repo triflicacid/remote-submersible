@@ -96,3 +96,4 @@ void dc_motor_set_velocity(dc_motor_t *motor, float frac) {
 double dc_motor_get_velocity(dc_motor_t *motor) {
   return motor->vel;
 }
+

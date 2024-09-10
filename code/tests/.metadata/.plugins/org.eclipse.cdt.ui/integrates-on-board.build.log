@@ -1,10 +1,18 @@
-13:07:01 **** Incremental Build of configuration Debug for project integrates-on-board ****
+14:29:13 **** Incremental Build of configuration Debug for project integrates-on-board ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/Lib/dc-motor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Lib/dc-motor.d" -MT"Core/Src/Lib/dc-motor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Lib/dc-motor.o"
+arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
+arm-none-eabi-gcc -o "integrates-on-board.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\admin\Documents\team-2\repo2\remote-submersible\code\tests\integrates-on-board\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="integrates-on-board.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: integrates-on-board.elf
+ 
 arm-none-eabi-size  integrates-on-board.elf 
+arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
    text	   data	    bss	    dec	    hex	filename
-  23640	     44	   2384	  26068	   65d4	integrates-on-board.elf
+  24984	     44	   2384	  27412	   6b14	integrates-on-board.elf
 Finished building: default.size.stdout
  
+Finished building: integrates-on-board.list
+ 
 
-13:07:02 Build Finished. 0 errors, 0 warnings. (took 463ms)
+14:29:14 Build Finished. 0 errors, 0 warnings. (took 1s.61ms)
 

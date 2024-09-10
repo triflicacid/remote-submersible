@@ -34,7 +34,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *h) {
 // switch direction of a DC motor -- turn off and delay to prevent voltage spikes
 void on_dc_motor_switch_direction(dc_motor_t *motor) {
   dc_motor_stop(motor);
-  HAL_Delay(100);
+  HAL_Delay(300);
 }
 
 void interrupt_radio(void) {
@@ -83,6 +83,9 @@ void setup(void) {
   HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, TIM_CHANNEL_1);
   dc_motor_init(&g_secondary_motor, &TIMER_PWM_HANDLE, TIM_CHANNEL_3, &pins_dc_in[2], &pins_dc_in[3]);
   HAL_TIM_PWM_Start(&TIMER_PWM_HANDLE, TIM_CHANNEL_3);
+
+  g_primary_motor.on_switch_direction = on_dc_motor_switch_direction;
+  g_secondary_motor.on_switch_direction = on_dc_motor_switch_direction;
 
   // initialise stepper motor and the ballast event operating it
   stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_HALF_DRIVE);
