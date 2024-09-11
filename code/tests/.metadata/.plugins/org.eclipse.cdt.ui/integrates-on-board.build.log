@@ -1,4 +1,4 @@
-15:16:12 **** Incremental Build of configuration Debug for project integrates-on-board ****
+07:05:45 **** Incremental Build of configuration Debug for project integrates-on-board ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/Custom/actions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/actions.d" -MT"Core/Src/Custom/actions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/actions.o"
 arm-none-eabi-gcc "../Core/Src/Custom/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Custom/main.d" -MT"Core/Src/Custom/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Custom/main.o"
@@ -8,11 +8,11 @@ Finished building target: integrates-on-board.elf
 arm-none-eabi-size  integrates-on-board.elf 
 arm-none-eabi-objdump -h -S integrates-on-board.elf  > "integrates-on-board.list"
    text	   data	    bss	    dec	    hex	filename
-  24992	     44	   2384	  27420	   6b1c	integrates-on-board.elf
+  25016	     44	   2384	  27444	   6b34	integrates-on-board.elf
 Finished building: default.size.stdout
  
 Finished building: integrates-on-board.list
  
 
-15:16:14 Build Finished. 0 errors, 0 warnings. (took 1s.223ms)
+07:05:46 Build Finished. 0 errors, 0 warnings. (took 1s.411ms)
 

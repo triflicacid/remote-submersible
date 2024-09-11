@@ -5,10 +5,10 @@
 #define SPI_HANDLE hspi2
 
 // ballast stepper motor: descend position (absolute step count from hover position)
-#define BALLAST_DESCEND_POSITION 20
+#define BALLAST_DESCEND_POSITION 30
 
 // ballast stepper motor: ascend position (absolute step count from hover position)
-#define BALLAST_ASCEND_POSITION 20
+#define BALLAST_ASCEND_POSITION 30
 
 // TIM_HandleTypeDef, configured to 2s
 #define TIMER_ELECTROMAGNET_HANDLE htim6
@@ -19,6 +19,6 @@
 // TIM_HandleTypeDef, used for PWM
 #define TIMER_PWM_HANDLE htim2
 
-#define DC_MOTOR_MAX_DUTY 0.6
+#define DC_MOTOR_MAX_DUTY 0.4
 
 #endif

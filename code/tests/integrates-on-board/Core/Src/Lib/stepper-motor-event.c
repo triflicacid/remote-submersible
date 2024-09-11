@@ -20,7 +20,7 @@ void stepper_event_update(stepper_event_t *event, int8_t new_position) {
   }
   
   // arrive at centre by undoing steps
-  event->target = event->progress;
+  event->target = event->target_pos == POSITION_MIDDLE && event->progress == event->target ? 0 : event->progress;
   
   // from new position, update target steps and step direction
   switch (new_position) {

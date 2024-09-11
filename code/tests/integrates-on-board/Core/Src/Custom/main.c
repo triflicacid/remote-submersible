@@ -88,7 +88,7 @@ void setup(void) {
   g_secondary_motor.on_switch_direction = on_dc_motor_switch_direction;
 
   // initialise stepper motor and the ballast event operating it
-  stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_HALF_DRIVE);
+  stepper_motor_init(&ballast_motor, (const pin_t *[4]) { &pin_stepper_black, &pin_stepper_blue, &pin_stepper_green, &pin_stepper_red }, STEPPER_MOTOR_FULL_DRIVE);
   uint8_t count = stepper_motor_microstep_count(&ballast_motor);
   stepper_event_init(&g_ballast, BALLAST_ASCEND_POSITION * count, BALLAST_DESCEND_POSITION * count);
 
