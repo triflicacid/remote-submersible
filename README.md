@@ -12,12 +12,11 @@ Both chips are configured using the STM32CubeMX IDE.
 ## Folder Layout
 
 - `code` - contains various source code files.
-
-  The `shared` folder contains software which is identical to both controllers.
-  The `x-board` directories contain software specific to each controller, as dictated by `x`.
+  - `libs` contains common library files.
+  - `tests` contains test projects for various components.
+  - `unused` contains old unused library or miscellaneous files.
 - `schematics` - contains schematics of various items, where `schematics/x` contains the KiCAD schematic sources for item `x`.
 - `simulations` - contains circuit simulation files.
-- `stm32cubemx` - contains STM32CubeMX projects, where `stm32cubemx/x` contains the project file `x.ioc` for project `x`.
 
 ## Code Structure
 
