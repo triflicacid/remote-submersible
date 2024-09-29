@@ -1,6 +1,0 @@
-*/Drivers
-*/Debug
-*/.settings
-*/Core/Startup
-*/*.ld
-!*.ioc
